@@ -2,7 +2,7 @@ import {productAdapter} from "@/utlis/productAdapter.js";
 
 export async function fetchProduct(productId) {
     try{
-    const res = await fetch(`/umbraco/delivery/api/v2/content/item/${productId}`);
+    const res = await fetch(`https://githubhost.netlify.app/umbraco/delivery/api/v2/content/item/${productId}`);
 
     if (!res.ok) {
         throw new Error("Failed to fetch product");

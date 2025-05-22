@@ -7,7 +7,7 @@ export default function Collections() {
   const [collections, setCollections] = useState([]);
 
     useEffect(() => {
-        fetch("/umbraco/delivery/api/v2/content?filter=contentType:categoryPage")
+        fetch("https://githubhost.netlify.app/umbraco/delivery/api/v2/content?filter=contentType:categoryPage")
             .then((res) => res.json())
             .then((data) => {
                 const categories = data.items.map((item) => {

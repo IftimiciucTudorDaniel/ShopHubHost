@@ -77,7 +77,7 @@ export default function Products11({ selectedCategory, gen }) {
     if (collection) queryParams.append("collection", collection);
 
     setLoading(true);
-    fetch(`/umbraco/delivery/api/products?${queryParams.toString()}`)
+    fetch(`https://githubhost.netlify.app/umbraco/delivery/api/products?${queryParams.toString()}`)
         .then(res => res.json())
         .then(data => {
           setProducts(data);

@@ -21,7 +21,7 @@ export default function ProductDetailPage() {
 
     const [product, setProduct] = useState(null);
     useEffect(() => {
-        fetch(`/umbraco/delivery/api/v1/content/item/${id}`)
+        fetch(`https://githubhost.netlify.app/umbraco/delivery/api/v1/content/item/${id}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch product");
