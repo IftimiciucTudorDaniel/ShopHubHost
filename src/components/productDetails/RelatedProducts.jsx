@@ -9,7 +9,7 @@ export default function RelatedProducts() {
     const [topProducts, setTopProducts] = useState([]);
 
     useEffect(() => {
-        fetch("https://githubhost.netlify.app/umbraco/delivery/api/v2/content?filter=contentType:productPage&take=10000")
+        fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType:productPage&take=10000")
             .then((res) => res.json())
             .then((data) => {
                 const items = data.items.slice(0, 4);

@@ -21,12 +21,12 @@ export const handleGlobalProductClick = async (productId, title) => {
 };
 
 export const getTodaysTopClickedProducts = async () => {
-    const res = await fetch("https://githubhost.netlify.app/umbraco/delivery/api/productclicks/top?top=4&period=today");
+    const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/productclicks/top?top=4&period=today");
     return res.json();
 };
 
 export const getAllTimeTopClickedProducts = async () => {
-    const res = await fetch("https://githubhost.netlify.app/umbraco/delivery/api/productclicks/top?top=4&period=alltime");
+    const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/productclicks/top?top=4&period=alltime");
     return res.json();
 };
 

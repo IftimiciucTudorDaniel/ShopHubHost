@@ -8,7 +8,7 @@ import { Pagination } from "swiper/modules";
 export default function Collections() {
     const [collections, setCollections] = useState([]);
     useEffect(() => {
-        fetch("https://githubhost.netlify.app/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage")
+        fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage")
             .then((res) => res.json())
             .then((data) => {
                 const collections = data.items.map((item) => {

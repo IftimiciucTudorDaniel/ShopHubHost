@@ -7,7 +7,7 @@ import {getTodaysTopClickedProducts} from "@/utlis/analytics.js";
 export default function Hero() {
     const [slide, setSlide] = useState([]);
     useEffect(() => {
-        fetch(`https://githubhost.netlify.app/umbraco/delivery/api/v2/content?filter=name%3AAbout`)
+        fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=name%3AAbout`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch slider");

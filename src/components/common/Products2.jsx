@@ -11,7 +11,7 @@ export default function Products2({ title, parentClass }) {
         getTodaysTopClickedProducts()
             .then((topProducts) => {
                 const productDetailsPromises = topProducts.map((topProduct) => {
-                    return fetch(`https://githubhost.netlify.app/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
+                    return fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
                         .then((res) => res.json())
                         .then((productData) => ({
                             id: productData.id,
