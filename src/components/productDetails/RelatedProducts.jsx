@@ -17,7 +17,7 @@ export default function RelatedProducts() {
                     id: item.id,
                     title: item.name,
                     link: item.route?.path || "#",
-                    imageUrl: item.properties?.image1 || "",
+                    imageUrl1: item.properties?.image1 || "",
                     imageUrl2: item.properties?.image2 || "",
                     alt: item.name,
                     price: item.properties?.price || null,

@@ -31,7 +31,7 @@ export default function Wishlist() {
                                   <img
                                       className="lazyload"
                                       alt=""
-                                      src={elm.imageUrl}
+                                      src={elm.imageUrl1}
                                       width={600}
                                       height={800}
                                   />
@@ -54,7 +54,7 @@ export default function Wishlist() {
                                     </div>
                                   </div>
                                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-12">
-                                    <div className="text-secondary-2">XL/Blue</div>
+                                    <div className="text-secondary-2">{elm.brands}</div>
                                     <div className="text-button">
                                       {elm.price} Ron
                                     </div>

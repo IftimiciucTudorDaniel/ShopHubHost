@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import LanguageSelect from "../common/LanguageSelect";
 import CurrencySelect from "../common/CurrencySelect";
@@ -14,9 +14,234 @@ import {
   femei,
   swatchLinks,
 } from "@/data/menu";
+import {getTodaysTopClickedProducts} from "@/utlis/analytics.js";
 
 export default function MobileMenu() {
   const { pathname } = useLocation();
+  const [femeiLinks, setFemeiLinks] = useState([]);
+  const [barbatLinks, setBarbatLinks] = useState([]);
+  const [fetiteLinks, setFetiteLinks] = useState([]);
+  const [baietiLinks, setBaietiLinks] = useState([]);
+  const [collections, setCollections] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [brands, setBrands] = useState([]);
+
+  const brandsPerColumn = 10;
+  const chunkedBrands = [];
+  let k=2;
+  for (let i = 0; i < brands.length && k>0; i += brandsPerColumn) {
+    chunkedBrands.push(brands.slice(i, i + brandsPerColumn));
+    k--;
+  }
+  useEffect(() => {
+    getTodaysTopClickedProducts()
+        .then((topProducts) => {
+          const productDetailsPromises = topProducts.map((topProduct) => {
+            return fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
+                .then((res) => res.json())
+                .then((productData) => ({
+                  id: productData.id,
+                  title: productData.name,
+                  link: productData.route?.path || "#",
+                  imageUrl1: productData.properties?.image1 || "",
+                  imageUrl2: productData.properties?.image2 || "",
+                  price: productData.properties?.price || null,
+                  clicks: topProduct.clicks,
+                }));
+          });
+
+          Promise.all(productDetailsPromises)
+              .then((fullProductDetails) => {
+                setProducts(fullProductDetails);
+              });
+        })
+        .catch((error) => console.error("Error fetching top clicked products:", error));
+  }, []);
+
+  useEffect(() => {
+    const fetchCollections = async () => {
+      try {
+        const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
+        const data = await res.json();
+
+        const collections = data.items.map((item) => {
+          const image = item.properties?.image?.[0];
+          const imageUrl = image ? `https://localhost:44322${image.url}` : null;
+
+          // Construiește link-ul dinamic pentru colecție
+          const link = `/colectii/${item.name
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .replace(/\s+/g, "-")}`;
+
+          return {
+            name: item.name,
+            link: link,  // Link-ul dinamic pentru colecție
+            imageUrl: imageUrl,
+            alt: item.name,
+            description: item.description || "",
+          };
+        });
+
+        // Dacă vrei să elimini duplicatele pe baza numelui
+        const uniqueCollections = Array.from(
+            new Map(
+                collections.map((item) => [
+                  item.name.toLowerCase(),
+                  item,
+                ])
+            ).values()
+        );
+
+        setCollections(uniqueCollections);  // Setează colecțiile unice
+      } catch (error) {
+        console.error("Error fetching collections:", error);
+      }
+    };
+
+    fetchCollections();
+  }, []);
+
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AproductPage&skip=0&take=10000&fields=properties%5Bbrand%5D");
+        const data = await res.json();
+
+        // Extrage brandurile din fiecare item
+        const brands = data.items
+            .map((item) => item.properties?.brand)
+            .filter(Boolean); // Elimină undefined/null
+
+        // Normalizează și elimină duplicatele
+        const uniqueBrands = Array.from(new Set(
+            brands.map((brand) =>
+                brand
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .trim()
+            )
+        ));
+
+        // Opțional: construiește obiecte cu linkuri
+        const brandObjects = uniqueBrands.map((brand) => ({
+          name: brand,
+          link: `/brand/${brand.replace(/\s+/g, "-")}`,
+        }));
+
+        setBrands(brandObjects); // Ai nevoie de useState pentru brands
+      } catch (error) {
+        console.error("Error fetching brands:", error);
+      }
+    };
+
+    fetchBrands();
+  }, []);
+
+
+  useEffect(() => {
+    const fetchFemeiLinks = async () => {
+      try {
+        const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=400");
+        const data = await res.json();
+
+        const femeiCategoriesRaw = data.items.filter((item) =>
+            item.name.toLowerCase().includes("femei")
+        );
+        const uniqueFemeiCategories = Array.from(
+            new Map(
+                femeiCategoriesRaw.map((item) => [
+                  item.name.toLowerCase(),
+                  {
+                    name: item.name,
+                    href: `/femei/${item.name
+                        .replace(/\s*-\s*femei/i, "") // elimină " - Femei"
+                        .toLowerCase()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .replace(/\s+/g, "-")
+                    }`, // <-- ACEASTA A PARANTEZĂ LIPSEȘTE!
+                  },
+                ])
+            ).values()
+        );
+
+        const barbatiCategoriesRaw = data.items.filter((item) =>
+            item.name.toLowerCase().includes("barbati")
+        );
+        const uniqueBarbatiCategories = Array.from(
+            new Map(
+                barbatiCategoriesRaw.map((item) => [
+                  item.name.toLowerCase(),
+                  {
+                    name: item.name,
+                    href: `/barbati/${item.name
+                        .replace(/\s*-\s*barbati/i, "") // elimină " - Femei"
+                        .toLowerCase()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .replace(/\s+/g, "-")
+                    }`,
+                  },
+                ])
+            ).values()
+        );
+        const baietiCategoriesRaw = data.items.filter((item) =>
+            item.name.toLowerCase().includes("baieti")
+        );
+        const uniqueBaietiCategories = Array.from(
+            new Map(
+                baietiCategoriesRaw.map((item) => [
+                  item.name.toLowerCase(),
+                  {
+                    name: item.name,
+                    href: `/baieti/${item.name
+                        .replace(/\s*-\s*baieti/i, "") // elimină " - Femei"
+                        .toLowerCase()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .replace(/\s+/g, "-")
+                    }`, // <-- ACEASTA A PARANTEZĂ LIPSEȘTE!
+                  },
+                ])
+            ).values()
+        );
+        const fetiteCategoriesRaw = data.items.filter((item) =>
+            item.name.toLowerCase().includes("fetite")
+        );
+        const uniqueFetiteCategories = Array.from(
+            new Map(
+                fetiteCategoriesRaw.map((item) => [
+                  item.name.toLowerCase(),
+                  {
+                    name: item.name,
+                    href: `/fetite/${item.name
+                        .replace(/\s*-\s*fetite/i, "") // elimină " - Femei"
+                        .toLowerCase()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .replace(/\s+/g, "-")
+                    }`, // <-- ACEASTA A PARANTEZĂ LIPSEȘTE!
+                  },
+                ])
+            ).values()
+        );
+
+        setFemeiLinks(uniqueFemeiCategories);
+        setBarbatLinks(uniqueBarbatiCategories);
+        setBaietiLinks(uniqueBaietiCategories);
+        setFetiteLinks(uniqueFetiteCategories);
+      } catch (error) {
+        console.error("❌ Failed to fetch Femei categories:", error);
+      }
+    };
+
+    fetchFemeiLinks();
+  }, []);
+
+
   return (
     <div className="offcanvas offcanvas-start canvas-mb" id="mobileMenu">
       <span
@@ -65,21 +290,8 @@ export default function MobileMenu() {
             </form>
             <ul className="nav-ul-mb" id="wrapper-menu-navigation">
               <li className="nav-mb-item active">
-                <a
-                  href="#dropdown-menu-one"
-                  className={`collapsed mb-menu-link ${
-                    [...demoItems].some(
-                      (elm) => elm.href.split("/")[1] == pathname.split("/")[1]
-                    )
-                      ? "active"
-                      : ""
-                  } `}
-                  data-bs-toggle="collapse"
-                  aria-expanded="true"
-                  aria-controls="dropdown-menu-one"
-                >
-                  <span>Home</span>
-                  <span className="btn-open-sub" />
+                <a href="/" className="item-link">
+                  Home
                 </a>
                 <div id="dropdown-menu-one" className="collapse">
                   <ul className="sub-nav-menu">
@@ -119,7 +331,7 @@ export default function MobileMenu() {
                   aria-expanded="true"
                   aria-controls="dropdown-menu-two"
                 >
-                  <span>Shop</span>
+                  <span>Produse</span>
                   <span className="btn-open-sub" />
                 </a>
                 <div id="dropdown-menu-two" className="collapse">
@@ -144,20 +356,10 @@ export default function MobileMenu() {
                       </a>
                       <div id="sub-shop-one" className="collapse">
                         <ul className="sub-nav-menu sub-menu-level-2">
-                          {femei.map((link, i) => (
-                            <li key={i}>
-                              <Link
-                                to={link.href}
-                                className={`sub-nav-link ${
-                                  pathname.split("/")[1] ==
-                                  link.href.split("/")[1]
-                                    ? "active"
-                                    : ""
-                                } `}
-                              >
-                                {link.name}
-                              </Link>
-                            </li>
+                          {femeiLinks.slice(0,15).map((link) => (
+                              <li key={link.name}>
+                                <Link to={link.href} className="menu-link-text">{link.name?.split("-")[0]}</Link>
+                              </li>
                           ))}
                         </ul>
                       </div>
@@ -177,25 +379,15 @@ export default function MobileMenu() {
                         aria-expanded="true"
                         aria-controls="sub-shop-two"
                       >
-                        <span>Shop Features</span>
+                        <span>Fetite</span>
                         <span className="btn-open-sub" />
                       </a>
                       <div id="sub-shop-two" className="collapse">
                         <ul className="sub-nav-menu sub-menu-level-2">
-                          {barbati.map((link, i) => (
-                            <li key={i}>
-                              <Link
-                                to={link.href}
-                                className={`sub-nav-link ${
-                                  pathname.split("/")[1] ==
-                                  link.href.split("/")[1]
-                                    ? "active"
-                                    : ""
-                                } `}
-                              >
-                                {link.name}
-                              </Link>
-                            </li>
+                          {fetiteLinks.slice(0,15).map((link) => (
+                              <li key={link.name}>
+                                <Link to={link.href} className="menu-link-text">{link.name?.split("-")[0]}</Link>
+                              </li>
                           ))}
                         </ul>
                       </div>
@@ -215,25 +407,15 @@ export default function MobileMenu() {
                         aria-expanded="true"
                         aria-controls="sub-shop-three"
                       >
-                        <span>Products Hover</span>
+                        <span>Barbati</span>
                         <span className="btn-open-sub" />
                       </a>
                       <div id="sub-shop-three" className="collapse">
                         <ul className="sub-nav-menu sub-menu-level-2">
-                          {productStyles.map((link, i) => (
-                            <li key={i}>
-                              <Link
-                                to={link.href}
-                                className={`sub-nav-link ${
-                                  pathname.split("/")[1] ==
-                                  link.href.split("/")[1]
-                                    ? "active"
-                                    : ""
-                                } `}
-                              >
-                                {link.name}
-                              </Link>
-                            </li>
+                          {barbatLinks.slice(0,15).map((link) => (
+                              <li key={link.name}>
+                                <Link to={link.href} className="menu-link-text">{link.name?.split("-")[0]}</Link>
+                              </li>
                           ))}
                         </ul>
                       </div>
@@ -253,25 +435,15 @@ export default function MobileMenu() {
                         aria-expanded="true"
                         aria-controls="sub-shop-four"
                       >
-                        <span>My Pages</span>
+                        <span>Baieti</span>
                         <span className="btn-open-sub" />
                       </a>
                       <div id="sub-shop-four" className="collapse">
                         <ul className="sub-nav-menu sub-menu-level-2">
-                          {otherShopMenus.map((link, i) => (
-                            <li key={i}>
-                              <Link
-                                to={link.href}
-                                className={`sub-nav-link ${
-                                  pathname.split("/")[1] ==
-                                  link.href.split("/")[1]
-                                    ? "active"
-                                    : ""
-                                } `}
-                              >
-                                {link.name}
-                              </Link>
-                            </li>
+                          {baietiLinks.slice(0,15).map((link) => (
+                              <li key={link.name}>
+                                <Link to={link.href} className="menu-link-text">{link.name?.split("-")[0]}</Link>
+                              </li>
                           ))}
                         </ul>
                       </div>
@@ -293,7 +465,7 @@ export default function MobileMenu() {
                   aria-expanded="true"
                   aria-controls="dropdown-menu-three"
                 >
-                  <span>Products</span>
+                  <span>Shop</span>
                   <span className="btn-open-sub" />
                 </a>
                 <div id="dropdown-menu-three" className="collapse">
@@ -313,25 +485,24 @@ export default function MobileMenu() {
                         aria-expanded="true"
                         aria-controls="sub-product-one"
                       >
-                        <span>Products Layout</span>
+                        <span>Colectii</span>
                         <span className="btn-open-sub" />
                       </a>
                       <div id="sub-product-one" className="collapse">
                         <ul className="sub-nav-menu sub-menu-level-2">
-                          {productLinks.map((link, i) => (
-                            <li key={i}>
-                              <Link
-                                to={link.href}
-                                className={`sub-nav-link ${
-                                  pathname.split("/")[1] ==
-                                  link.href.split("/")[1]
-                                    ? "active"
-                                    : ""
-                                } `}
+                          {collections.map((collection, index) => (
+                              <li
+                                  key={index}
+                                  className={`menu-item-li ${
+                                      pathname.split("/")[1] === collection.link.split("/")[1]
+                                          ? "active"
+                                          : ""
+                                  }`}
                               >
-                                {link.name}
-                              </Link>
-                            </li>
+                                <Link to={collection.link} className="menu-link-text">
+                                  {collection.name}
+                                </Link>
+                              </li>
                           ))}
                         </ul>
                       </div>
@@ -351,25 +522,15 @@ export default function MobileMenu() {
                         aria-expanded="true"
                         aria-controls="sub-product-two"
                       >
-                        <span>Colors Swatched</span>
+                        <span>Branduri</span>
                         <span className="btn-open-sub" />
                       </a>
                       <div id="sub-product-two" className="collapse">
                         <ul className="sub-nav-menu sub-menu-level-2">
-                          {swatchLinks.map((link, i) => (
-                            <li key={i}>
-                              <Link
-                                to={link.href}
-                                className={`sub-nav-link ${
-                                  pathname.split("/")[1] ==
-                                  link.href.split("/")[1]
-                                    ? "active"
-                                    : ""
-                                } `}
-                              >
-                                {link.name}
-                              </Link>
-                            </li>
+                          {chunkedBrands[0]?.map((brand) => (
+                              <li key={brand.name} className="menu-item-li">
+                                <Link to={brand.link} className="menu-link-text">{brand.name}</Link>
+                              </li>
                           ))}
                         </ul>
                       </div>
@@ -389,25 +550,15 @@ export default function MobileMenu() {
                         aria-expanded="true"
                         aria-controls="sub-product-three"
                       >
-                        <span>Products Features</span>
+                        <span>Branduri</span>
                         <span className="btn-open-sub" />
                       </a>
                       <div id="sub-product-three" className="collapse">
                         <ul className="sub-nav-menu sub-menu-level-2">
-                          {productFeatures.map((link, i) => (
-                            <li key={i}>
-                              <Link
-                                to={link.href}
-                                className={`sub-nav-link ${
-                                  pathname.split("/")[1] ==
-                                  link.href.split("/")[1]
-                                    ? "active"
-                                    : ""
-                                } `}
-                              >
-                                {link.name}
-                              </Link>
-                            </li>
+                          {chunkedBrands[1]?.map((brand) => (
+                              <li key={brand.name} className="menu-item-li">
+                                <Link to={brand.link} className="menu-link-text">{brand.name}</Link>
+                              </li>
                           ))}
                         </ul>
                       </div>
@@ -486,14 +637,6 @@ export default function MobileMenu() {
                     ))}
                   </ul>
                 </div>
-              </li>
-              <li className="nav-mb-item">
-                <a
-                  href="https://themeforest.net/user/themesflat"
-                  className="mb-menu-link"
-                >
-                  Buy Theme
-                </a>
               </li>
             </ul>
           </div>

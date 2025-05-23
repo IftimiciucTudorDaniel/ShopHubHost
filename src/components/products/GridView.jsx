@@ -1,6 +1,5 @@
 import React from "react";
 import ProductCard1 from "../productCards/ProductCard1";
-import Pagination from "../common/Pagination";
 import { Link } from "react-router-dom";
 
 export default function GridView({ products, pagination = true }) {
@@ -14,14 +13,6 @@ export default function GridView({ products, pagination = true }) {
               </Link>
             </div>
         ))}
-        {/* pagination */}
-        {pagination ? (
-            <ul className="wg-pagination justify-content-center">
-              <Pagination />
-            </ul>
-        ) : (
-            ""
-        )}
       </>
   );
 }

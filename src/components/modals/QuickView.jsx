@@ -37,7 +37,7 @@ export default function QuickView() {
         <div className="modal-dialog">
           <div className="modal-content">
             <Grid5
-                firstItem={quickViewItem.imageUrl}
+                firstItem={quickViewItem.imageUrl1}
             />
             <div className="wrap mw-100p-hidden">
               <div className="header">

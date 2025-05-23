@@ -8,6 +8,8 @@ import { initialState, reducer } from "@/reducer/filterReducer";
 import FilterMeta from "./FilterMeta";
 import FilterSidebar from "./FilterSidebar";
 import { useParams } from "react-router-dom";
+import Pagination from "@/components/common/Pagination";
+
 
 export default function Products11({ selectedCategory, gen }) {
   const [products, setProducts] = useState([]);
@@ -127,11 +129,20 @@ export default function Products11({ selectedCategory, gen }) {
       ));
     }
 
-    // Branduri selectate manual
-    if (brands.length) {
-      filteredArrays.push(products.filter(
-          (p) => brands.some((b) => normalize(b) === normalize(p.brands))
-      ));
+    if (brands.length > 0) {
+      filteredArrays.push(
+          products.filter((p) => {
+            const productBrands = typeof p.brands === "string"
+                ? p.brands.split(",").map((b) => normalize(b.trim()))
+                : Array.isArray(p.brands)
+                    ? p.brands.map((b) => normalize(b))
+                    : [];
+
+            return brands.some((selectedBrand) =>
+                productBrands.includes(normalize(selectedBrand))
+            );
+          })
+      );
     }
 
     // Culoare selectată
@@ -155,11 +166,10 @@ export default function Products11({ selectedCategory, gen }) {
     dispatch({ type: "SET_FILTERED", payload: commonItems });
 
     // Updatăm opțiunile disponibile
-    setAvailableColors([...new Set(commonItems.map((p) => p.color).filter(Boolean))]);
-    setAvailableBrands([...new Set(commonItems.map((p) => p.brands).filter(Boolean))]);
-    setAvailableCategories([...new Set(commonItems.map((p) => p.category).filter(Boolean))]);
   }, [price, color, brands, products, category, slug, routeBrand, selectedCategory]);
-
+  useEffect(() => {
+    dispatch({ type: "CLEAR_FILTER" });
+  }, [selectedCategory, routeBrand, slug]);
   useEffect(() => {
     let sortedItems = [...filtered];
     switch (sortingOption) {
@@ -179,7 +189,11 @@ export default function Products11({ selectedCategory, gen }) {
     dispatch({ type: "SET_SORTED", payload: sortedItems });
     dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
   }, [filtered, sortingOption]);
+  const startIndex = (state.currentPage - 1) * state.itemsPerPage;
+  const endIndex = startIndex + state.itemsPerPage;
+  const paginatedProducts = sorted.slice(startIndex, endIndex);
 
+  const totalPages = Math.ceil(sorted.length / state.itemsPerPage);
   return (
       <>
         <section className="flat-spacing">
@@ -211,7 +225,8 @@ export default function Products11({ selectedCategory, gen }) {
             <div className="wrapper-control-shop">
               <FilterMeta productLength={sorted.length} allProps={allProps} />
               <div className="row">
-                <div className="col-xl-3">
+                {/* DESKTOP Sidebar - doar pe ecrane mari */}
+                <div className="col-xl-3 d-none d-xl-block">
                   <FilterSidebar
                       allProps={allProps}
                       selectedCategory={selectedCategory}
@@ -220,6 +235,34 @@ export default function Products11({ selectedCategory, gen }) {
                       availableCategories={availableCategories}
                   />
                 </div>
+
+                {/* MOBIL Sidebar - offcanvas Bootstrap activat din butonul Filters */}
+                <div
+                    className="offcanvas offcanvas-start"
+                    tabIndex="-1"
+                    id="filterShop"
+                    aria-labelledby="filterShopLabel"
+                >
+                  <div className="offcanvas-header">
+                    <h5 className="offcanvas-title" id="filterShopLabel">Filters</h5>
+                    <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                    ></button>
+                  </div>
+                  <div className="offcanvas-body">
+                    <FilterSidebar
+                        allProps={allProps}
+                        selectedCategory={selectedCategory}
+                        availableColors={availableColors}
+                        availableBrands={availableBrands}
+                        availableCategories={availableCategories}
+                    />
+                  </div>
+                </div>
+
                 <div className="col-xl-9">
                   {loading ? (
                       <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "300px" }}>
@@ -229,13 +272,22 @@ export default function Products11({ selectedCategory, gen }) {
                       </div>
                   ) : activeLayout === 1 ? (
                       <div className="tf-list-layout wrapper-shop" id="listLayout">
-                        <Listview products={sorted} />
+                        <Listview products={paginatedProducts} />
                       </div>
                   ) : (
                       <div className={`tf-grid-layout wrapper-shop tf-col-${activeLayout}`} id="gridLayout">
-                        <GridView products={sorted} />
+                        <GridView products={paginatedProducts} />
                       </div>
                   )}
+                  <ul className="wg-pagination justify-content-center">
+                    <Pagination
+                        currentPage={state.currentPage}
+                        totalPages={totalPages}
+                        onPageChange={(page) =>
+                            dispatch({ type: "SET_CURRENT_PAGE", payload: page })
+                        }
+                    />
+                  </ul>
                 </div>
               </div>
             </div>

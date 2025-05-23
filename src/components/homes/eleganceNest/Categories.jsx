@@ -19,6 +19,7 @@ export default function Categories() {
                         imageUrl: imageUrl,
                         alt: item.name,
                         affLink: item.properties?.affLink || "",
+                        brands: item.brands
                     };
                 });
                 setCollections(categories);
@@ -31,7 +32,7 @@ export default function Categories() {
             <div className="container">
                 <div className="heading-section-2 wow fadeInUp">
                     <h3 className="heading">Explore Collections</h3>
-                    <Link to={`/shop-collection`} className="btn-line">
+                    <Link to={`/colectii`} className="btn-line">
                         View All Collection
                     </Link>
                 </div>
@@ -73,7 +74,7 @@ export default function Categories() {
                                     />
                                 </a>
                                 <div className="content">
-                                    <Link to={`/shop-collection`} className="cls-btn">
+                                    <Link to={`/colectii`} className="cls-btn">
                                         <h6 className="text">{collection.title}</h6>
                                         <i className="icon icon-arrowUpRight" />
                                     </Link>

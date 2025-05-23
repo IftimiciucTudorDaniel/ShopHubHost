@@ -233,7 +233,7 @@ function App() {
         <div id="wrapper">
           <Routes>
             <Route path="/">
-              <Route index element={<HomePage />} />
+              <Route index element={<HomeFashionElegentNestPage />} />
               <Route
                 path="home-fashion-eleganceNest"
                 element={<HomeFashionElegentNestPage />}
@@ -331,7 +331,7 @@ function App() {
 
               <Route path="colectii" element={<ShopLeftSidebarPage />} />
               <Route path="colectii/:slug" element={<ShopLeftSidebarPage />} />
-
+              <Route path="colectii/:category" element={<ShopLeftSidebarPage />} />
 
               <Route path="brand" element={<ShopLeftSidebarPage />} />
               <Route path="brand/:brand" element={<ShopLeftSidebarPage />} />
@@ -544,7 +544,7 @@ function App() {
         {/*<Compare />*/}
         <MobileMenu />
 
-        <NewsLetterModal />
+        {/*<NewsLetterModal />*/}
         <SearchModal />
         <SizeGuide />
         <Wishlist />

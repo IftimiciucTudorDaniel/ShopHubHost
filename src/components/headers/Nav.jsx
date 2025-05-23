@@ -257,7 +257,7 @@ export default function Nav() {
             : ""
         } `}
       >
-        <a href="/home-fashion-eleganceNest" className="item-link">
+        <a href="/" className="item-link">
           Home
         </a>
       </li>

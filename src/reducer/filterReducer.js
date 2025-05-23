@@ -5,7 +5,7 @@ export const initialState = {
 
   availability: "All",
 
-  color: "All",
+  color: [],
   size: "All",
   activeFilterOnSale: false,
   brands: [],
@@ -13,7 +13,7 @@ export const initialState = {
   sortingOption: "Sort by (Default)",
   sorted: productMain,
   currentPage: 1,
-  itemPerPage: 6,
+  itemsPerPage: 30,
 };
 
 export function reducer(state, action) {
