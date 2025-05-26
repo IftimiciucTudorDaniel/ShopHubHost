@@ -128,7 +128,7 @@ export default function Header10() {
             <div className="col-xl-3">
               <a href="tel:315-666-6688" className="box-right phone">
                 <span className="icon icon-phone" />
-                315-666-6688
+                +40 (745) 757 086
               </a>
             </div>
           </div>

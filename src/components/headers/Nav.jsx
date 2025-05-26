@@ -405,7 +405,7 @@ export default function Nav() {
 
                 <div className="col-lg-3">
                     <div className="mega-menu-item">
-                        <div className="menu-heading">Branduri</div>
+                        <div className="menu-heading">Mai multe branduri</div>
                         <ul className="menu-list">
                             {chunkedBrands[1]?.map((brand) => (
                                 <li key={brand.name} className="menu-item-li">
@@ -461,70 +461,9 @@ export default function Nav() {
           </div>
         </div>
       </li>
-      <li
-        className={`menu-item position-relative ${
-          [...blogLinks].some(
-            (elm) => elm.href.split("/")[1] == pathname.split("/")[1]
-          )
-            ? "active"
-            : ""
-        } `}
-      >
-        <a href="#" className="item-link">
-          Blog
-          <i className="icon icon-arrow-down" />
+        <a href="/contact" className="item-link">
+            Contactează-ne
         </a>
-        <div className="sub-menu submenu-default">
-          <ul className="menu-list">
-            {blogLinks.map((link, index) => (
-              <li
-                key={index}
-                className={`menu-item-li ${
-                  pathname.split("/")[1] == link.href.split("/")[1]
-                    ? "active"
-                    : ""
-                } `}
-              >
-                <Link to={link.href} className="menu-link-text">
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </li>
-      <li
-        className={`menu-item position-relative ${
-          [...otherPageLinks].some(
-            (elm) => elm.href.split("/")[1] == pathname.split("/")[1]
-          )
-            ? "active"
-            : ""
-        } `}
-      >
-        <a href="#" className="item-link">
-          Pages
-          <i className="icon icon-arrow-down" />
-        </a>
-        <div className="sub-menu submenu-default">
-          <ul className="menu-list">
-            {otherPageLinks.map((link, index) => (
-              <li
-                key={index}
-                className={`menu-item-li ${
-                  pathname.split("/")[1] == link.href.split("/")[1]
-                    ? "active"
-                    : ""
-                } `}
-              >
-                <Link to={link.href} className="menu-link-text">
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </li>
     </>
   );
 }

@@ -1,7 +1,22 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import { Link } from "react-router-dom";
 export default function Banner() {
+  const [collections, setCollections] = useState([]);
+  useEffect(() => {
+    fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage")
+        .then((res) => res.json())
+        .then((data) => {
+          const collections = data.items.map((item) => {
+            const image = item.properties?.image?.[0];
+            const imageUrl = image ? `https://fashionhub-001-site1.jtempurl.com/${image.url}` : null;
+            return {
+              imageUrl: imageUrl,
+            };
+          });
+          setCollections(collections);
+        });
+  }, []);
   return (
     <section>
       <div className="container">
@@ -9,7 +24,7 @@ export default function Banner() {
           <div className="banner banner-left wow fadeInLeft">
             <img
               alt="banner"
-              src="/images/banner/banner-w-text1.jpg"
+              src={collections.imageUrl}
               width={709}
               height={709}
             />
@@ -17,16 +32,16 @@ export default function Banner() {
           <div className="banner-content">
             <div className="content-text wow fadeInUp">
               <h3 className="title text-center fw-5">
-                Special Offer! <br />
-                This Week Only
+                Colecțiile Noi! <br />
+                Te așteaptă!
               </h3>
-              <p className="desc">Reserved for special occasions</p>
+              <p className="desc">Fii primul care le descopera</p>
             </div>
             <Link
-              to={`/shop-default-grid`}
+              to={`/femei`}
               className="tf-btn btn-fill wow fadeInUp"
             >
-              <span className="text">Explore Collection</span>
+              <span className="text">Explorează Colecțiile</span>
               <i className="icon icon-arrowUpRight" />
             </Link>
           </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 const languageOptions = [
-  { id: "en", label: "English" },
-  { id: "vt", label: "Vietnam" },
+
+  { id: "ro", label: "Romana" },
 ];
 
 export default function LanguageSelect({

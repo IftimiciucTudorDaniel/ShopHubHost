@@ -32,7 +32,7 @@ export default function HomeFashionElegentNestPage() {
       <Collections />
       <Products2 parentClass="flat-spacing pt-0" />
       <Banner />
-      <Features />
+      {/*<Features />*/}
       {/*<Testimonials parentClass="" />*/}
       {/*<ShopGram parentClass="flat-spacing" />*/}
       <Footer1 />

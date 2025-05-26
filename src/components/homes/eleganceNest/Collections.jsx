@@ -13,10 +13,15 @@ export default function Collections() {
             .then((data) => {
                 const collections = data.items.map((item) => {
                     const image = item.properties?.image?.[0];
-                    const imageUrl = image ? `https://localhost:44322${image.url}` : null;
+                    const imageUrl = image ? `https://fashionhub-001-site1.jtempurl.com/${image.url}` : null;
+                    const link = `/colectii/${item.name
+                        .toLowerCase()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .replace(/\s+/g, "-")}`;
                     return {
                         title: item.name,
-                        link: item.route?.path || "#",
+                        link: link || "#",
                         imageUrl: imageUrl,
                         alt: item.name,
                         description:item.description,
@@ -65,13 +70,10 @@ export default function Collections() {
                                                 dangerouslySetInnerHTML={{ __html: collection.title || '#' }}
                                             ></Link>
                                         </h4>
-                                        <span className="text-btn-uppercase text-primary">
-                                        {collection.subtitle || "null"}
-                                      </span>
                                     </div>
                                     <div className="archive-btn">
                                         <Link to={collection.link || "#"} className="btn-line">
-                                            {collection.btnText || "#"}
+                                            Descopera produsele!
                                         </Link>
                                     </div>
                                 </div>

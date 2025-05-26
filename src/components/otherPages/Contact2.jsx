@@ -15,7 +15,7 @@ export default function Contact2() {
   const sendMail = (e) => {
     e.preventDefault();
     emailjs
-      .sendForm("service_noj8796", "template_fs3xchn", formRef.current, {
+      .sendForm("service_noj8796", "template_lhk0yb8", formRef.current, {
         publicKey: "iG4SCmR-YtJagQ4gV",
       })
       .then((res) => {
@@ -38,9 +38,9 @@ export default function Contact2() {
       <div className="container">
         <div className="contact-us-content">
           <div className="left">
-            <h4>Get In Touch</h4>
+            <h4>Contact</h4>
             <p className="text-secondary-2">
-              Use the form below to get in touch with the sales team
+              Ai întrebări? Scrie-ne folosind formularul de mai jos.
             </p>
             <div
               className={`tfSubscribeMsg  footer-sub-element ${
@@ -67,7 +67,7 @@ export default function Contact2() {
                     <input
                       className=""
                       type="text"
-                      placeholder="Your Name*"
+                      placeholder="Nume si prenume*"
                       name="name"
                       id="name"
                       tabIndex={2}
@@ -80,7 +80,7 @@ export default function Contact2() {
                     <input
                       className=""
                       type="email"
-                      placeholder="Your Email*"
+                      placeholder="Email*"
                       name="email"
                       id="email"
                       tabIndex={2}
@@ -95,7 +95,7 @@ export default function Contact2() {
                     name="message"
                     id="message"
                     rows={4}
-                    placeholder="Your Message*"
+                    placeholder="Mesajul tau"
                     tabIndex={2}
                     aria-required="true"
                     required
@@ -105,39 +105,38 @@ export default function Contact2() {
               </div>
               <div className="button-submit send-wrap">
                 <button className="tf-btn btn-fill" type="submit">
-                  <span className="text text-button">Send message</span>
+                  <span className="text text-button">Trimite mesajul</span>
                 </button>
               </div>
             </form>
           </div>
           <div className="right">
-            <h4>Information</h4>
+            <h4>Informatii</h4>
             <div className="mb_20">
-              <div className="text-title mb_8">Phone:</div>
-              <p className="text-secondary">+1 666 234 8888</p>
+              <div className="text-title mb_8">Telefon:</div>
+              <p className="text-secondary">+40 (745) 757 086</p>
             </div>
             <div className="mb_20">
               <div className="text-title mb_8">Email:</div>
               <p className="text-secondary">themesflat@gmail.com</p>
             </div>
             <div className="mb_20">
-              <div className="text-title mb_8">Address:</div>
+              <div className="text-title mb_8">Adresa:</div>
               <p className="text-secondary">
-                2163 Phillips Gap Rd, West Jefferson, North Carolina, United
-                States
+                Romania
               </p>
             </div>
-            <div>
-              <div className="text-title mb_8">Open Time:</div>
-              <p className="mb_4 open-time">
-                <span className="text-secondary">Mon - Sat:</span> 7:30am -
-                8:00pm PST
-              </p>
-              <p className="open-time">
-                <span className="text-secondary">Sunday:</span> 9:00am - 5:00pm
-                PST
-              </p>
-            </div>
+            {/*<div>*/}
+            {/*  <div className="text-title mb_8">Open Time:</div>*/}
+            {/*  <p className="mb_4 open-time">*/}
+            {/*    <span className="text-secondary">Mon - Sat:</span> 7:30am -*/}
+            {/*    8:00pm PST*/}
+            {/*  </p>*/}
+            {/*  <p className="open-time">*/}
+            {/*    <span className="text-secondary">Sunday:</span> 9:00am - 5:00pm*/}
+            {/*    PST*/}
+            {/*  </p>*/}
+            {/*</div>*/}
           </div>
         </div>
       </div>

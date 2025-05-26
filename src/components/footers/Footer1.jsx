@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { Link } from "react-router-dom";
-
 import CurrencySelect from "../common/CurrencySelect";
 import LanguageSelect from "../common/LanguageSelect";
 import ToolbarBottom from "../headers/ToolbarBottom";
 import ScrollTop from "../common/ScrollTop";
-import { footerLinks, socialLinks } from "@/data/footerLinks";
+import { footerLinks } from "@/data/footerLinks";
 export default function Footer1({
   border = true,
   dark = false,
@@ -14,7 +13,48 @@ export default function Footer1({
 }) {
   const [success, setSuccess] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
+  const [collections, setCollections] = useState([]);
 
+  useEffect(() => {
+    const fetchCollections = async () => {
+      try {
+        const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
+        const data = await res.json();
+
+        const collections = data.items.map((item) => {
+          const image = item.properties?.image?.[0];
+          const imageUrl = image ? `https://localhost:44322${image.url}` : null;
+
+          const link = `/colectii/${item.name
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .replace(/\s+/g, "-")}`;
+          return {
+            name: item.name,
+            link: link,
+            imageUrl: imageUrl,
+            alt: item.name,
+            description: item.description || "",
+          };
+        });
+        const uniqueCollections = Array.from(
+            new Map(
+                collections.map((item) => [
+                  item.name.toLowerCase(),
+                  item,
+                ])
+            ).values()
+        );
+
+        setCollections(uniqueCollections);
+      } catch (error) {
+        console.error("Error fetching collections:", error);
+      }
+    };
+
+    fetchCollections();
+  }, []);
   const handleShowMessage = () => {
     setShowMessage(true);
     setTimeout(() => {
@@ -102,18 +142,6 @@ export default function Footer1({
                         />
                       </Link>
                     </div>
-                    <div className="footer-address">
-                      <p>549 Oak St.Crystal Lake, IL 60014</p>
-                      <Link
-                        to={`/contact`}
-                        className={`tf-btn-default fw-6 ${
-                          dark ? "style-white" : ""
-                        } `}
-                      >
-                        GET DIRECTION
-                        <i className="icon-arrowUpRight" />
-                      </Link>
-                    </div>
                     <ul className="footer-info">
                       <li>
                         <i className="icon-mail" />
@@ -121,58 +149,78 @@ export default function Footer1({
                       </li>
                       <li>
                         <i className="icon-phone" />
-                        <p>315-666-6688</p>
+                        <p>+40 (745) 757 086</p>
                       </li>
                     </ul>
-                    <ul
-                      className={`tf-social-icon  ${
-                        dark ? "style-white" : ""
-                      } `}
-                    >
-                      {socialLinks.map((link, index) => (
-                        <li key={index}>
-                          <a href={link.href} className={link.className}>
-                            <i className={`icon ${link.iconClass}`} />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                    {/*<ul*/}
+                    {/*  className={`tf-social-icon  ${*/}
+                    {/*    dark ? "style-white" : ""*/}
+                    {/*  } `}*/}
+                    {/*>*/}
+                    {/*  {socialLinks.map((link, index) => (*/}
+                    {/*    <li key={index}>*/}
+                    {/*      <a href={link.href} className={link.className}>*/}
+                    {/*        <i className={`icon ${link.iconClass}`} />*/}
+                    {/*      </a>*/}
+                    {/*    </li>*/}
+                    {/*  ))}*/}
+                    {/*</ul>*/}
                   </div>
                 </div>
                 <div className="col-lg-4">
                   <div className="footer-menu">
                     {footerLinks.map((section, sectionIndex) => (
-                      <div className="footer-col-block" key={sectionIndex}>
-                        <div className="footer-heading text-button footer-heading-mobile">
-                          {section.heading}
+                        <div className="footer-col-block" key={sectionIndex}>
+                          <div className="footer-heading text-button footer-heading-mobile">
+                            {section.heading}
+                          </div>
+                          <div className="tf-collapse-content">
+                            <ul className="footer-menu-list">
+                              {sectionIndex === 0 && (
+                                  <li className="text-caption-1">
+                                    <a
+                                        href="#size-guide"
+                                        data-bs-toggle="modal"
+                                        className="footer-menu_item"
+                                    >
+                                      Size Guide
+                                    </a>
+                                  </li>
+                              )}
+                              {section.items
+                                  .filter((item) => item.label !== "Size Guide")
+                                  .map((item, itemIndex) => (
+                                      <li className="text-caption-1" key={itemIndex}>
+                                        {item.isLink ? (
+                                            <Link to={item.href} className="footer-menu_item">
+                                              {item.label}
+                                            </Link>
+                                        ) : (
+                                            <a href={item.href} className="footer-menu_item">
+                                              {item.label}
+                                            </a>
+                                        )}
+                                      </li>
+                                  ))}
+
+                              {sectionIndex === 1 && collections.length > 0 && (
+                                  <>
+                                    {collections.map((collection, index) => (
+                                        <li className="text-caption-1" key={`collection-${index}`}>
+                                          <Link to={collection.link} className="footer-menu_item">
+                                            {collection.name}
+                                          </Link>
+                                        </li>
+                                    ))}
+                                  </>
+                              )}
+                            </ul>
+                          </div>
                         </div>
-                        <div className="tf-collapse-content">
-                          <ul className="footer-menu-list">
-                            {section.items.map((item, itemIndex) => (
-                              <li className="text-caption-1" key={itemIndex}>
-                                {item.isLink ? (
-                                  <Link
-                                    to={item.href}
-                                    className="footer-menu_item"
-                                  >
-                                    {item.label}
-                                  </Link>
-                                ) : (
-                                  <a
-                                    href={item.href}
-                                    className="footer-menu_item"
-                                  >
-                                    {item.label}
-                                  </a>
-                                )}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
                     ))}
                   </div>
                 </div>
+
                 <div className="col-lg-4">
                   <div className="footer-col-block">
                     <div className="footer-heading text-button footer-heading-mobile">
@@ -181,8 +229,7 @@ export default function Footer1({
                     <div className="tf-collapse-content">
                       <div className="footer-newsletter">
                         <p className="text-caption-1">
-                          Sign up for our newsletter and get 10% off your first
-                          purchase
+                          Abonează-te la newsletterul nostru pentru a fi mereu la curent cu noutățile și ofertele exclusive.
                         </p>
                         <div
                           className={`tfSubscribeMsg  footer-sub-element ${
@@ -241,7 +288,7 @@ export default function Footer1({
                             className="text-caption-1"
                             htmlFor="footer-Form_agree"
                           >
-                            By clicking subcribe, you agree to the{" "}
+                            Făcând clic pe abonare, sunteți de acord cu{" "}
                             <Link className="fw-6 link" to={`/term-of-use`}>
                               Terms of Service
                             </Link>{" "}
@@ -280,59 +327,6 @@ export default function Footer1({
                           />
                         </div>
                       </div>
-                    </div>
-                    <div className="tf-payment">
-                      <p className="text-caption-1">Payment:</p>
-                      <ul>
-                        <li>
-                          <img
-                            alt=""
-                            src="/images/payment/img-1.png"
-                            width={100}
-                            height={64}
-                          />
-                        </li>
-                        <li>
-                          <img
-                            alt=""
-                            src="/images/payment/img-2.png"
-                            width={100}
-                            height={64}
-                          />
-                        </li>
-                        <li>
-                          <img
-                            alt=""
-                            src="/images/payment/img-3.png"
-                            width={100}
-                            height={64}
-                          />
-                        </li>
-                        <li>
-                          <img
-                            alt=""
-                            src="/images/payment/img-4.png"
-                            width={98}
-                            height={64}
-                          />
-                        </li>
-                        <li>
-                          <img
-                            alt=""
-                            src="/images/payment/img-5.png"
-                            width={102}
-                            height={64}
-                          />
-                        </li>
-                        <li>
-                          <img
-                            alt=""
-                            src="/images/payment/img-6.png"
-                            width={98}
-                            height={64}
-                          />
-                        </li>
-                      </ul>
                     </div>
                   </div>
                 </div>

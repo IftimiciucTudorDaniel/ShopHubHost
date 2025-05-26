@@ -22,7 +22,7 @@ export default defineConfig({
     historyApiFallback: true,
     proxy: {
       '/umbraco': {
-        target: 'https://localhost:44322',
+        target: 'https://localhost:5000',
         changeOrigin: true,
         secure: false
       }

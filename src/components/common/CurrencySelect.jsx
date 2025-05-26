@@ -2,15 +2,10 @@ import { useEffect, useRef, useState } from "react";
 
 const optionsData = [
   {
-    value: "us",
-    thumbnail: "/images/country/us.svg",
-    text: "USD",
+    value: "ro",
+    thumbnail: "/images/country/ro.svg",
+    text: "RO",
     selected: true,
-  },
-  {
-    value: "vn",
-    thumbnail: "/images/country/vn.svg",
-    text: "VND",
   },
 ];
 export default function CurrencySelect({ topStart = false, light = false }) {

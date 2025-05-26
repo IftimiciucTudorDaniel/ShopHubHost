@@ -10,7 +10,7 @@ export default function Topbar() {
           <ul className="topbar-left">
             <li>
               <a className="text-caption-1 text-white" href="tel:315-666-6688">
-                315-666-6688
+                +40 (745) 757 086
               </a>
             </li>
             <li>
