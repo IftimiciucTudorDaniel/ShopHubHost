@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const handleGlobalProductClick = async (productId, title) => {
     try {
-        const res = await fetch('https://localhost:44322/umbraco/delivery/api/productclicks/increment', {
+        const res = await fetch('https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/productclicks/increment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

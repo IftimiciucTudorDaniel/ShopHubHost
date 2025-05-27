@@ -23,7 +23,7 @@ export default function Footer1({
 
         const collections = data.items.map((item) => {
           const image = item.properties?.image?.[0];
-          const imageUrl = image ? `https://localhost:44322${image.url}` : null;
+          const imageUrl = image ? `https://fashionhub-001-site1.jtempurl.com${image.url}` : null;
 
           const link = `/colectii/${item.name
               .toLowerCase()
