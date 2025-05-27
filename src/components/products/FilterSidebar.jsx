@@ -28,6 +28,23 @@ export default function FilterSidebar({
     return (
         <aside className="tf-sidebar">
             <div className="tf-sidebar-wrapper">
+
+                <div className="widget-facet facet-categories">
+                    <h6 className="facet-title">Product Categories</h6>
+                    <ul className="facet-content scrollable-list">
+                        {availableCategories.map((cat) => (
+                            <li key={cat}>
+                                <Link
+                                    to={`/${mainCategory}/${cat.toLowerCase()}`}
+                                    className="categories-item"
+                                >
+                                    {cat.split("-")[0]}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
                 <div className="widget-facet facet-price">
                     <h6 className="facet-title">Price</h6>
 
@@ -56,7 +73,7 @@ export default function FilterSidebar({
 
                 <div className="widget-facet facet-fieldset">
                     <h6 className="facet-title">Brands</h6>
-                    <div className="box-fieldset-item">
+                    <div className="box-fieldset-item scrollable-list">
                         {availableBrands.map((brand) => (
                             <fieldset
                                 key={brand}
@@ -79,9 +96,9 @@ export default function FilterSidebar({
                 </div>
 
 
-                <div className="widget-facet facet-color">
+                <div className="widget-facet facet-color ">
                     <h6 className="facet-title">Colors</h6>
-                    <div className="facet-color-box">
+                    <div className="facet-color-box scrollable-list">
                         {availableColors.map((c, index) => (
                             <div
                                 key={index}
@@ -104,22 +121,6 @@ export default function FilterSidebar({
                             All Colors
                         </div>
                     </div>
-                </div>
-
-                <div className="widget-facet facet-categories">
-                    <h6 className="facet-title">Product Categories</h6>
-                    <ul className="facet-content">
-                        {availableCategories.map((cat) => (
-                            <li key={cat}>
-                                <Link
-                                    to={`/${mainCategory}/${cat.toLowerCase()}`}
-                                    className="categories-item"
-                                >
-                                    {cat.split("-")[0]}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
                 </div>
 
 
