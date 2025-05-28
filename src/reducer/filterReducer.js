@@ -4,7 +4,7 @@ export const initialState = {
   price: [20, 300],
 
   availability: "All",
-
+  material: [],
   color: [],
   size: "All",
   activeFilterOnSale: false,
@@ -24,6 +24,8 @@ export function reducer(state, action) {
       return { ...state, category: action.payload };
     case "SET_COLOR":
       return { ...state, color: action.payload };
+    case "SET_MATERIAL":
+      return { ...state, material: action.payload };
     case "SET_SIZE":
       return { ...state, size: action.payload };
     case "SET_AVAILABILITY":
@@ -46,12 +48,10 @@ export function reducer(state, action) {
       return {
         ...state,
         price: [20, 300],
-
         availability: "All",
-
+        material: [],
         color: "All",
         size: "All",
-
         brands: [],
         activeFilterOnSale: false,
       };

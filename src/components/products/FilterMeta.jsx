@@ -39,8 +39,22 @@ export default function FilterMeta({ allProps, productLength }) {
         ) : (
           ""
         )}
+          {allProps.material.length ? (
+              <>
+                  {allProps.material.map((mat, i) => (
+                      <span
+                          key={i}
+                          className="filter-tag"
+                          onClick={() => allProps.removeMaterial(mat)}
+                      >
+        {mat}
+                          <span className="remove-tag icon-close" />
+      </span>
+                  ))}
+              </>
+          ) : ""}
 
-        {allProps.brands.length ? (
+          {allProps.brands.length ? (
           <React.Fragment>
             {allProps.brands.map((brand, i) => (
               <span
@@ -60,6 +74,7 @@ export default function FilterMeta({ allProps, productLength }) {
       {allProps.availability != "All" ||
       allProps.size != "All" ||
       allProps.color != "All" ||
+      allProps.material.length > 0 ||
       allProps.brands.length ? (
         <button
           id="remove-all"

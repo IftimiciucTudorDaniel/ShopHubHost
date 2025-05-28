@@ -9,6 +9,7 @@ export default function FilterSidebar({
                                           availableColors,
                                           availableBrands,
                                           availableCategories,
+                                            availableMaterials
                                       }) {
     const {
         price,
@@ -19,6 +20,7 @@ export default function FilterSidebar({
         setBrands,
         category,
         setCategory,
+        setMaterial,
         clearFilter,
     } = allProps;
 
@@ -94,6 +96,31 @@ export default function FilterSidebar({
                         ))}
                     </div>
                 </div>
+
+                <div className="widget-facet facet-fieldset">
+                    <h6 className="facet-title">Material</h6>
+                    <div className="box-fieldset-item scrollable-list">
+                        {availableMaterials.map((material) => (
+                            <fieldset
+                                key={material}
+                                className="fieldset-item"
+                                onClick={() => allProps.setMaterial(material)}
+                            >
+                                <input
+                                    type="checkbox"
+                                    name="brand"
+                                    className="tf-check"
+                                    readOnly
+                                    checked={allProps.material.includes(material)}
+                                />
+                                <label>
+                                    {material}
+                                </label>
+                            </fieldset>
+                        ))}
+                    </div>
+                </div>
+
 
 
                 <div className="widget-facet facet-color ">

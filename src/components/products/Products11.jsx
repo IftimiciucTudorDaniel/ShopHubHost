@@ -16,6 +16,7 @@ export default function Products11({ selectedCategory, gen }) {
   const [availableColors, setAvailableColors] = useState([]);
   const [availableBrands, setAvailableBrands] = useState([]);
   const [availableCategories, setAvailableCategories] = useState([]);
+  const [availableMaterials, setAvailableMaterials] = useState([]);availableMaterials
 
   const { category: routeCategory, slug, brand: routeBrand } = useParams();
   const [loading, setLoading] = useState(false);
@@ -31,12 +32,21 @@ export default function Products11({ selectedCategory, gen }) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
-    price, color, brands, category, filtered, sortingOption, sorted,
+    price, color, brands, category, filtered, sortingOption, sorted, material
   } = state;
 
   const allProps = {
     ...state,
     setPrice: (value) => dispatch({ type: "SET_PRICE", payload: value }),
+    setMaterial: (newmat) => {
+      const updated = material.includes(newmat)
+          ? material.filter((b) => b !== newmat)
+          : [...material, newmat];
+      dispatch({ type: "SET_MATERIAL", payload: updated });
+    },
+    removeMaterial: (materialToRemove) => {
+      dispatch({ type: "SET_MATERIAL", payload: material.filter((b) => b !== materialToRemove) });
+    },
     setColor: (value) =>
         value === color
             ? dispatch({ type: "SET_COLOR", payload: "All" })
@@ -86,6 +96,7 @@ export default function Products11({ selectedCategory, gen }) {
           dispatch({ type: "SET_FILTERED", payload: data });
           setLoading(false);
 
+          setAvailableMaterials([...new Set(data.map((p) => p.material).filter(Boolean))]);
           setAvailableColors([...new Set(data.map((p) => p.color).filter(Boolean))]);
           setAvailableBrands([...new Set(data.map((p) => p.brands).filter(Boolean))]);
           setAvailableCategories([...new Set(data.map((p) => p.category).filter(Boolean))]);
@@ -107,6 +118,16 @@ export default function Products11({ selectedCategory, gen }) {
     });
 
     let filteredArrays = [];
+
+    if (material.length > 0) {
+      filteredArrays.push(
+          products.filter(p =>
+              p.material &&
+              material.some(selectedMat => normalize(p.material) === normalize(selectedMat))
+          )
+      );
+    }
+
 
     // Brand din URL
     if (routeBrand) {
@@ -166,7 +187,7 @@ export default function Products11({ selectedCategory, gen }) {
     dispatch({ type: "SET_FILTERED", payload: commonItems });
 
     // Updatăm opțiunile disponibile
-  }, [price, color, brands, products, category, slug, routeBrand, selectedCategory]);
+  }, [price, color, brands, products, category,material , slug, routeBrand, selectedCategory]);
   useEffect(() => {
     dispatch({ type: "CLEAR_FILTER" });
   }, [selectedCategory, routeBrand, slug]);
@@ -233,7 +254,9 @@ export default function Products11({ selectedCategory, gen }) {
                       availableColors={availableColors}
                       availableBrands={availableBrands}
                       availableCategories={availableCategories}
+                      availableMaterials={availableMaterials}
                   />
+
                 </div>
 
                 {/* MOBIL Sidebar - offcanvas Bootstrap activat din butonul Filters */}
@@ -259,6 +282,7 @@ export default function Products11({ selectedCategory, gen }) {
                         availableColors={availableColors}
                         availableBrands={availableBrands}
                         availableCategories={availableCategories}
+                        availableMaterials={availableMaterials}
                     />
                   </div>
                 </div>
