@@ -2,7 +2,7 @@ import LayoutHandler from "./LayoutHandler";
 import Sorting from "./Sorting";
 import Listview from "./Listview";
 import GridView from "./GridView";
-import { useEffect, useReducer, useState } from "react";
+import {useEffect, useReducer, useRef, useState} from "react";
 import FilterModal from "./FilterModal";
 import { initialState, reducer } from "@/reducer/filterReducer";
 import FilterMeta from "./FilterMeta";
@@ -17,6 +17,8 @@ export default function Products11({ selectedCategory, gen }) {
   const [availableBrands, setAvailableBrands] = useState([]);
   const [availableCategories, setAvailableCategories] = useState([]);
   const [availableMaterials, setAvailableMaterials] = useState([]);availableMaterials
+
+  const productsRef = useRef(null);
 
   const { category: routeCategory, slug, brand: routeBrand } = useParams();
   const [loading, setLoading] = useState(false);
@@ -215,6 +217,12 @@ export default function Products11({ selectedCategory, gen }) {
   const paginatedProducts = sorted.slice(startIndex, endIndex);
 
   const totalPages = Math.ceil(sorted.length / state.itemsPerPage);
+  useEffect(() => {
+    if (sorted.length > 0 && productsRef.current) {
+      productsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    }
+  }, [sorted]);
   return (
       <>
         <section className="flat-spacing">
@@ -295,11 +303,11 @@ export default function Products11({ selectedCategory, gen }) {
                         </div>
                       </div>
                   ) : activeLayout === 1 ? (
-                      <div className="tf-list-layout wrapper-shop" id="listLayout">
+                      <div className="tf-list-layout wrapper-shop" id="listLayout" ref={productsRef}>
                         <Listview products={paginatedProducts} />
                       </div>
                   ) : (
-                      <div className={`tf-grid-layout wrapper-shop tf-col-${activeLayout}`} id="gridLayout">
+                      <div className={`tf-grid-layout wrapper-shop tf-col-${activeLayout}`} id="gridLayout" ref={productsRef}>
                         <GridView products={paginatedProducts} />
                       </div>
                   )}
