@@ -145,7 +145,7 @@ export default function Footer1({
                     <ul className="footer-info">
                       <li>
                         <i className="icon-mail" />
-                        <p>themesflat@gmail.com</p>
+                        <p>office@alpacas.ro</p>
                       </li>
                       <li>
                         <i className="icon-phone" />
@@ -313,7 +313,7 @@ export default function Footer1({
                   <div className="footer-bottom-wrap">
                     <div className="left">
                       <p className="text-caption-1">
-                        ©{new Date().getFullYear()} Modave. All Rights Reserved.
+                        ©{new Date().getFullYear()} Alpacas. All Rights Reserved.
                       </p>
                       <div className="tf-cur justify-content-end">
                         <div className="tf-currencies">

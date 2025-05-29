@@ -708,7 +708,7 @@ export default function MobileMenu() {
             <ul className="mb-info">
               <li>
                 <i className="icon icon-mail" />
-                <p>themesflat@gmail.com</p>
+                <p>office@alpacas.ro</p>
               </li>
               <li>
                 <i className="icon icon-phone" />

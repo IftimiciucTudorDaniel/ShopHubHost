@@ -118,7 +118,7 @@ export default function Contact2() {
             </div>
             <div className="mb_20">
               <div className="text-title mb_8">Email:</div>
-              <p className="text-secondary">themesflat@gmail.com</p>
+              <p className="text-secondary">office@alpacas.ro</p>
             </div>
             <div className="mb_20">
               <div className="text-title mb_8">Adresa:</div>

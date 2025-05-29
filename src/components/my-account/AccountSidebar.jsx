@@ -17,7 +17,7 @@ export default function AccountSidebar() {
             />
           </div>
           <h6 className="mb_4">Tony Nguyen</h6>
-          <div className="body-text-1">themesflat@gmail.com</div>
+          <div className="body-text-1">office@alpacas.ro</div>
         </div>
         <ul className="my-account-nav">
           <li>

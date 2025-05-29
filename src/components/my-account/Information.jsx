@@ -64,7 +64,7 @@ export default function Information() {
                   placeholder="Username or email address*"
                   name="email"
                   tabIndex={2}
-                  defaultValue="themesflat@gmail.com"
+                  defaultValue="office@alpacas.ro"
                   aria-required="true"
                   required
                 />
