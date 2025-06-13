@@ -28,7 +28,7 @@ export default function ProductStylePage2() {
               <ul className="breadcrumbs d-flex align-items-center justify-content-center">
                 <li>
                   <Link className="link" to={`/`}>
-                    Homepage
+                    Homepage2
                   </Link>
                 </li>
                 <li>

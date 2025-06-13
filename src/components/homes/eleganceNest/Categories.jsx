@@ -7,7 +7,7 @@ export default function Categories() {
     const [collections, setCollections] = useState([]);
 
     useEffect(() => {
-        fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=2000")
+        fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=200")
             .then((res) => res.json())
             .then((data) => {
                 const categories = data.items.map((item) => {
@@ -78,7 +78,7 @@ export default function Categories() {
                                         const generatedUrl = `/${gen}/${categorie}`;
 
                                         return (
-                                            <Link to={generatedUrl} className="cls-btn">
+                                            <Link className="cls-btn">
                                                 <h6 className="text">{collection.title}</h6>
                                                 <i className="icon icon-arrowUpRight" />
                                             </Link>

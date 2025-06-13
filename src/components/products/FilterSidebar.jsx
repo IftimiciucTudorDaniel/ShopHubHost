@@ -52,7 +52,7 @@ export default function FilterSidebar({
 
                     <RangeSlider
                         min={0}
-                        max={1000}
+                        max={1500}
                         value={allProps.price}
                         onInput={(value) => allProps.setPrice(value)}
                     />

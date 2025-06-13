@@ -23,18 +23,14 @@ export default function Breadcumb({ product }) {
               }`}
               className="tf-breadcrumb-prev"
             >
-              <i className="icon icon-arrLeft" />
             </Link>
-            <a href="#" className="tf-breadcrumb-back">
-              <i className="icon icon-squares-four" />
-            </a>
+
             <Link
               to={`/${pathname.split("/")[1]}/${
                 product.id >= allProducts.length ? 1 : product.id + 1
               }`}
               className="tf-breadcrumb-next"
             >
-              <i className="icon icon-arrRight" />
             </Link>
           </div>
         </div>

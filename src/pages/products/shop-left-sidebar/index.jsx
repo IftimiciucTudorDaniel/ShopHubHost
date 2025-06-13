@@ -14,7 +14,7 @@ const metadata = {
 export default function ShopLeftSidebarPage() {
 
     const { gender, category } = useParams();
-
+    const path = location.pathname;
 
     return (
         <>
@@ -31,14 +31,14 @@ export default function ShopLeftSidebarPage() {
                             <h3 className="heading text-center">{category}</h3>
                             <ul className="breadcrumbs d-flex align-items-center justify-content-center">
                                 <li>
-                                    <Link className="link" to={`/`}>
-                                        Homepage
+                                    <Link className="link" to={`#`}>
+                                        Homepage<i className="icon-arrRight" />{path.split("/").join(" > ")}
                                     </Link>
                                 </li>
-                                <li>
-                                    <i className="icon-arrRight" />
-                                </li>
-                                <li>{category}</li>
+                                {/*<li>*/}
+                                {/*    <i className="icon-arrRight" />*/}
+                                {/*</li>*/}
+                                {/*<li>{category}</li>*/}
                             </ul>
                         </div>
                     </div>

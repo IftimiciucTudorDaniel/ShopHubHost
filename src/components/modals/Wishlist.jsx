@@ -81,7 +81,7 @@ export default function Wishlist() {
                   >
                     <span className="text-btn-uppercase">View All Wish List</span>
                   </Link>
-                  <Link to={`/shop-default-grid`} className="text-btn-uppercase">
+                  <Link to={`/shop-default-grid`} className="text-btn-uppercase" >
                     Or continue shopping
                   </Link>
                 </div>

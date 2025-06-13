@@ -22,7 +22,7 @@ export default function ShopBreadcumbLeftPage() {
             <ul className="breadcrumbs d-flex align-items-center">
               <li>
                 <Link className="link" to={`/`}>
-                  Homepage
+                  Homepage2
                 </Link>
               </li>
               <li>
