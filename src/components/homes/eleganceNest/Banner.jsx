@@ -24,7 +24,7 @@ export default function Banner() {
           <div className="banner banner-left wow fadeInLeft">
             <img
               alt="banner"
-              src="/images/banner/1.webp"
+              src="https://a.cdnmp.net/129520705/p/l/7/espadrile-hiba-galbene~8591997.jpg"
               width={400}
               height={400}
             />
@@ -48,7 +48,7 @@ export default function Banner() {
           <div className="banner banner-right wow fadeInRight">
             <img
               alt="banner"
-              src="/images/banner/2.webp"
+              src="https://a.cdnmp.net/129520705/p/l/7/cizme-kenzo-negre~8556197.jpg"
               width={400}
               height={400}
             />
