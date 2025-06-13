@@ -1,7 +1,7 @@
 import { productMain } from "@/data/products";
 
 export const initialState = {
-  price: [20, 300],
+  price: [20, 1500],
 
   availability: "All",
   material: [],
@@ -47,7 +47,7 @@ export function reducer(state, action) {
     case "CLEAR_FILTER":
       return {
         ...state,
-        price: [20, 300],
+        price: [20, 1500],
         availability: "All",
         material: [],
         color: "All",

@@ -24,9 +24,9 @@ export default function Banner() {
           <div className="banner banner-left wow fadeInLeft">
             <img
               alt="banner"
-              src={collections.imageUrl}
-              width={709}
-              height={709}
+              src="/images/banner/1.webp"
+              width={400}
+              height={400}
             />
           </div>
           <div className="banner-content">
@@ -48,9 +48,9 @@ export default function Banner() {
           <div className="banner banner-right wow fadeInRight">
             <img
               alt="banner"
-              src="/images/banner/banner-w-text2.jpg"
-              width={945}
-              height={709}
+              src="/images/banner/2.webp"
+              width={400}
+              height={400}
             />
           </div>
         </div>

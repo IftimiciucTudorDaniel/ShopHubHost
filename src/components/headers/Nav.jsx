@@ -145,7 +145,7 @@ export default function Nav() {
     useEffect(() => {
     const fetchFemeiLinks = async () => {
       try {
-        const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=400");
+        const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=20000");
         const data = await res.json();
 
           const femeiCategoriesRaw = data.items.filter((item) =>

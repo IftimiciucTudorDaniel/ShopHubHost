@@ -40,7 +40,7 @@ export default function FilterSidebar({
                                     to={`/${mainCategory}/${cat.toLowerCase()}`}
                                     className="categories-item"
                                 >
-                                    {cat.split("-")[0]}
+                                    {cat}
                                 </Link>
                             </li>
                         ))}

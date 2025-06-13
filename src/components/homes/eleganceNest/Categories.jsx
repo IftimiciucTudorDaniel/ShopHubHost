@@ -11,12 +11,10 @@ export default function Categories() {
             .then((res) => res.json())
             .then((data) => {
                 const categories = data.items.map((item) => {
-                    const image = item.properties?.image?.[0];
-                    const imageUrl = image ? `https://fashionhub-001-site1.jtempurl.com${image.url}` : null;
                     return {
                         title: item.name,
                         link: item.route?.path || "#",
-                        imageUrl: imageUrl,
+                        imageUrl: item.properties?.image1 || null,
                         alt: item.name,
                         affLink: item.properties?.affLink || "",
                         brands: item.brands
@@ -66,7 +64,7 @@ export default function Categories() {
                                 <a className="img-style">
                                     <img
                                         className="lazyload"
-                                        data-src={collection.imgSrc}
+                                        data-src={collection.imageUrl}
                                         alt={collection.alt}
                                         src={collection.imageUrl || "https://via.placeholder.com/363"}
                                         width={363}
@@ -74,10 +72,19 @@ export default function Categories() {
                                     />
                                 </a>
                                 <div className="content">
-                                    <Link to={`/colectii`} className="cls-btn">
-                                        <h6 className="text">{collection.title}</h6>
-                                        <i className="icon icon-arrowUpRight" />
-                                    </Link>
+                                    {(() => {
+                                        const parts = collection.title.toLowerCase().split("-");
+                                        const [categorie, gen] = parts.length === 2 ? parts : [parts[0], "altele"];
+                                        const generatedUrl = `/${gen}/${categorie}`;
+
+                                        return (
+                                            <Link to={generatedUrl} className="cls-btn">
+                                                <h6 className="text">{collection.title}</h6>
+                                                <i className="icon icon-arrowUpRight" />
+                                            </Link>
+                                        );
+                                    })()}
+
                                 </div>
                             </div>
                         </SwiperSlide>

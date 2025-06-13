@@ -16,7 +16,7 @@ export default function Products() {
       );
 
       document.getElementById("newArrivals").classList.add("filtered");
-    }, 300);
+    }, 1500);
   }, [activeItem]);
 
   return (
