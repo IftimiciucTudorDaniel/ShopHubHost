@@ -32,7 +32,7 @@ export default function Products4({ parentClass = "" }) {
             })
             .catch((error) => console.error("Error fetching top clicked products:", error));
     }, []);
-
+console.log(products);
     return (
         <section className={parentClass}>
             <div className="container">

@@ -122,7 +122,7 @@ export default function ProductCard1({ product, gridClass = "" }) {
                 </div>
                 <div className="list-btn-main">
                     <Link
-                        href={product.affLink}
+                        to={product.affLink}
                         className="btn-main-product"
                         target="_blank"
                         rel="noopener noreferrer"
