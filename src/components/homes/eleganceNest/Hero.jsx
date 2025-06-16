@@ -48,7 +48,7 @@ export default function Hero() {
     }, []);
 
     return (
-    <section className="tf-slideshow slider-style2 slider-effect-fade">
+    <section className="tf-slideshow slider-style2 slider-effect-fade h-20">
       <Swiper
         dir="ltr"
         spaceBetween={0}
@@ -71,7 +71,7 @@ export default function Hero() {
               <img
                 alt={slide.alt}
                 src={slide.imgSrc}
-                width={1920}
+                width={1450}
                 height={803}
               />
               <div className="box-content">

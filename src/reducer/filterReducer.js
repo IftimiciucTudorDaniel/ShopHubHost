@@ -13,7 +13,7 @@ export const initialState = {
   sortingOption: "Sort by (Default)",
   sorted: productMain,
   currentPage: 1,
-  itemsPerPage: 30,
+  itemsPerPage: 32,
 };
 
 export function reducer(state, action) {

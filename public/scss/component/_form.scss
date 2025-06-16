@@ -124,6 +124,8 @@ form {
         isolation: isolate;
         overscroll-behavior-y: contain;
         overflow-y: auto;
+        max-width: 200px;
+        z-index: 100;
         &::-webkit-scrollbar {
             width: 5px;
         }
@@ -142,7 +144,7 @@ form {
         color: var(--secondary);
         padding: 0 15px;
         line-height: 30px;
-        width: 100%;
+        max-width: 200px;
         @include mixin.transition3;
        
         &.active {

@@ -10,7 +10,7 @@ export default function Breadcumb({ product }) {
         <div className="tf-breadcrumb-wrap">
           <div className="tf-breadcrumb-list">
             <Link to={`/`} className="text text-caption-1">
-              Homepage
+              Homepages
             </Link>
 
             <i className="icon icon-arrRight" />

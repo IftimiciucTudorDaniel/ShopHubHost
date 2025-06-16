@@ -31,9 +31,9 @@ export default function ShopLeftSidebarPage() {
                             <h3 className="heading text-center">{category}</h3>
                             <ul className="breadcrumbs d-flex align-items-center justify-content-center">
                                 <li>
-                                    <Link className="link" to={`#`}>
-                                        Homepage<i className="icon-arrRight" />{path.split("/").join(" > ")}
-                                    </Link>
+                                    <span className={"text-black"}>
+                                        Homepage {path.split("/").join(" > ")}
+                                    </span>
                                 </li>
                                 {/*<li>*/}
                                 {/*    <i className="icon-arrRight" />*/}

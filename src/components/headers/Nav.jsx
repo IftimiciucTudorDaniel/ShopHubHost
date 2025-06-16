@@ -15,7 +15,7 @@ import {
   barbati,
   swatchLinks,
 } from "@/data/menu";
-import {getTodaysTopClickedProducts} from "@/utlis/analytics.js";
+import {getAllTimeTopClickedProducts, getTodaysTopClickedProducts} from "@/utlis/analytics.js";
 
 export default function Nav() {
   const { pathname } = useLocation();
@@ -25,6 +25,7 @@ export default function Nav() {
   const [baietiLinks, setBaietiLinks] = useState([]);
   const [collections, setCollections] = useState([]);
   const [products, setProducts] = useState([]);
+  const [productsAll, setProductsAll] = useState([]);
   const [brands, setBrands] = useState([]);
 
     const brandsPerColumn = 10;
@@ -59,6 +60,30 @@ export default function Nav() {
         .catch((error) => console.error("Error fetching top clicked products:", error));
   }, []);
 
+    useEffect(() => {
+        getAllTimeTopClickedProducts()
+            .then((productsAll) => {
+                const productDetailsPromises = productsAll.map((productsAll) => {
+                    return fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content/item/${productsAll.productId}`)
+                        .then((res) => res.json())
+                        .then((productData) => ({
+                            id: productData.id,
+                            title: productData.name,
+                            link: productData.route?.path || "#",
+                            imageUrl1: productData.properties?.image1 || "",
+                            imageUrl2: productData.properties?.image2 || "",
+                            price: productData.properties?.price || null,
+                            clicks: topProduct.clicks,
+                        }));
+                });
+
+                Promise.all(productDetailsPromises)
+                    .then((fullProductDetails) => {
+                        setProductsAll(fullProductDetails);
+                    });
+            })
+            .catch((error) => console.error("Error fetching top clicked products:", error));
+    }, []);
     useEffect(() => {
         const fetchCollections = async () => {
             try {
