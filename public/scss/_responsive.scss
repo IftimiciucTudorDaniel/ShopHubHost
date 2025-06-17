@@ -42,6 +42,12 @@
       }
     }
   }
+
+  .tf-slideshow {
+    .wrap-slider {
+      max-height: 650px;
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -2483,7 +2489,7 @@
   }
   .tf-slideshow {
     .wrap-slider {
-      height: 400px;
+      height: 670px;
       &.h-600 {
         height: 600px;
       }

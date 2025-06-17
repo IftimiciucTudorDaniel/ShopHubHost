@@ -60,30 +60,30 @@ export default function Nav() {
         .catch((error) => console.error("Error fetching top clicked products:", error));
   }, []);
 
-    useEffect(() => {
-        getAllTimeTopClickedProducts()
-            .then((productsAll) => {
-                const productDetailsPromises = productsAll.map((productsAll) => {
-                    return fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content/item/${productsAll.productId}`)
-                        .then((res) => res.json())
-                        .then((productData) => ({
-                            id: productData.id,
-                            title: productData.name,
-                            link: productData.route?.path || "#",
-                            imageUrl1: productData.properties?.image1 || "",
-                            imageUrl2: productData.properties?.image2 || "",
-                            price: productData.properties?.price || null,
-                            clicks: topProduct.clicks,
-                        }));
-                });
-
-                Promise.all(productDetailsPromises)
-                    .then((fullProductDetails) => {
-                        setProductsAll(fullProductDetails);
-                    });
-            })
-            .catch((error) => console.error("Error fetching top clicked products:", error));
-    }, []);
+    // useEffect(() => {
+    //     getAllTimeTopClickedProducts()
+    //         .then((productsAll) => {
+    //             const productDetailsPromises = productsAll.map((productsAll) => {
+    //                 return fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content/item/${productsAll.productId}`)
+    //                     .then((res) => res.json())
+    //                     .then((productData) => ({
+    //                         id: productData.id,
+    //                         title: productData.name,
+    //                         link: productData.route?.path || "#",
+    //                         imageUrl1: productData.properties?.image1 || "",
+    //                         imageUrl2: productData.properties?.image2 || "",
+    //                         price: productData.properties?.price || null,
+    //                         clicks: topProduct.clicks,
+    //                     }));
+    //             });
+    //
+    //             Promise.all(productDetailsPromises)
+    //                 .then((fullProductDetails) => {
+    //                     setProductsAll(fullProductDetails);
+    //                 });
+    //         })
+    //         .catch((error) => console.error("Error fetching top clicked products:", error));
+    // }, []);
     useEffect(() => {
         const fetchCollections = async () => {
             try {

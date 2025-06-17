@@ -21,7 +21,7 @@ export default function Hero() {
                         imgSrc: content?.properties?.imageUrl1 || null,
                         alt: "Slide 1",
                         heading: content?.properties?.title || "",
-                        text: content?.properties?.subTitle || "",
+                        text: content?.properties?.subTitle?.markup	 || "",
                         btnText: content?.properties?.butonName || "",
                     },
                     {
@@ -48,16 +48,16 @@ export default function Hero() {
     }, []);
 
     return (
-    <section className="tf-slideshow slider-style2 slider-effect-fade h-20">
+    <section className="tf-slideshow slider-style2 slider-effect-fade">
       <Swiper
         dir="ltr"
         spaceBetween={0}
-        loop={true}
+        loop={false}
         autoplay={false}
         breakpoints={{
           1024: { slidesPerView: 1 },
           768: { slidesPerView: 1 },
-          320: { slidesPerView: 1 },
+          360: { slidesPerView: 1 },
         }}
         modules={[Pagination]}
         pagination={{
@@ -86,9 +86,12 @@ export default function Hero() {
                           </React.Fragment>
                         ))}
                       </div>
-                      <p className="fade-item fade-item-2 body-text-1">
-                        {slide.text}
-                      </p>
+                      {/*<p className="fade-item fade-item-2 body-text-1">*/}
+                      {/*  {slide.text}*/}
+                      {/*</p>*/}
+                    <div className="fade-item fade-item-2 body-text-1 text-black"
+                         dangerouslySetInnerHTML={{ __html: slide.text }}
+                     ></div>
                     </div>
                     <div className="fade-item fade-item-3 box-btn-slider">
                       <Link
