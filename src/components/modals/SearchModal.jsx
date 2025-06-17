@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useRef} from "react";
 import ProductCard1 from "../productCards/ProductCard1";
 
 export default function SearchModal() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const inputRef = useRef(null);
+  const modalRef = useRef(null);
 
   // Trigger search automatically on every change
   useEffect(() => {
@@ -34,8 +36,25 @@ export default function SearchModal() {
     }
   };
 
+  useEffect(() => {
+    const modalElement = modalRef.current;
+
+    const handleShown = () => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    };
+
+    // Listen for Bootstrap's modal "shown" event
+    modalElement?.addEventListener('shown.bs.modal', handleShown);
+
+    return () => {
+      modalElement?.removeEventListener('shown.bs.modal', handleShown);
+    };
+  }, []);
+
   return (
-      <div className="modal fade modal-search" id="search">
+      <div className="modal fade modal-search" id="search" ref={modalRef}>
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="d-flex justify-content-between align-items-center">
@@ -48,6 +67,7 @@ export default function SearchModal() {
             <form className="form-search" onSubmit={(e) => e.preventDefault()}>
               <fieldset className="text">
                 <input
+                    ref={inputRef}
                     type="text"
                     placeholder="Search..."
                     value={query}
@@ -56,6 +76,7 @@ export default function SearchModal() {
                     name="text"
                     tabIndex={0}
                     aria-required="true"
+                    autoComplete="off"
                 />
               </fieldset>
             </form>
