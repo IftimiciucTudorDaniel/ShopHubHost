@@ -132,12 +132,13 @@ export default function Footer1({
                   <div className="footer-infor">
                     <div className="footer-logo">
                       <Link to={`/`}>
-                        <img
+                        <img height={25}
+                             width={150}
                           alt=""
                           src={
                             dark
                               ? "/images/logo/logo-white.svg"
-                              : "/images/logo/logo.svg"
+                              : "/images/logo/logo.png"
                           }
                         />
                       </Link>
