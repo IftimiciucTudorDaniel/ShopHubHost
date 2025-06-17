@@ -10,7 +10,7 @@ export const useContextElement = () => useContext(DataContext);
 
 export default function Context({ children }) {
   const [wishList, setWishList] = useState([]);
-  const [quickViewItem, setQuickViewItem] = useState(null);
+  const [quickViewItem, setQuickViewItem] = useState([]);
   const [quickAddItem, setQuickAddItem] = useState(1);
 
   const addToWishlist = (product) => {

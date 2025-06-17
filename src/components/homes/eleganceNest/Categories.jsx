@@ -10,16 +10,17 @@ export default function Categories() {
         fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=200")
             .then((res) => res.json())
             .then((data) => {
-                const categories = data.items.map((item) => {
-                    return {
+                const categories = data.items
+                    .map((item) => ({
                         title: item.name,
                         link: item.route?.path || "#",
                         imageUrl: item.properties?.image1 || null,
                         alt: item.name,
                         affLink: item.properties?.affLink || "",
                         brands: item.brands
-                    };
-                });
+                    }))
+                    .slice(0, 14);
+
                 setCollections(categories);
             });
     }, []);

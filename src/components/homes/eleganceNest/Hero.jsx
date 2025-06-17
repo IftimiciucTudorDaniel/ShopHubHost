@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Pagination } from "swiper/modules";
 import {getTodaysTopClickedProducts} from "@/utlis/analytics.js";
 export default function Hero() {
-    const [slide, setSlide] = useState([]);
+    const [bannerSlides, setBannerSlides] = useState([]);
     useEffect(() => {
         fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=name%3AAbout`)
             .then((res) => {
@@ -24,26 +24,26 @@ export default function Hero() {
                         text: content?.properties?.subTitle?.markup	 || "",
                         btnText: content?.properties?.butonName || "",
                     },
-                    {
-                        imgSrc: content?.properties?.imageUrl2 || null,
-                        alt: "Slide 2",
-                        heading: content?.properties?.title2 || "",
-                        text: content?.properties?.subtitle2 || "",
-                        btnText: content?.properties?.butonName2 || "",
-                    },
-                    {
-                        imgSrc: content?.properties?.imageUrl3 || null,
-                        alt: "Slide 3",
-                        heading: content?.properties?.title3 || "",
-                        text: content?.properties?.subtitle3 || "",
-                        btnText: content?.properties?.butonName3 || "",
-                    },
+                    // {
+                    //     imgSrc: content?.properties?.imageUrl2 || null,
+                    //     alt: "Slide 2",
+                    //     heading: content?.properties?.title2 || "",
+                    //     text: content?.properties?.subtitle2 || "",
+                    //     btnText: content?.properties?.butonName2 || "",
+                    // },
+                    // {
+                    //     imgSrc: content?.properties?.imageUrl3 || null,
+                    //     alt: "Slide 3",
+                    //     heading: content?.properties?.title3 || "",
+                    //     text: content?.properties?.subtitle3 || "",
+                    //     btnText: content?.properties?.butonName3 || "",
+                    // },
                 ];
-                setSlide(slides);
+                setBannerSlides(slides);
             })
             .catch((error) => {
                 console.error("Error fetching slider:", error);
-                setSlide(null);
+                setBannerSlides(null);
             });
     }, []);
 
@@ -65,7 +65,7 @@ export default function Hero() {
           el: ".spd30",
         }}
       >
-        {slide.map((slide, index) => (
+        {bannerSlides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="wrap-slider">
               <img

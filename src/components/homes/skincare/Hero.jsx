@@ -25,6 +25,11 @@ export default function Hero() {
         }}
       >
         {slides6.map((slide, index) => (
+            <>
+                {console.log(slide.title)}
+                {slide.title && (
+
+
           <SwiperSlide key={index}>
             <div className="wrap-slider">
               <img
@@ -58,7 +63,7 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-          </SwiperSlide>
+          </SwiperSlide>)}</>
         ))}
       </Swiper>
       <div className="wrap-pagination">
