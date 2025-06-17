@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 export default function Pagination({ currentPage, totalPages, onPageChange }) {
     if (totalPages <= 1) return null; // ✅ Hide pagination if only one page
+
 
     const handlePageClick = (page) => {
         if (page >= 1 && page <= totalPages && page !== currentPage) {
@@ -10,37 +11,35 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
     };
 
     const renderPageNumbers = () => {
-        const pages = [];
-        const maxVisible = 1; // ✅ Show 1 before and 1 after
+        const pages = new Set();
+        const maxVisible = 1;
 
-        // Show first page and ellipsis if needed
-        if (currentPage > maxVisible + 2) {
-            pages.push(1, "...");
-        } else {
-            for (let i = 1; i < currentPage; i++) {
-                if (i <= currentPage - maxVisible && i !== 1) continue;
-                pages.push(i);
-            }
-        }
+        // Always show first page
+        pages.add(1);
 
         // Pages around current
         for (let i = currentPage - maxVisible; i <= currentPage + maxVisible; i++) {
-            if (i >= 1 && i <= totalPages && !pages.includes(i)) {
-                pages.push(i);
+            if (i > 1 && i < totalPages) {
+                pages.add(i);
             }
         }
 
-        // Show ellipsis and last page if needed
-        if (currentPage < totalPages - maxVisible - 1) {
-            pages.push("...", totalPages);
-        } else {
-            for (let i = currentPage + 1; i <= totalPages; i++) {
-                if (i >= currentPage + maxVisible + 2) continue;
-                pages.push(i);
-            }
-        }
+        // Always show last page
+        pages.add(totalPages);
 
-        return pages.map((page, index) => (
+        const sortedPages = Array.from(pages).sort((a, b) => a - b);
+
+        const result = [];
+        let prev = 0;
+        sortedPages.forEach((page) => {
+            if (page - prev > 1) {
+                result.push("...");
+            }
+            result.push(page);
+            prev = page;
+        });
+
+        return result.map((page, index) => (
             <li
                 key={index}
                 className={`pagination-number ${page === currentPage ? "active" : ""}`}
@@ -52,7 +51,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
     };
 
     return (
-        <ul className="pagination pt-5">
+        <ul className="pagination pt-5 gap-2 user-select-none cursor-pointer">
             <li onClick={() => handlePageClick(currentPage - 1)}>
                 <a
                     className={`pagination-item text-button ${

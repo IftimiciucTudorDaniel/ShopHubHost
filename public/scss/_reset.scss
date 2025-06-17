@@ -168,6 +168,8 @@ li {
 .container {
     padding-left: 15px;
     padding-right: 15px;
+    cursor: default;
+    user-select: none;
 }
 .container-full3,
 .container-full2,

@@ -46,6 +46,17 @@
   .tf-slideshow {
     .wrap-slider {
       max-height: 650px;
+      min-height: 650px;
+    }
+  }
+}
+
+@media (max-width: 576px)
+{
+  .tf-slideshow {
+    .wrap-slider {
+      max-height: 650px;
+      min-height: 650px;
     }
   }
 }

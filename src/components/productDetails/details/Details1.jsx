@@ -150,12 +150,12 @@ export default function Details1({ product }) {
                         </a>
 
                         <a
-                          onClick={() => addToWishlist(product.id)}
+                          onClick={() => addToWishlist(product)}
                           className="box-icon hover-tooltip text-caption-2 wishlist btn-icon-action"
                         >
                           <span className="icon icon-heart" />
                           <span className="tooltip text-caption-2">
-                            {isAddedtoWishlist(product.id)
+                            {isAddedtoWishlist(product)
                               ? "Already Wishlished"
                               : "Wishlist"}
                           </span>

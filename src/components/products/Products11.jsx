@@ -8,8 +8,7 @@ import { initialState, reducer } from "@/reducer/filterReducer";
 import FilterMeta from "./FilterMeta";
 import FilterSidebar from "./FilterSidebar";
 import { useParams } from "react-router-dom";
-import Pagination from "@/components/common/Pagination";
-
+import Pagination from "@/components/common/Pagination"
 
 export default function Products11({ selectedCategory, gen }) {
   const [products, setProducts] = useState([]);
@@ -219,10 +218,16 @@ export default function Products11({ selectedCategory, gen }) {
   const totalPages = Math.ceil(sorted.length / state.itemsPerPage);
   useEffect(() => {
     if (sorted.length > 0 && productsRef.current) {
-      productsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-
+      const offsetTop = productsRef.current.getBoundingClientRect().top + window.pageYOffset - 250;
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
     }
   }, [sorted]);
+  useEffect(() => {
+    if (productsRef.current) {
+      const offsetTop = productsRef.current.getBoundingClientRect().top + window.pageYOffset - 250;
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+    }
+  }, [state.currentPage]);
   return (
       <>
         <section className="flat-spacing">

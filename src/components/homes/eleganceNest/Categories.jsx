@@ -36,7 +36,7 @@ export default function Categories() {
                 </div>
             </div>
             <div
-                className="container-full slider-layout-right wow fadeInUp"
+                className="container-full slider-layout-left wow fadeInUp user-select-none"
                 data-wow-delay="0.1s"
             >
                 <Swiper
@@ -66,9 +66,9 @@ export default function Categories() {
                                         className="lazyload"
                                         data-src={collection.imageUrl}
                                         alt={collection.alt}
-                                        src={collection.imageUrl || "https://via.placeholder.com/363"}
-                                        width={363}
-                                        height={483}
+                                        src={collection.imageUrl || "https://via.placeholder.com/400"}
+                                        width={400}
+                                        height={450}
                                     />
                                 </a>
                                 <div className="content">
@@ -78,7 +78,7 @@ export default function Categories() {
                                         const generatedUrl = `/${gen}/${categorie}`;
 
                                         return (
-                                            <Link className="cls-btn">
+                                            <Link className="cls-btn" to={generatedUrl}>
                                                 <h6 className="text">{collection.title}</h6>
                                                 <i className="icon icon-arrowUpRight" />
                                             </Link>

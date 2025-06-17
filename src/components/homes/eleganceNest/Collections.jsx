@@ -51,7 +51,7 @@ export default function Collections() {
                 >
                     {collections.map((collection, index) => (
                         <SwiperSlide key={index}>
-                            <div className="collection-position-3 hover-img wow fadeInUp">
+                            <div className="collection-position-3 hover-img wow fadeInUp user-select-none">
                                 <a href={collection.link || "#"} className="img-style">
                                     <img
                                         className="lazyload"
