@@ -105,6 +105,19 @@ export default function Slider1({
     });
   }, []);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkIsMobile(); // Run on mount
+
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
   return (
     <div className="thumbs-slider">
       <Swiper
@@ -185,24 +198,35 @@ export default function Slider1({
       >
         {items.map((slide, index) => (
           <SwiperSlide key={index} className="swiper-slide" data-color="gray">
-            <a
-              href={slide.src}
-              target="_blank"
-              className="item"
-              data-pswp-width={slide.width}
-              data-pswp-height={slide.height}
-              //   onClick={() => openLightbox(index)}
-            >
-              <img
-                className="tf-image-zoom lazyload"
-                data-zoom={slide.src}
-                data-src={slide.src}
-                alt=""
-                src={slide.src}
-                width={slide.width}
-                height={slide.height}
-              />
-            </a>
+            {!isMobile ? (
+                <a
+                    href={slide.src}
+                    target="_blank"
+                    className="item"
+                    data-pswp-width={slide.width}
+                    data-pswp-height={slide.height}
+                    //   onClick={() => openLightbox(index)}
+                >
+                  <img
+                      className="tf-image-zoom lazyload"
+                      data-zoom={slide.src}
+                      data-src={slide.src}
+                      alt=""
+                      src={slide.src}
+                      width={slide.width}
+                      height={slide.height}
+                  />
+                </a>
+            ) : (
+                <img
+                    className="lazyload"
+                    alt=""
+                    src={slide.src}
+                    width={slide.width}
+                    height={slide.height}
+                />
+            )}
+
           </SwiperSlide>
         ))}
       </Swiper>
