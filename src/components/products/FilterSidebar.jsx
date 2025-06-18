@@ -34,18 +34,34 @@ export default function FilterSidebar({
                 <div className="widget-facet facet-categories">
                     <h6 className="facet-title">Product Categories</h6>
                     <ul className="facet-content scrollable-list">
-                        {availableCategories.map((cat) => (
-                            <li key={cat}>
-                                <Link
-                                    to={`/${mainCategory}/${cat.toLowerCase()}`}
-                                    className="categories-item"
-                                >
-                                    {cat}
-                                </Link>
-                            </li>
-                        ))}
+                        {availableCategories.map((cat) => {
+                            const knownGenders = ["femei", "barbati", "fetita", "baieti"];
+                            let path = "";
+
+                            if (knownGenders.includes(mainCategory.toLowerCase())) {
+                                // ✅ Caz normal: mainCategory este genul
+                                path = `/${mainCategory.toLowerCase()}/${cat.toLowerCase()}`;
+                            } else {
+                                // ❌ mainCategory NU e genul — deci probabil e categoria completă gen "pantofi-barbati"
+                                const parts = cat.toLowerCase().split("-");
+                                if (parts.length === 2 && knownGenders.includes(parts[1])) {
+                                    path = `/${parts[1]}/${parts[0]}`; // gen/categorie
+                                } else {
+                                    path = `/${cat.toLowerCase()}`; // fallback simplu
+                                }
+                            }
+
+                            return (
+                                <li key={cat}>
+                                    <Link to={path} className="categories-item">
+                                        {cat}
+                                    </Link>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
+
 
                 <div className="widget-facet facet-price">
                     <h6 className="facet-title">Price</h6>
