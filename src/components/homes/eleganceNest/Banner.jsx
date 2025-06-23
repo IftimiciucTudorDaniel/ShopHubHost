@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Banner() {
   const [collections, setCollections] = useState([]);
   useEffect(() => {
-    fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage")
+    fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage")
         .then((res) => res.json())
         .then((data) => {
           const collections = data.items.map((item) => {

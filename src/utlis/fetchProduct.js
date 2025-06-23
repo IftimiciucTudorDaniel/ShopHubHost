@@ -2,7 +2,7 @@ import {productAdapter} from "@/utlis/productAdapter.js";
 
 export async function fetchProduct(productId) {
     try{
-    const res = await fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content/item/${productId}`);
+    const res = await fetch(`https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content/item/${productId}`);
 
     if (!res.ok) {
         throw new Error("Failed to fetch product");

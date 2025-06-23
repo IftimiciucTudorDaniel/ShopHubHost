@@ -39,7 +39,7 @@ export default function Nav() {
     getTodaysTopClickedProducts()
         .then((topProducts) => {
           const productDetailsPromises = topProducts.map((topProduct) => {
-            return fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
+            return fetch(`https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
                 .then((res) => res.json())
                 .then((productData) => ({
                   id: productData.id,
@@ -64,7 +64,7 @@ export default function Nav() {
     //     getAllTimeTopClickedProducts()
     //         .then((productsAll) => {
     //             const productDetailsPromises = productsAll.map((productsAll) => {
-    //                 return fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content/item/${productsAll.productId}`)
+    //                 return fetch(`https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content/item/${productsAll.productId}`)
     //                     .then((res) => res.json())
     //                     .then((productData) => ({
     //                         id: productData.id,
@@ -87,7 +87,7 @@ export default function Nav() {
     useEffect(() => {
         const fetchCollections = async () => {
             try {
-                const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
+                const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
                 const data = await res.json();
 
                 const collections = data.items.map((item) => {
@@ -132,7 +132,7 @@ export default function Nav() {
     useEffect(() => {
         const fetchBrands = async () => {
             try {
-                const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AproductPage&skip=0&take=10000&fields=properties%5Bbrand%5D");
+                const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AproductPage&skip=0&take=10000&fields=properties%5Bbrand%5D");
                 const data = await res.json();
 
                 // Extrage brandurile din fiecare item
@@ -170,7 +170,7 @@ export default function Nav() {
     useEffect(() => {
     const fetchFemeiLinks = async () => {
       try {
-        const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=20000");
+        const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=20000");
         const data = await res.json();
 
           const femeiCategoriesRaw = data.items.filter((item) =>

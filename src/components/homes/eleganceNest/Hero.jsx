@@ -7,7 +7,7 @@ import {getTodaysTopClickedProducts} from "@/utlis/analytics.js";
 export default function Hero() {
     const [bannerSlides, setBannerSlides] = useState([]);
     useEffect(() => {
-        fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=name%3AAbout`)
+        fetch(`https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content?filter=name%3AAbout`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch slider");
@@ -24,13 +24,13 @@ export default function Hero() {
                         text: content?.properties?.subTitle?.markup	 || "",
                         btnText: content?.properties?.butonName || "",
                     },
-                    // {
-                    //     imgSrc: content?.properties?.imageUrl2 || null,
-                    //     alt: "Slide 2",
-                    //     heading: content?.properties?.title2 || "",
-                    //     text: content?.properties?.subtitle2 || "",
-                    //     btnText: content?.properties?.butonName2 || "",
-                    // },
+                    {
+                        imgSrc: content?.properties?.imageUrl2 || null,
+                        alt: "Slide 2",
+                        heading: content?.properties?.title2 || "",
+                        text: content?.properties?.subtitle2 || "",
+                        btnText: content?.properties?.butonName2 || "",
+                    },
                     // {
                     //     imgSrc: content?.properties?.imageUrl3 || null,
                     //     alt: "Slide 3",
@@ -68,12 +68,13 @@ export default function Hero() {
         {bannerSlides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="wrap-slider">
-              <img
-                alt={slide.alt}
-                src={slide.imgSrc}
-                width={1450}
-                height={803}
-              />
+                <div className="aspect-[16/9] w-full relative">
+                    <img
+                        src={slide.imgSrc}
+                        alt={slide.alt}
+                        className="absolute inset-0 w-full h-full object-cover"
+                    />
+                </div>
               <div className="box-content">
                 <div className="container">
                   <div className="content-slider">

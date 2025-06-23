@@ -18,7 +18,7 @@ export default function Footer1({
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const res = await fetch("https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
+        const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
         const data = await res.json();
 
         const collections = data.items.map((item) => {

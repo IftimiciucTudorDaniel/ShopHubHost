@@ -25,7 +25,7 @@ export default function SearchModal() {
     setLoading(true);
     try {
       const res = await fetch(
-          `https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/search?q=${encodeURIComponent(searchTerm)}`
+          `https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/search?q=${encodeURIComponent(searchTerm)}`
       );
       const data = await res.json();
       setResults(data);

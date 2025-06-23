@@ -90,7 +90,7 @@ export default function Products11({ selectedCategory, gen }) {
     if (collection) queryParams.append("collection", collection);
 
     setLoading(true);
-    fetch(`https://fashionhub-001-site1.jtempurl.com/umbraco/delivery/api/products?${queryParams.toString()}`)
+    fetch(`https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/products?${queryParams.toString()}`)
         .then(res => res.json())
         .then(data => {
           setProducts(data);
