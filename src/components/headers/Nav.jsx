@@ -92,7 +92,7 @@ export default function Nav() {
 
                 const collections = data.items.map((item) => {
                     const image = item.properties?.image?.[0];
-                    const imageUrl = image ? `https://fashionhub-001-site1.jtempurl.com${image.url}` : null;
+                    const imageUrl = image ? `https://indulap-001-site1.mtempurl.com${image.url}` : null;
 
                     // Construiește link-ul dinamic pentru colecție
                     const link = `/colectii/${item.name

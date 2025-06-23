@@ -12,7 +12,7 @@ export default function Collections() {
             .then((data) => {
                 const categories = data.items.map((item) => {
                     const image = item.properties?.image?.[0];
-                    const imageUrl = image ? `https://fashionhub-001-site1.jtempurl.com${image.url}` : null;
+                    const imageUrl = image ? `https://indulap-001-site1.mtempurl.com${image.url}` : null;
                     return {
                         title: item.name,
                         link: item.route?.path || "#",
