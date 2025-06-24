@@ -25,9 +25,8 @@ export default function MobileMenu() {
   const [collections, setCollections] = useState([]);
   const [products, setProducts] = useState([]);
   const [brands, setBrands] = useState([]);
-
+  const [chunkedBrands, setChunkedBrands] = useState([[], []]);
   const brandsPerColumn = 10;
-  const chunkedBrands = [];
   let k=2;
   for (let i = 0; i < brands.length && k>0; i += brandsPerColumn) {
     chunkedBrands.push(brands.slice(i, i + brandsPerColumn));
@@ -106,32 +105,19 @@ export default function MobileMenu() {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AproductPage&skip=0&take=10000&fields=properties%5Bbrand%5D");
+        const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/brands?take=20");
         const data = await res.json();
 
-        // Extrage brandurile din fiecare item
-        const brands = data.items
-            .map((item) => item.properties?.brand)
-            .filter(Boolean); // Elimină undefined/null
+        const allBrands = [...(data.group1 || []), ...(data.group2 || [])];
 
-        // Normalizează și elimină duplicatele
-        const uniqueBrands = Array.from(new Set(
-            brands.map((brand) =>
-                brand
-                    .toLowerCase()
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-                    .trim()
-            )
-        ));
 
-        // Opțional: construiește obiecte cu linkuri
-        const brandObjects = uniqueBrands.map((brand) => ({
-          name: brand,
-          link: `/brand/${brand.replace(/\s+/g, "-")}`,
-        }));
+        const middle = Math.ceil(allBrands.length / 2);
+        const chunked = [
+          allBrands.slice(0, middle),
+          allBrands.slice(middle)
+        ];
 
-        setBrands(brandObjects); // Ai nevoie de useState pentru brands
+        setChunkedBrands(chunked);
       } catch (error) {
         console.error("Error fetching brands:", error);
       }
@@ -139,6 +125,7 @@ export default function MobileMenu() {
 
     fetchBrands();
   }, []);
+
 
 
   useEffect(() => {
