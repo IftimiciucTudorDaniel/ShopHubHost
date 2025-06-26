@@ -43,7 +43,9 @@ export default function ProductDetailPage() {
                     price: data.properties?.price || null,
                     brands: data.properties?.brand || null,
                     color: data.properties?.color || null,
-                    category: data.properties?.categories?.[0]?.name || []
+                    category: data.properties?.categories?.[0]?.name || [],
+                    longDescription: data.properties?.longDescription?.markup || "",
+
                 };
                 setProduct(mappedProduct);
             })
@@ -61,7 +63,7 @@ export default function ProductDetailPage() {
             <Header1/>
             <Breadcumb product={product}/>
             <Details1 product={product}/>
-            <Descriptions1/>
+            <Descriptions1 product={product}/>
             <RelatedProducts product={product}/>
             <Footer1 hasPaddingBottom/>
         </>

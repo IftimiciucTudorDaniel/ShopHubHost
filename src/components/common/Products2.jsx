@@ -22,6 +22,7 @@ export default function Products2({ title, parentClass }) {
                             price: productData.properties?.price || null,
                             clicks: topProduct.clicks,
                             affLink: productData.properties?.affLink || "",
+                            longDescription : productData.properties?.longDescription.markup,
                         }));
                 });
 

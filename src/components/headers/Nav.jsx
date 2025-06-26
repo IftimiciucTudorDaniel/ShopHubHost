@@ -178,7 +178,7 @@ export default function Nav() {
                               .normalize("NFD")
                               .replace(/[\u0300-\u036f]/g, "")
                               .replace(/\s+/g, "-")
-                          }`, // <-- ACEASTA A PARANTEZĂ LIPSEȘTE!
+                          }`,
                       },
                   ])
               ).values()
@@ -219,7 +219,7 @@ export default function Nav() {
                             .normalize("NFD")
                             .replace(/[\u0300-\u036f]/g, "")
                             .replace(/\s+/g, "-")
-                        }`, // <-- ACEASTA A PARANTEZĂ LIPSEȘTE!
+                        }`,
                     },
                 ])
             ).values()
@@ -239,7 +239,7 @@ export default function Nav() {
                             .normalize("NFD")
                             .replace(/[\u0300-\u036f]/g, "")
                             .replace(/\s+/g, "-")
-                        }`, // <-- ACEASTA A PARANTEZĂ LIPSEȘTE!
+                        }`,
                     },
                 ])
             ).values()

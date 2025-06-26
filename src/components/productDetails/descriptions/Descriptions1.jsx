@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import Description from "./Description";
-import Reviews from "./Reviews";
 
-import Shipping from "./Shipping";
-import ReturnPolicies from "./ReturnPolicies";
 
-export default function Descriptions1() {
+export default function Descriptions1({ product }) {
   const [activeTab, setActiveTab] = useState(1);
   return (
     <section className="">
@@ -46,7 +43,7 @@ export default function Descriptions1() {
                   } `}
                 >
                   <div className="tab-description">
-                    <Description />
+                    <Description product={product}/>
                   </div>
                 </div>
                 {/*<div*/}

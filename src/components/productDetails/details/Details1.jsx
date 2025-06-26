@@ -117,11 +117,6 @@ export default function Details1({ product }) {
                           ""
                         )}
                       </div>
-                      <p>
-                        The garments labelled as Committed are products that
-                        have been produced using sustainable fibres or
-                        processes, reducing their environmental impact.
-                      </p>
                       <div className="tf-product-info-liveview">
                         <i className="icon icon-eye" />
                         <p className="text-caption-1">
@@ -132,10 +127,10 @@ export default function Details1({ product }) {
                     </div>
                   </div>
                   <div className="tf-product-info-choose-option">
-                    <ColorSelect
-                      setActiveColor={setActiveColor}
-                      activeColor={activeColor}
-                    />
+                    {/*<ColorSelect*/}
+                    {/*  setActiveColor={setActiveColor}*/}
+                    {/*  activeColor={activeColor}*/}
+                    {/*/>*/}
                     <SizeSelect />
                     <div>
                       <div className="tf-product-info-by-btn mb_10">
