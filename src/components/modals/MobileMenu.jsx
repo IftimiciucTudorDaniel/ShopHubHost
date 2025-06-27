@@ -36,7 +36,7 @@ export default function MobileMenu() {
     getTodaysTopClickedProducts()
         .then((topProducts) => {
           const productDetailsPromises = topProducts.map((topProduct) => {
-            return fetch(`https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
+            return fetch(`http://188.214.88.51:5001/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
                 .then((res) => res.json())
                 .then((productData) => ({
                   id: productData.id,
@@ -60,7 +60,7 @@ export default function MobileMenu() {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
+        const res = await fetch("http://188.214.88.51:5001/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
         const data = await res.json();
 
         const collections = data.items.map((item) => {
@@ -105,7 +105,7 @@ export default function MobileMenu() {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/brands?take=20");
+        const res = await fetch("http://188.214.88.51:5001/umbraco/delivery/api/brands?take=20");
         const data = await res.json();
 
         const allBrands = [...(data.group1 || []), ...(data.group2 || [])];
@@ -131,7 +131,7 @@ export default function MobileMenu() {
   useEffect(() => {
     const fetchFemeiLinks = async () => {
       try {
-        const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=400");
+        const res = await fetch("http://188.214.88.51:5001/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=400");
         const data = await res.json();
 
         const femeiCategoriesRaw = data.items.filter((item) =>

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const handleGlobalProductClick = async (productId, title) => {
     try {
-        const res = await fetch('https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/productclicks/increment', {
+        const res = await fetch('http://188.214.88.51:5001/umbraco/delivery/api/productclicks/increment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,12 +21,12 @@ export const handleGlobalProductClick = async (productId, title) => {
 };
 
 export const getTodaysTopClickedProducts = async () => {
-    const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/productclicks/top?top=4&period=today");
+    const res = await fetch("http://188.214.88.51:5001/umbraco/delivery/api/productclicks/top?top=4&period=today");
     return res.json();
 };
 
 export const getAllTimeTopClickedProducts = async () => {
-    const res = await fetch("https://indulap-001-site1.mtempurl.com/umbraco/delivery/api/productclicks/top?top=4&period=alltime");
+    const res = await fetch("http://188.214.88.51:5001/umbraco/delivery/api/productclicks/top?top=4&period=alltime");
     return res.json();
 };
 
