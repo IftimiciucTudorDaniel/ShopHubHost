@@ -25,7 +25,7 @@ export default function SearchModal() {
     setLoading(true);
     try {
       const res = await fetch(
-          `http://188.214.88.51:5001/umbraco/delivery/api/search?q=${encodeURIComponent(searchTerm)}`
+          `https://api.indulap.ro/umbraco/delivery/api/search?q=${encodeURIComponent(searchTerm)}`
       );
       const data = await res.json();
       setResults(data);

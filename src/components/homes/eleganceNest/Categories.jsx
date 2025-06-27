@@ -7,7 +7,7 @@ export default function Categories() {
     const [collections, setCollections] = useState([]);
 
     useEffect(() => {
-        fetch("http://188.214.88.51:5001/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=200")
+        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=200")
             .then((res) => res.json())
             .then((data) => {
                 const categories = data.items

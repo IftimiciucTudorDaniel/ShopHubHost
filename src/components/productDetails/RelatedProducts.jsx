@@ -9,7 +9,7 @@ export default function RelatedProducts() {
     const [topProducts, setTopProducts] = useState([]);
 
     useEffect(() => {
-        fetch("http://188.214.88.51:5001/umbraco/delivery/api/v2/content?filter=contentType:productPage&take=10000")
+        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType:productPage&take=10000")
             .then((res) => res.json())
             .then((data) => {
                 const items = data.items.slice(0, 4);

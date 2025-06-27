@@ -8,12 +8,12 @@ import { Pagination } from "swiper/modules";
 export default function Collections() {
     const [collections, setCollections] = useState([]);
     useEffect(() => {
-        fetch("http://188.214.88.51:5001/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage")
+        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage")
             .then((res) => res.json())
             .then((data) => {
                 const collections = data.items.map((item) => {
                     const image = item.properties?.image?.[0];
-                    const imageUrl = image ? `http://188.214.88.51:5001/${image.url}` : null;
+                    const imageUrl = image ? `https://api.indulap.ro/${image.url}` : null;
                     const link = `/colectii/${item.name
                         .toLowerCase()
                         .normalize("NFD")

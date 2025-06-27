@@ -7,7 +7,7 @@ export default function Collections() {
   const [collections, setCollections] = useState([]);
 
     useEffect(() => {
-        fetch("http://188.214.88.51:5001/umbraco/delivery/api/v2/content?filter=contentType:categoryPage")
+        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType:categoryPage")
             .then((res) => res.json())
             .then((data) => {
                 const categories = data.items.map((item) => {

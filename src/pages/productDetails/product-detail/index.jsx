@@ -21,7 +21,7 @@ export default function ProductDetailPage() {
 
     const [product, setProduct] = useState(null);
     useEffect(() => {
-        fetch(`http://188.214.88.51:5001/umbraco/delivery/api/v1/content/item/${id}`)
+        fetch(`https://api.indulap.ro/umbraco/delivery/api/v1/content/item/${id}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch product");

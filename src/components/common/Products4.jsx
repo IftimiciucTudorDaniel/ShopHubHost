@@ -11,7 +11,7 @@ export default function Products4({ parentClass = "" }) {
         getTodaysTopClickedProducts()
             .then((topProducts) => {
                 const productDetailsPromises = topProducts.map((topProduct) => {
-                    return fetch(`http://188.214.88.51:5001/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
+                    return fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
                         .then((res) => res.json())
                         .then((productData) => ({
                             id: productData.id,

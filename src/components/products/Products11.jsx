@@ -90,7 +90,7 @@ export default function Products11({ selectedCategory, gen }) {
     if (collection) queryParams.append("collection", collection);
 
     setLoading(true);
-    fetch(`http://188.214.88.51:5001/umbraco/delivery/api/products?${queryParams.toString()}`)
+    fetch(`https://api.indulap.ro/umbraco/delivery/api/products?${queryParams.toString()}`)
         .then(res => res.json())
         .then(data => {
           setProducts(data);
