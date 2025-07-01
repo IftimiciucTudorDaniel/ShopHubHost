@@ -8,30 +8,62 @@ export default function Products2({ title, parentClass }) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
+
         getTodaysTopClickedProducts()
             .then((topProducts) => {
                 const productDetailsPromises = topProducts.map((topProduct) => {
-                    return fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
-                        .then((res) => res.json())
-                        .then((productData) => ({
-                            id: productData.id,
-                            title: productData.name,
-                            link: productData.route?.path || "#",
-                            imageUrl1: productData.properties?.image1 || "",
-                            imageUrl2: productData.properties?.image2 || "",
-                            price: productData.properties?.price || null,
-                            clicks: topProduct.clicks,
-                            affLink: productData.properties?.affLink || "",
-                            longDescription : productData.properties?.longDescription.markup,
-                        }));
+
+                    return Promise.race([
+                        fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${topProduct.productId}`),
+                        new Promise((_, reject) =>
+                            setTimeout(() => reject(new Error('Timeout')), 10000)
+                        )
+                    ])
+                        .then((res) => {
+                            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                            return res.json();
+                        })
+                        .then((productData) => {
+
+                            const mappedProduct = {
+                                id: productData.id,
+                                title: productData.name,
+                                link: productData.route?.path || "#",
+                                imageUrl1: productData.properties?.image1 || "",
+                                imageUrl2: productData.properties?.image2 || "",
+                                price: productData.properties?.price || null,
+                                clicks: topProduct.clicks,
+                                affLink: productData.properties?.affLink || "",
+                                longDescription: productData.properties?.longDescription?.markup || "",
+                                isOnSale: false,
+                                originalPrice: null,
+                                brand: productData.properties?.brand || "",
+                                color: productData.properties?.color || "",
+                                category: productData.properties?.category || "",
+                                sku: productData.properties?.sku || "",
+                                gen: productData.properties?.gen || "",
+                                material: productData.properties?.material || "",
+                                shortDescription: productData.properties?.shortDescription || "",
+                            };
+
+                            console.log(`✅ Mapped product:`, mappedProduct);
+                            return mappedProduct;
+                        })
+                        .catch((error) => {
+                            return null;
+                        });
                 });
 
                 Promise.all(productDetailsPromises)
                     .then((fullProductDetails) => {
-                        setProducts(fullProductDetails);
+                        const validProducts = fullProductDetails.filter(product => product !== null);
+
+                        setProducts(validProducts);
                     });
             })
-            .catch((error) => console.error("Error fetching top clicked products:", error));
+            .catch((error) => {
+                console.error("❌ Error fetching top clicked products:", error);
+            });
     }, []);
 
     return (
