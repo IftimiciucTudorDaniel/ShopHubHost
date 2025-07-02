@@ -46,7 +46,6 @@ export default function Products2({ title, parentClass }) {
                                 shortDescription: productData.properties?.shortDescription || "",
                             };
 
-                            console.log(`✅ Mapped product:`, mappedProduct);
                             return mappedProduct;
                         })
                         .catch((error) => {
@@ -71,9 +70,9 @@ export default function Products2({ title, parentClass }) {
             <div className="container">
                 <div className="heading-section text-center wow fadeInUp">
                     <h3 className="heading">{title}</h3>
-                    <h3 className="heading">Best Selling</h3>
+                    <h3 className="heading">Cel mai bine vândut</h3>
                     <p className="subheading text-secondary">
-                        Browse our Top Trending: the hottest picks loved by all.
+                        Răsfoiți secțiunea noastră de Tendințe: cele mai tari alegeri îndrăgite de toți.
                     </p>
                 </div>
                 <Swiper

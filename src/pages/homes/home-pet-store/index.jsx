@@ -15,10 +15,7 @@ import Products3 from "@/components/homes/pet-store/Products3";
 import React from "react";
 
 import MetaComponent from "@/components/common/MetaComponent";
-const metadata = {
-  title: "Home Pet Store || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
-};
+
 
 export default function HomePetStorePage() {
   return (

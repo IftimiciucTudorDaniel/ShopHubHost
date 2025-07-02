@@ -38,7 +38,7 @@ export default function Banner() {
               <p className="desc">Fii primul care le descopera</p>
             </div>
             <Link
-              to={`/femei`}
+              to={`/toate-colectiile`}
               className="tf-btn btn-fill wow fadeInUp"
             >
               <span className="text">Explorează Colecțiile</span>

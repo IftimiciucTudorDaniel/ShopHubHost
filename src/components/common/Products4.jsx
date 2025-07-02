@@ -70,9 +70,9 @@ export default function Products4({ parentClass = "" }) {
         <section className={parentClass}>
             <div className="container">
                 <div className="heading-section text-center wow fadeInUp">
-                    <h3 className="heading">Today's Top Picks</h3>
+                    <h3 className="heading">Alegerile de top de astăzi </h3>
                     <p className="subheading text-secondary">
-                        Fresh styles just in! Elevate your look.
+                        Stiluri noi, tocmai au apărut! Îmbunătățește-ți look-ul.
                     </p>
                 </div>
                 <Swiper

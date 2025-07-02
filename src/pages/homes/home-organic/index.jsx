@@ -11,10 +11,7 @@ import Testimonials from "@/components/homes/organic/Testimonials";
 import React from "react";
 
 import MetaComponent from "@/components/common/MetaComponent";
-const metadata = {
-  title: "Home Organic || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
-};
+
 
 export default function HomeOrganicPage() {
   return (

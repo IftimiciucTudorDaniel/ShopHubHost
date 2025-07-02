@@ -14,11 +14,7 @@ import SingleProduct from "@/components/homes/fashion-chicHaven-02/SingleProduct
 import React from "react";
 
 import MetaComponent from "@/components/common/MetaComponent";
-const metadata = {
-  title:
-    "Home Fashion Chichaven 02 || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
-};
+
 
 export default function HomeFashionChicHavenPage2() {
   return (

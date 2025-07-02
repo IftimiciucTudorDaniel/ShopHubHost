@@ -54,7 +54,7 @@ export default function FilterSidebar({
                             return (
                                 <li key={cat}>
                                     <Link to={path} className="categories-item">
-                                        {cat}
+                                        {cat.split('-')[0]}
                                     </Link>
                                 </li>
                             );

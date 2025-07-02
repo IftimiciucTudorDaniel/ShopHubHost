@@ -14,10 +14,7 @@ import Testimonials from "@/components/homes/activewear/Testimonials";
 import React from "react";
 
 import MetaComponent from "@/components/common/MetaComponent";
-const metadata = {
-  title: "Home Active Wear || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
-};
+
 
 export default function HomeActivemearPage() {
   return (

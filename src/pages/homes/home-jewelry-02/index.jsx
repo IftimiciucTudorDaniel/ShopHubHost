@@ -14,10 +14,6 @@ import Testimonials from "@/components/homes/jewelry-02/Testimonials";
 import React from "react";
 
 import MetaComponent from "@/components/common/MetaComponent";
-const metadata = {
-  title: "Home Jewelry 02 || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
-};
 
 export default function HomeJeweleryPage2() {
   return (

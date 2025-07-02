@@ -52,7 +52,6 @@ export default function Nav() {
                   clicks: topProduct.clicks,
                 }));
           });
-
           Promise.all(productDetailsPromises)
               .then((fullProductDetails) => {
                 setProducts(fullProductDetails);
@@ -61,57 +60,52 @@ export default function Nav() {
         .catch((error) => console.error("Error fetching top clicked products:", error));
   }, []);
 
-    // useEffect(() => {
-    //     getAllTimeTopClickedProducts()
-    //         .then((productsAll) => {
-    //             const productDetailsPromises = productsAll.map((productsAll) => {
-    //                 return fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${productsAll.productId}`)
-    //                     .then((res) => res.json())
-    //                     .then((productData) => ({
-    //                         id: productData.id,
-    //                         title: productData.name,
-    //                         link: productData.route?.path || "#",
-    //                         imageUrl1: productData.properties?.image1 || "",
-    //                         imageUrl2: productData.properties?.image2 || "",
-    //                         price: productData.properties?.price || null,
-    //                         clicks: topProduct.clicks,
-    //                     }));
-    //             });
-    //
-    //             Promise.all(productDetailsPromises)
-    //                 .then((fullProductDetails) => {
-    //                     setProductsAll(fullProductDetails);
-    //                 });
-    //         })
-    //         .catch((error) => console.error("Error fetching top clicked products:", error));
-    // }, []);
+    useEffect(() => {
+        getAllTimeTopClickedProducts()
+            .then((productsAll) => {
+                const productDetailsPromises = productsAll.map((productAll) => {
+                    return fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${productAll.productId}`)
+                        .then((res) => res.json())
+                        .then((productData) => ({
+                            id: productData.id,
+                            title: productData.name,
+                            link: productData.route?.path || "#",
+                            imageUrl1: productData.properties?.image1 || "",
+                            imageUrl2: productData.properties?.image2 || "",
+                            price: productData.properties?.price || null,
+                            clicks: productAll.clicks, // Era topProduct.clicks - GREȘIT!
+                        }));
+                });
+                Promise.all(productDetailsPromises)
+                    .then((fullProductDetails) => {
+                        setProductsAll(fullProductDetails);
+                    });
+            })
+            .catch((error) => console.error("Error fetching all time top clicked products:", error));
+    }, []);
+
     useEffect(() => {
         const fetchCollections = async () => {
             try {
                 const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage&page=1&pageSize=10\n");
                 const data = await res.json();
-
                 const collections = data.items.map((item) => {
                     const image = item.properties?.image?.[0];
                     const imageUrl = image ? `https://indulap-001-site1.mtempurl.com${image.url}` : null;
 
-                    // Construiește link-ul dinamic pentru colecție
                     const link = `/colectii/${item.name
                         .toLowerCase()
                         .normalize("NFD")
                         .replace(/[\u0300-\u036f]/g, "")
                         .replace(/\s+/g, "-")}`;
-
                     return {
                         name: item.name,
-                        link: link,  // Link-ul dinamic pentru colecție
+                        link: link,
                         imageUrl: imageUrl,
                         alt: item.name,
                         description: item.description || "",
                     };
                 });
-
-                // Dacă vrei să elimini duplicatele pe baza numelui
                 const uniqueCollections = Array.from(
                     new Map(
                         collections.map((item) => [
@@ -120,13 +114,11 @@ export default function Nav() {
                         ])
                     ).values()
                 );
-
-                setCollections(uniqueCollections);  // Setează colecțiile unice
+                setCollections(uniqueCollections);
             } catch (error) {
                 console.error("Error fetching collections:", error);
             }
         };
-
         fetchCollections();
     }, []);
 
@@ -137,7 +129,6 @@ export default function Nav() {
                 const data = await res.json();
 
                 const allBrands = [...(data.group1 || []), ...(data.group2 || [])];
-
 
                 const middle = Math.ceil(allBrands.length / 2);
                 const chunked = [
@@ -153,9 +144,6 @@ export default function Nav() {
 
         fetchBrands();
     }, []);
-
-
-
 
     useEffect(() => {
     const fetchFemeiLinks = async () => {
@@ -173,7 +161,7 @@ export default function Nav() {
                       {
                           name: item.name,
                           href: `/femei/${item.name
-                              .replace(/\s*-\s*femei/i, "") // elimină " - Femei"
+                              .replace(/\s*-\s*femei/i, "") 
                               .toLowerCase()
                               .normalize("NFD")
                               .replace(/[\u0300-\u036f]/g, "")
@@ -194,7 +182,7 @@ export default function Nav() {
                     {
                         name: item.name,
                         href: `/barbati/${item.name
-                            .replace(/\s*-\s*barbati/i, "") // elimină " - Femei"
+                            .replace(/\s*-\s*barbati/i, "")
                             .toLowerCase()
                             .normalize("NFD")
                             .replace(/[\u0300-\u036f]/g, "")
@@ -234,7 +222,7 @@ export default function Nav() {
                     {
                         name: item.name,
                         href: `/fetite/${item.name
-                            .replace(/\s*-\s*fetite/i, "") // elimină " - Femei"
+                            .replace(/\s*-\s*fetite/i, "") 
                             .toLowerCase()
                             .normalize("NFD")
                             .replace(/[\u0300-\u036f]/g, "")
@@ -436,40 +424,17 @@ export default function Nav() {
                 <div className="menu-heading">Best seller</div>
                 <div className="sec-cls-header">
                   <div className="collection-position hover-img">
+
                     <Link to={`/shop-collection`} className="img-style">
-                      <img
-                        className="lazyload"
-                        data-src="/images/collections/cls-header.jpg"
-                        alt="banner-cls"
-                        src="/images/collections/cls-header.jpg"
-                        width={300}
-                        height={400}
-                      />
+                        {productsAll.length > 0 && (
+                            <ProductCard1
+                                product={{
+                                    ...productsAll[0],
+                                    colors: null
+                                }}
+                            />
+                        )}
                     </Link>
-                    <div className="content">
-                      <div className="title-top">
-                        <h4 className="title">
-                          <Link
-                            to={`/shop-collection`}
-                            className="link text-white wow fadeInUp"
-                          >
-                            Shop our top picks
-                          </Link>
-                        </h4>
-                        <p className="desc text-white wow fadeInUp">
-                          Reserved for special occasions
-                        </p>
-                      </div>
-                      <div>
-                        <Link
-                          to={`/shop-collection`}
-                          className="tf-btn btn-md btn-white"
-                        >
-                          <span className="text">Shop Now</span>
-                          <i className="icon icon-arrowUpRight" />
-                        </Link>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

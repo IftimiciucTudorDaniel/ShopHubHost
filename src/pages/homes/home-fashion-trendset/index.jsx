@@ -13,11 +13,7 @@ import Testimonials from "@/components/homes/fashion-trendset/Testimonials";
 import React from "react";
 
 import MetaComponent from "@/components/common/MetaComponent";
-const metadata = {
-  title:
-    "Home Fashion Trendset || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
-};
+
 
 export default function HomeFashionTrendsetPage() {
   return (

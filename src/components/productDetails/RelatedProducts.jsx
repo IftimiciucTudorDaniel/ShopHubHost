@@ -28,10 +28,9 @@ export default function RelatedProducts() {
     }, []);
 
     useEffect(() => {
-        // get top clicked from localStorage or analytics
         const fetched = getTopClickedProducts(products);
         setTopProducts(fetched);
-    }, [products]); // se actualizează după ce se încarcă `products`
+    }, [products]);
 
     return (
         <section className="flat-spacing">

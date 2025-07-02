@@ -11,8 +11,7 @@ import { useEffect, useState } from "react";
 
 import MetaComponent from "@/components/common/MetaComponent";
 const metadata = {
-  title: "Product Detail || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
+  title: "InDulap.ro",
 };
 
 export default function ProductDetailPage() {

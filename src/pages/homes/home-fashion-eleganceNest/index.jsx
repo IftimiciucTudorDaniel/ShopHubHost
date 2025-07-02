@@ -12,12 +12,10 @@ import Products2 from "@/components/common/Products2";
 import React from "react";
 import CartTogglerSide from "@/components/common/CartTogglerSide";
 import MarqueeSection2 from "@/components/common/MarqueeSection2";
-
 import MetaComponent from "@/components/common/MetaComponent";
 const metadata = {
   title:
-    "Home Fashion Elegancenest || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
+    "InDulap.ro",
 };
 
 export default function HomeFashionElegentNestPage() {

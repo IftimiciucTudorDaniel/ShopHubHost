@@ -6,10 +6,7 @@ import Topbar6 from "@/components/headers/Topbar6";
 import { Link } from "react-router-dom";
 import React from "react";
 import MetaComponent from "@/components/common/MetaComponent";
-const metadata = {
-  title: "Blog List || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
-};
+
 export default function BlogListPage() {
   return (
     <>

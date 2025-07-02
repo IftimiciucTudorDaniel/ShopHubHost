@@ -8,8 +8,7 @@ import React from "react";
 import MetaComponent from "@/components/common/MetaComponent";
 const metadata = {
   title:
-    "Shop Left Sidebar || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
+    "InDulap.ro",
 };
 export default function ShopLeftSidebarPage() {
 

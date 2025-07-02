@@ -1,62 +1,65 @@
-import { collections } from "@/data/collections";
-
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Listview from "@/components/products/Listview.jsx";
+
 
 export default function ShopCategories() {
-  return (
-    <section className="flat-spacing">
-      <div className="container">
-        <Swiper
-          dir="ltr"
-          slidesPerView={5}
-          spaceBetween={20}
-          breakpoints={{
-            1200: { slidesPerView: 6, spaceBetween: 20 },
-            1000: { slidesPerView: 4, spaceBetween: 20 },
-            768: { slidesPerView: 3, spaceBetween: 20 },
-            480: { slidesPerView: 2, spaceBetween: 15 },
-            0: { slidesPerView: 2, spaceBetween: 15 },
-          }}
-          modules={[Pagination, Navigation]}
-          pagination={{
-            clickable: true,
-            el: ".spd54",
-          }}
-          navigation={{
-            prevEl: ".snbp12",
-            nextEl: ".snbn12",
-          }}
-        >
-          {collections.map((collection, index) => (
-            <SwiperSlide key={index}>
-              <div className="collection-circle hover-img">
-                <Link to={`/shop-collection`} className="img-style">
-                  <img
-                    className="lazyload"
-                    data-src={collection.imgSrc}
-                    alt={collection.alt}
-                    src={collection.imgSrc}
-                    width={363}
-                    height={363}
-                  />
-                </Link>
-                <div className="collection-content text-center">
-                  <div>
-                    <Link to={`/shop-collection`} className="cls-title">
-                      <h6 className="text">{collection.title}</h6>
-                      <i className="icon icon-arrowUpRight" />
-                    </Link>
-                  </div>
-                  <div className="count text-secondary">{collection.count}</div>
+    const [categories, setCategories] = useState([]);
+    const productsRef = useRef(null); // dacă folosești `ref` pentru ceva
+
+    useEffect(() => {
+        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=200")
+            .then((res) => res.json())
+            .then((data) => {
+                const categories = data.items.map((item) => ({
+                    title: item.name,
+                    link: item.route?.path || "#",
+                    imageUrl: item.properties?.image1 || null,
+                    alt: item.name,
+                    affLink: item.properties?.affLink || "",
+                }));
+
+                setCategories(categories);
+            });
+    }, []);
+
+    return (
+        <section className="flat-spacing">
+            <div className="container">
+                <div className="row">
+                    {categories.map((cat, index) => (
+                        <div className="col-6 col-md-4 col-lg-3 mb-4" key={index}>
+                            <Link
+                                to={`/${cat.title.split('-')[1].toLowerCase()}/${cat.title.split('-')[0].toLowerCase()}`}
+                                className="text-decoration-none"
+                            >
+                                <div className="card h-100 shadow-sm">
+                                    {cat.imageUrl ? (
+                                        <img
+                                            src={cat.imageUrl}
+                                            alt={cat.alt}
+                                            className="card-img-top"
+                                            style={{
+                                                height: "300px",
+                                                width: "300px",
+                                                objectFit: "cover",
+                                            }}
+                                        />
+                                    ) : (
+                                        <div className="card-img-top bg-secondary text-white text-center py-5">No image</div>
+                                    )}
+                                    <div className="card-body">
+                                        <h6 className="card-title text-center">{cat.title.split('-')[0]}</h6>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <div className="d-flex d-lg-none sw-pagination-collection sw-dots type-circle justify-content-center spd54" />
-      </div>
-    </section>
-  );
+            </div>
+        </section>
+    );
 }
+

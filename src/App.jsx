@@ -348,11 +348,11 @@ function App() {
                 element={<ShopFilterDropdownPage />}
               />
               <Route
-                path="shop-filter-canvas"
+                path="toate-colectiile"
                 element={<ShopFilterCanvasPage />}
               />
               <Route
-                path="shop-categories-top"
+                path="toate-categoriile"
                 element={<ShopCategoriesTopPage1 />}
               />
               {/*<Route*/}

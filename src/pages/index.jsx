@@ -13,8 +13,7 @@ import Testimonials from "@/components/common/Testimonials";
 
 import MetaComponent from "@/components/common/MetaComponent";
 const metadata = {
-  title: "Home || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
+  title: "InDulap.ro",
 };
 
 export default function HomePage() {

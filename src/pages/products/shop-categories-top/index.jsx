@@ -8,8 +8,7 @@ import React from "react";
 import MetaComponent from "@/components/common/MetaComponent";
 const metadata = {
   title:
-    "Shop Categories Top || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
+    "InDulap.ro",
 };
 export default function ShopCategoriesTopPage1() {
   return (
@@ -24,24 +23,23 @@ export default function ShopCategoriesTopPage1() {
         <div className="container-full">
           <div className="row">
             <div className="col-12">
-              <h3 className="heading text-center">Women</h3>
+              <h3 className="heading text-center">Lista Categorii</h3>
               <ul className="breadcrumbs d-flex align-items-center justify-content-center">
                 <li>
                   <Link className="link" to={`/`}>
-                    Homepage3
+                    Home
                   </Link>
                 </li>
                 <li>
                   <i className="icon-arrRight" />
                 </li>
-                <li>Women</li>
+                <li>Categorii</li>
               </ul>
             </div>
           </div>
         </div>
       </div>
       <ShopCategories />
-      <Products1 parentClass="flat-spacing pt-0" />
       <Footer1 />
     </>
   );

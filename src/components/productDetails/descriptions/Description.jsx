@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Description({ product }) {
-  console.log("Product in Description:", product);
   return (
     <>
       {" "}

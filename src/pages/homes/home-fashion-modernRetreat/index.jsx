@@ -11,11 +11,7 @@ import React from "react";
 import Features from "../../../components/common/Features2";
 
 import MetaComponent from "@/components/common/MetaComponent";
-const metadata = {
-  title:
-    "Home Fashion Modern Retreate || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
-};
+
 
 export default function HomeFashionModernRetreatPage() {
   return (

@@ -16,11 +16,7 @@ import Footer1 from "@/components/footers/Footer1";
 import MarqueeSection2 from "@/components/common/MarqueeSection2";
 
 import MetaComponent from "@/components/common/MetaComponent";
-const metadata = {
-  title:
-    "Home Fashion Elegant Abode || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
-};
+
 
 export default function HomeFashionElegantAbodePage() {
   return (

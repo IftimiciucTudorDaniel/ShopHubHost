@@ -12,10 +12,7 @@ import Testimonials from "@/components/homes/decor/Testimonials";
 import React from "react";
 
 import MetaComponent from "@/components/common/MetaComponent";
-const metadata = {
-  title: "Home Decor || Modave - Multipurpose Reactjs eCommerce Template",
-  description: "Modave - Multipurpose Reactjs eCommerce Template",
-};
+
 
 export default function HomeDecorPage() {
   return (

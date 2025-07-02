@@ -7,7 +7,7 @@ export default function Categories() {
     const [collections, setCollections] = useState([]);
 
     useEffect(() => {
-        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=200")
+        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=2000")
             .then((res) => res.json())
             .then((data) => {
                 const categories = data.items
@@ -19,7 +19,7 @@ export default function Categories() {
                         affLink: item.properties?.affLink || "",
                         brands: item.brands
                     }))
-                    .slice(0, 14);
+                    .slice(7, 20);
 
                 setCollections(categories);
             });
@@ -30,9 +30,9 @@ export default function Categories() {
         <section className="flat-spacing">
             <div className="container">
                 <div className="heading-section-2 wow fadeInUp">
-                    <h3 className="heading">Explore Collections</h3>
-                    <Link to={`/colectii`} className="btn-line">
-                        View All Collection
+                    <h3 className="heading">Descoperă Categoriile</h3>
+                    <Link to={`/categorii`} className="btn-line">
+                        Vizualizeaza Toate Categoriile
                     </Link>
                 </div>
             </div>
@@ -68,8 +68,6 @@ export default function Categories() {
                                         data-src={collection.imageUrl}
                                         alt={collection.alt}
                                         src={collection.imageUrl || "https://via.placeholder.com/400"}
-                                        width={400}
-                                        height={450}
                                     />
                                 </a>
                                 <div className="content">
@@ -80,7 +78,7 @@ export default function Categories() {
 
                                         return (
                                             <Link className="cls-btn" to={generatedUrl}>
-                                                <h6 className="text">{collection.title}</h6>
+                                                <h6 className="text">{collection.title.split('-')[0]}</h6>
                                                 <i className="icon icon-arrowUpRight" />
                                             </Link>
                                         );
