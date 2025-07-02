@@ -31,7 +31,7 @@ export default function Categories() {
             <div className="container">
                 <div className="heading-section-2 wow fadeInUp">
                     <h3 className="heading">Descoperă Categoriile</h3>
-                    <Link to={`/categorii`} className="btn-line">
+                    <Link to={`/toate-categoriile`} className="btn-line">
                         Vizualizeaza Toate Categoriile
                     </Link>
                 </div>
