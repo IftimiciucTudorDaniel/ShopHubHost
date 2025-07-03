@@ -5,7 +5,7 @@ import { useContextElement } from "@/context/Context";
 import QuantitySelect from "../productDetails/QuantitySelect";
 export default function QuickView() {
   const [activeColor, setActiveColor] = useState("gray");
-  const [quantity, setQuantity] = useState(1); // Initial quantity is 1
+  const [quantity, setQuantity] = useState(1); // Initial quantity is
   const {
     quickViewItem,
     addProductToCart,
@@ -91,24 +91,17 @@ export default function QuickView() {
                       )}
                     </div>
                     <p>
-                      The garments labelled as Committed are products that have
-                      been produced using sustainable fibres or processes,
-                      reducing their environmental impact.
+                      {quickViewItem.longDescription}
                     </p>
                     <div className="tf-product-info-liveview">
                       <i className="icon icon-eye" />
                       <p className="text-caption-1">
-                        <span className="liveview-count">28</span> people are
-                        viewing this right now
+                        <span className="liveview-count">2</span> oamenii vizionează acest produs chiar acum
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="tf-product-info-choose-option">
-                  <ColorSelect
-                      activeColor={activeColor}
-                      setActiveColor={setActiveColor}
-                  />
                   <div className="tf-product-info-by-btn mb_10">
                     <a
                         href="#size-guide"

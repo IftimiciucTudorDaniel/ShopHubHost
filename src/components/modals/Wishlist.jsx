@@ -31,7 +31,7 @@ export default function Wishlist() {
                                   <img
                                       className="lazyload"
                                       alt=""
-                                      src={elm.imageUrl}
+                                      src={elm.imageUrl1}
                                       width={600}
                                       height={800}
                                   />
