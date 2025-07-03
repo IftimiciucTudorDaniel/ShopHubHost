@@ -4,34 +4,37 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import ProductCard1 from "../productCards/ProductCard1";
 
-export default function RelatedProducts() {
+export default function RelatedProducts({product}) {
     const [products, setProducts] = useState([]);
     const [topProducts, setTopProducts] = useState([]);
 
     useEffect(() => {
-        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType:productPage&take=10000")
+        fetch(`https://api.indulap.ro/umbraco/delivery/api/products?category=${product.category}`)
             .then((res) => res.json())
             .then((data) => {
-                const items = data.items.slice(0, 4);
+                const items = data
+                    .filter((item) => item.id !== product.id)
+                    .slice(0, 4);
+
                 const formatted = items.map((item) => ({
                     id: item.id,
-                    title: item.name,
-                    link: item.route?.path || "#",
-                    imageUrl1: item.properties?.image1 || "",
-                    imageUrl2: item.properties?.image2 || "",
-                    alt: item.name,
-                    price: item.properties?.price || null,
+                    title: item.title,
+                    link: item.affLink || "#",
+                    imageUrl1: item.imageUrl1 || "",
+                    imageUrl2: item.imageUrl2 || "",
+                    alt: item.title,
+                    price: item.price || null,
                 }));
+
                 setProducts(formatted);
             })
             .catch((error) => console.error("Error fetching products:", error));
-    }, []);
-
+    }, [product]);
+console.log(product.category);
     useEffect(() => {
         const fetched = getTopClickedProducts(products);
         setTopProducts(fetched);
     }, [products]);
-
     return (
         <section className="flat-spacing">
             <div className="container flat-animate-tab">
