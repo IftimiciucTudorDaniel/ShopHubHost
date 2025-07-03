@@ -123,6 +123,390 @@ export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
           <div className="marquee-child-item">
             <span className="icon icon-lightning-line" />
           </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.unu}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
+          <div className="marquee-child-item">
+            <p className="text-btn-uppercase">
+              {slide.doi}
+            </p>
+          </div>
+          <div className="marquee-child-item">
+            <span className="icon icon-lightning-line" />
+          </div>
         </div>
       </div>
     </section>
