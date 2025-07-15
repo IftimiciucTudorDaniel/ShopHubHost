@@ -15,12 +15,12 @@ const metadata = {
 };
 
 export default function ProductDetailPage() {
-  let params = useParams();
-  const id = params.id;
+    let params = useParams();
+    const slug = params.slug;
 
     const [product, setProduct] = useState(null);
     useEffect(() => {
-        fetch(`https://api.indulap.ro/umbraco/delivery/api/v1/content/item/${id}`)
+        fetch(`https://api.indulap.ro/umbraco/delivery/api/products/slug/${slug}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch product");
@@ -28,31 +28,31 @@ export default function ProductDetailPage() {
                 return res.json();
             })
             .then((data) => {
-                const imageUrl1 = data.properties?.image1 || null;
-                const imageUrl2 = data.properties?.image2 || null;
-                const imageUrl3 = data.properties?.image3 || null;
                 const mappedProduct = {
                     id: data.id,
-                    title: data.name,
-                    imageUrl: imageUrl1 || "",
-                    imageUrl2: imageUrl2 || "",
-                    imageUrl3: imageUrl3 || "",
-                    alt: data.name,
-                    affLink: data.properties?.affLink || "",
-                    price: data.properties?.price || null,
-                    brands: data.properties?.brand || null,
-                    color: data.properties?.color || null,
-                    category: data.properties?.categories?.[0]?.name || [],
-                    longDescription: data.properties?.longDescription?.markup || "",
-
+                    title: data.title,
+                    imageUrl: data.imageUrl1 || "",
+                    imageUrl2: data.imageUrl2 || "",
+                    imageUrl3: data.imageUrl3 || "",
+                    alt: data.alt,
+                    affLink: data.affLink,
+                    price: data.price,
+                    brands: data.brands,
+                    color: data.color,
+                    category: data.category,
+                    collection: data.collection,
+                    gen: data.gen,
+                    material: data.material,
+                    longDescription: data.longDescription || "",
                 };
                 setProduct(mappedProduct);
             })
             .catch((error) => {
                 console.error("Error fetching product:", error);
-                setProduct(null); // Optional: Handle error state
+                setProduct(null);
             });
-    }, [id]);
+    }, [slug]);
+
 
     if (!product) return <div>Loading...</div>;
     return (
