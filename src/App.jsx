@@ -395,7 +395,7 @@ function App() {
               <Route path="my-account" element={<MyAccountPage />} />
 
               <Route
-                  path="product-detail/:slug"
+                  path="detalii-produs/:slug"
                   element={<ProductDetailPage />}
               />
 

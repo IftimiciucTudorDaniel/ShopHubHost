@@ -68,11 +68,11 @@ export default function Hero() {
         {bannerSlides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="wrap-slider">
-                <div className="aspect-[16/9] w-full relative">
+                <div className="aspect-[16/9] w-full h-600 relative">
                     <img
                         src={slide.imgSrc}
                         alt={slide.alt}
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className="absolute inset-0 w-full object-cover"
                     />
                 </div>
               <div className="box-content">
