@@ -131,7 +131,7 @@ export default function Details1({ product }) {
                     {/*  setActiveColor={setActiveColor}*/}
                     {/*  activeColor={activeColor}*/}
                     {/*/>*/}
-                    <SizeSelect />
+                    {/*<SizeSelect />*/}
                     <div>
                       <div className="tf-product-info-by-btn mb_10">
                         <a

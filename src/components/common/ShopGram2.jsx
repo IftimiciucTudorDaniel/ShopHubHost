@@ -40,7 +40,7 @@ export default function ShopGram() {
                 />
               </div>
               <Link
-                to={`/product-detail/${product.id}`}
+                to={`/product-detail/${slugify(product.title)}`}
                 className="box-icon hover-tooltip"
               >
                 <span className="icon icon-eye" />

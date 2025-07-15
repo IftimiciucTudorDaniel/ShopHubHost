@@ -48,7 +48,7 @@ export default function Products2() {
                 <div className="inner-wrapper-card">
                   <div className="card-product-wrapper">
                     <Link
-                      to={`/product-detail/${product.id}`}
+                      to={`/product-detail/${slugify(product.title)}`}
                       className="product-img"
                     >
                       <img
@@ -103,7 +103,7 @@ export default function Products2() {
                   <div className="archive-info-top">
                     <div className="inner-top">
                       <Link
-                        to={`/product-detail/${product.id}`}
+                        to={`/product-detail/${slugify(product.title)}`}
                         className="title link"
                       >
                         {product.title}

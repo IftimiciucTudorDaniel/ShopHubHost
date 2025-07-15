@@ -11,7 +11,7 @@ export default function LookbookProduct({ product, styleClass = "style-row" }) {
       <div className="content">
         <div className="info">
           <Link
-            to={`/product-detail/${product.id}`}
+            to={`/product-detail/${slugify(product.title)}`}
             className="text-title text-line-clamp-1 link"
           >
             {product.title}

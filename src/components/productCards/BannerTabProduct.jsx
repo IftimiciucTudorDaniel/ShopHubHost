@@ -18,7 +18,7 @@ export default function BannerTabProduct({ product }) {
       <div className="content cls-content">
         <div className="cls-info">
           <Link
-            to={`/product-detail/${product.id}`}
+            to={`/product-detail/${slugify(product.title)}`}
             className="text-title link text-line-clamp-1"
           >
             {product.title}

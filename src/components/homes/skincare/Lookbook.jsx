@@ -96,7 +96,7 @@ export default function Lookbook() {
                 >
                   <div className="card-product-wrapper">
                     <Link
-                      to={`/product-detail/${product.id}`}
+                      to={`/product-detail/${slugify(product.title)}`}
                       className="product-img"
                     >
                       <img
@@ -132,7 +132,7 @@ export default function Lookbook() {
                   </div>
                   <div className="card-product-info">
                     <Link
-                      to={`/product-detail/${product.id}`}
+                      to={`/product-detail/${slugify(product.title)}`}
                       className="title link"
                     >
                       {product.title}

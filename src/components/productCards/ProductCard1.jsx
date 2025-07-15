@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CountdownTimer from "../common/Countdown";
 import { useContextElement } from "@/context/Context";
 import { handleProductClick, handleGlobalProductClick } from "@/utlis/analytics.js";
-
+import {slugify} from "@/utlis/slugify.js";
 export default function ProductCard1({ product, gridClass = "" }) {
     const {
         wishlist,
@@ -19,7 +19,7 @@ export default function ProductCard1({ product, gridClass = "" }) {
             } ${product.sizes ? "card-product-size" : ""}`}>
             <div className="card-product-wrapper">
                 <Link
-                    to={`/product-detail/${product.id}`}
+                    to={`/product-detail/${slugify(product.title)}`}
                     className="product-img"
                     onClick={() => {
                         handleProductClick(product.id);
@@ -133,7 +133,7 @@ export default function ProductCard1({ product, gridClass = "" }) {
             </div>
                 <div className="card-product-info">
                     <Link
-                        to={`/product-detail/${product.id}`}
+                        to={`/product-detail/${slugify(product.title)}`}
                         className="title link"
                         onClick={() => {
                             handleProductClick(product.id);

@@ -212,7 +212,7 @@ export default function ProductCard11({ product, gridClass = "" }) {
         </div>
       </div>
       <div className="card-product-info">
-        <Link to={`/product-detail/${product.id}`} className="title link">
+        <Link  to={`/product-detail/${product.id}`} className="title link">
           {product.title}
         </Link>
         <span className="price">
