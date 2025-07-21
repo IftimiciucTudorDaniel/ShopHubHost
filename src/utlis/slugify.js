@@ -1,5 +1,5 @@
 export const slugify = (text) =>
-    text
+    (text || "")
         .toString()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
