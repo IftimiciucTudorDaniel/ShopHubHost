@@ -259,7 +259,6 @@ export default function Products11({ selectedCategory, gen }) {
             <div className="wrapper-control-shop">
               <FilterMeta productLength={sorted.length} allProps={allProps} />
               <div className="row">
-                {/* DESKTOP Sidebar - doar pe ecrane mari */}
                 <div className="col-xl-3 d-none d-xl-block">
                   <FilterSidebar
                       allProps={allProps}
@@ -272,7 +271,6 @@ export default function Products11({ selectedCategory, gen }) {
 
                 </div>
 
-                {/* MOBIL Sidebar - offcanvas Bootstrap activat din butonul Filters */}
                 <div
                     className="offcanvas offcanvas-start"
                     tabIndex="-1"
