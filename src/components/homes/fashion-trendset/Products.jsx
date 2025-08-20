@@ -9,7 +9,7 @@ export default function Products() {
     <section className="flat-spacing">
       <div className="container">
         <div className="heading-section text-center wow fadeInUp">
-          <h3 className="heading">Best Seller</h3>
+          <h3 className="heading">Cel mai vândut</h3>
           <p className="subheading text-secondary">
             Fresh styles just in! Elevate your look.
           </p>

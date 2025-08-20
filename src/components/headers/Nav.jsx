@@ -331,7 +331,7 @@ export default function Nav() {
               </div>
               <div className="col-lg-4">
                 <div className="wrapper-sub-shop">
-                  <div className="menu-heading">Today's Top Picks</div>
+                  <div className="menu-heading">Alegerile de top de astăzi</div>
                   <Swiper
                     dir="ltr"
                     className="swiper tf-product-header"
@@ -421,7 +421,7 @@ export default function Nav() {
 
 
                 <div className="col-lg-3">
-                <div className="menu-heading">Best seller</div>
+                <div className="menu-heading">Cel mai vândut</div>
                 <div className="sec-cls-header">
                   <div className="collection-position hover-img">
 

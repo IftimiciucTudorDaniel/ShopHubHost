@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const tabItems = ["New Arrivals", "Best Seller", "On Sale"];
+const tabItems = ["New Arrivals", "Cel mai vândut", "On Sale"];
 export default function Products() {
   const [activeItem, setActiveItem] = useState(tabItems[0]); // Default the first item as active
   const [selectedItems, setSelectedItems] = useState([]);

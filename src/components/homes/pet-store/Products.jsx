@@ -23,7 +23,7 @@ export default function Products() {
     <section className="flat-spacing">
       <div className="container">
         <div className="heading-section text-center wow fadeInUp">
-          <h3>Today's Top Picks</h3>
+          <h3>Alegerile de top de astăzi</h3>
           <ul
             className="tab-product-v2 justify-content-sm-center"
             role="tablist"

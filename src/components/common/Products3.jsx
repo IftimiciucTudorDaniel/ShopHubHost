@@ -2,7 +2,7 @@ import ProductCard1 from "@/components/productCards/ProductCard1";
 import { products } from "@/data/products";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-const tabItems = ["New Arrivals", "Best Seller", "On Sale"];
+const tabItems = ["New Arrivals", "Cel mai vândut", "On Sale"];
 export default function Products3({ parentClass = "flat-spacing-3" }) {
   const [activeItem, setActiveItem] = useState(tabItems[0]); // Default the first item as active
   const [selectedItems, setSelectedItems] = useState([]);

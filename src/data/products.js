@@ -37,7 +37,7 @@ export const products = [
     inStock: false,
     filterColor: ["Pink", "Green", "Grey", "Light Blue", "Dark Blue"],
     filterSizes: ["XS", "L", "XL", "2XL", "3XL"],
-    tabFilterOptions2: ["New Arrivals", "Best Seller"],
+    tabFilterOptions2: ["New Arrivals", "Cel mai vândut"],
     tabFilterOptions: ["Bottoms", "On pieces", "Tops", "Sale"],
   },
   {
@@ -111,7 +111,7 @@ export const products = [
       "Dark Blue",
     ],
     filterSizes: ["XS", "S", "M", "2XL", "3XL"],
-    tabFilterOptions2: ["New Arrivals", "Best Seller"],
+    tabFilterOptions2: ["New Arrivals", "Cel mai vândut"],
     tabFilterOptions: ["Bottoms", "On pieces", "Skirts", "Dresses", "Sale"],
   },
   {
@@ -163,7 +163,7 @@ export const products = [
       "Dark Blue",
     ],
     filterSizes: ["S", "M", "L", "XL", "2XL", "3XL"],
-    tabFilterOptions2: ["New Arrivals", "Best Seller"],
+    tabFilterOptions2: ["New Arrivals", "Cel mai vândut"],
     tabFilterOptions: ["Bottoms", "Tops", "Skirts", "Dresses", "Sale"],
   },
   {
@@ -202,7 +202,7 @@ export const products = [
       "Dark Blue",
     ],
     filterSizes: ["XS", "S", "M", "L", "3XL"],
-    tabFilterOptions2: ["New Arrivals", "Best Seller", "On Sale"],
+    tabFilterOptions2: ["New Arrivals", "Cel mai vândut", "On Sale"],
     tabFilterOptions: [
       "Bottoms",
       "On pieces",
@@ -250,7 +250,7 @@ export const products = [
       "Dark Blue",
     ],
     filterSizes: ["XS", "L", "XL", "2XL", "3XL"],
-    tabFilterOptions2: ["New Arrivals", "Best Seller", "On Sale"],
+    tabFilterOptions2: ["New Arrivals", "Cel mai vândut", "On Sale"],
     tabFilterOptions: [
       "Bottoms",
       "On pieces",
@@ -996,7 +996,7 @@ export const products12 = [
         imgSrc: "/images/products/furniture/furniture8.jpg",
       },
     ],
-    tabFilterOptions: ["New Arrivals", "Best Seller"],
+    tabFilterOptions: ["New Arrivals", "Cel mai vândut"],
   },
   {
     id: 53,
@@ -1040,7 +1040,7 @@ export const products12 = [
         imgSrc: "/images/products/furniture/furniture20.jpg",
       },
     ],
-    tabFilterOptions: ["New Arrivals", "Best Seller"],
+    tabFilterOptions: ["New Arrivals", "Cel mai vândut"],
   },
   {
     id: 55,
@@ -1080,7 +1080,7 @@ export const products12 = [
       },
     ],
     isOnSale: false,
-    tabFilterOptions: ["New Arrivals", "Best Seller"],
+    tabFilterOptions: ["New Arrivals", "Cel mai vândut"],
   },
   {
     id: 57,
@@ -1101,7 +1101,7 @@ export const products12 = [
         imgSrc: "/images/products/furniture/furniture30.jpg",
       },
     ],
-    tabFilterOptions: ["New Arrivals", "Best Seller", "On Sale"],
+    tabFilterOptions: ["New Arrivals", "Cel mai vândut", "On Sale"],
   },
   {
     id: 58,
@@ -1121,7 +1121,7 @@ export const products12 = [
         imgSrc: "/images/products/furniture/furniture42.jpg",
       },
     ],
-    tabFilterOptions: ["New Arrivals", "Best Seller", "On Sale"],
+    tabFilterOptions: ["New Arrivals", "Cel mai vândut", "On Sale"],
   },
 ];
 

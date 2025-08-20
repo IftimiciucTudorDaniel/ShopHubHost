@@ -12,152 +12,151 @@ export default function SizeGuide() {
     setRangeValue2(parseInt(event.target.value, 10));
   };
 
-  const maxRange = 100; // Set your desired maximum value here
+  const maxRange = 100;
 
-  // Calculate the percentage for each progress bar width
   const percentMax1 = (rangeValue1 / maxRange) * 100;
   const percentMax2 = (rangeValue2 / maxRange) * 100;
 
-  const [activeIndex, setActiveIndex] = useState(1); // Default active item index
-  const options = [{ label: "thin" }, { label: "Normal" }, { label: "plump" }];
+  const [activeIndex, setActiveIndex] = useState(1);
+  const options = [{ label: "subțire" }, { label: "Normal" }, { label: "plinuț" }];
 
   const handleClick = (index) => {
     setActiveIndex(index);
   };
 
   return (
-    <div className="modal fade modal-size-guide" id="size-guide">
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content widget-tabs style-2">
-          <div className="header">
-            <ul className="widget-menu-tab">
-              <li
-                className={`item-title ${activeTab == 1 ? "active" : ""} `}
-                onClick={() => setActiveTab(1)}
-              >
-                <span className="inner text-button">Size </span>
-              </li>
-              <li
-                className={`item-title ${activeTab == 2 ? "active" : ""} `}
-                onClick={() => setActiveTab(2)}
-              >
-                <span className="inner text-button">Size Guide</span>
-              </li>
-            </ul>
-            <span
-              className="icon-close icon-close-popup"
-              data-bs-dismiss="modal"
-            />
-          </div>
-          <div className="wrap">
-            <div className="widget-content-tab">
-              <div
-                className={`widget-content-inner ${
-                  activeTab == 1 ? "active" : ""
-                } `}
-              >
-                <div className="tab-size">
-                  <div>
-                    <div className="widget-size mb_16">
-                      <div className="box-title-size">
-                        <div className="title-size">Height</div>
-                        <div className="number-size">
-                          <span className="max-size">{rangeValue1 * 2}</span>
-                          <span className="text-caption-1 text-secondary">
+      <div className="modal fade modal-size-guide" id="size-guide">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content widget-tabs style-2">
+            <div className="header">
+              <ul className="widget-menu-tab">
+                <li
+                    className={`item-title ${activeTab == 1 ? "active" : ""} `}
+                    onClick={() => setActiveTab(1)}
+                >
+                  <span className="inner text-button">Mărime</span>
+                </li>
+                <li
+                    className={`item-title ${activeTab == 2 ? "active" : ""} `}
+                    onClick={() => setActiveTab(2)}
+                >
+                  <span className="inner text-button">Ghid de mărimi</span>
+                </li>
+              </ul>
+              <span
+                  className="icon-close icon-close-popup"
+                  data-bs-dismiss="modal"
+              />
+            </div>
+            <div className="wrap">
+              <div className="widget-content-tab">
+                <div
+                    className={`widget-content-inner ${
+                        activeTab == 1 ? "active" : ""
+                    } `}
+                >
+                  <div className="tab-size">
+                    <div>
+                      <div className="widget-size mb_16">
+                        <div className="box-title-size">
+                          <div className="title-size">Înălțime</div>
+                          <div className="number-size">
+                            <span className="max-size">{rangeValue1 * 2}</span>
+                            <span className="text-caption-1 text-secondary">
                             Cm
                           </span>
+                          </div>
                         </div>
-                      </div>
-                      <div className="range-input">
-                        <div className="tow-bar-block">
-                          <div
-                            className="progress-size"
-                            style={{ width: `${percentMax1}%` }}
+                        <div className="range-input">
+                          <div className="tow-bar-block">
+                            <div
+                                className="progress-size"
+                                style={{ width: `${percentMax1}%` }}
+                            />
+                          </div>
+                          <input
+                              type="range"
+                              min="0"
+                              max={maxRange}
+                              value={rangeValue1}
+                              onInput={handleRangeInput1}
+                              className="range-max"
                           />
                         </div>
-                        <input
-                          type="range"
-                          min="0"
-                          max={maxRange}
-                          value={rangeValue1}
-                          onInput={handleRangeInput1}
-                          className="range-max"
-                        />
                       </div>
-                    </div>
-                    <div className="widget-size">
-                      <div className="box-title-size">
-                        <div className="title-size">Weight</div>
-                        <div className="number-size">
-                          <span className="max-size">{rangeValue2}</span>
-                          <span className="text-caption-1 text-secondary">
+                      <div className="widget-size">
+                        <div className="box-title-size">
+                          <div className="title-size">Greutate</div>
+                          <div className="number-size">
+                            <span className="max-size">{rangeValue2}</span>
+                            <span className="text-caption-1 text-secondary">
                             Kg
                           </span>
+                          </div>
                         </div>
-                      </div>
-                      <div className="range-input">
-                        <div className="tow-bar-block">
-                          <div
-                            className="progress-size"
-                            style={{ width: `${percentMax2}%` }}
+                        <div className="range-input">
+                          <div className="tow-bar-block">
+                            <div
+                                className="progress-size"
+                                style={{ width: `${percentMax2}%` }}
+                            />
+                          </div>
+                          <input
+                              type="range"
+                              min="0"
+                              max={maxRange}
+                              value={rangeValue2}
+                              onInput={handleRangeInput2}
+                              className="range-max"
                           />
                         </div>
-                        <input
-                          type="range"
-                          min="0"
-                          max={maxRange}
-                          value={rangeValue2}
-                          onInput={handleRangeInput2}
-                          className="range-max"
-                        />
                       </div>
                     </div>
-                  </div>
-                  <div className="size-button-wrap choose-option-list">
-                    {options.map((option, index) => (
-                      <div
-                        key={index}
-                        className={`size-button-item choose-option-item ${
-                          index === activeIndex ? "select-option" : ""
-                        }`}
-                        onClick={() => handleClick(index)}
-                      >
-                        <h5>{option.label}</h5>
+                    <div className="size-button-wrap choose-option-list">
+                      {options.map((option, index) => (
+                          <div
+                              key={index}
+                              className={`size-button-item choose-option-item ${
+                                  index === activeIndex ? "select-option" : ""
+                              }`}
+                              onClick={() => handleClick(index)}
+                          >
+                            <h5>{option.label}</h5>
+                          </div>
+                      ))}
+                    </div>
+                    <div>
+                      <h6 className="suggests-title">Modave sugerează pentru tine:</h6>
+                      <div className="suggests-list">
+                        <a href="#" className="suggests-item link text-button">
+                          L - Tricou
+                        </a>
+                        <a href="#" className="suggests-item link text-button">
+                          XL - Pantaloni
+                        </a>
+                        <a href="#" className="suggests-item link text-button">
+                          31 - Blugi
+                        </a>
                       </div>
-                    ))}
-                  </div>
-                  <div>
-                    <h6 className="suggests-title">Modave suggests for you:</h6>
-                    <div className="suggests-list">
-                      <a href="#" className="suggests-item link text-button">
-                        L - shirt
-                      </a>
-                      <a href="#" className="suggests-item link text-button">
-                        XL - Pant
-                      </a>
-                      <a href="#" className="suggests-item link text-button">
-                        31 - Jeans
-                      </a>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div
-                className={`widget-content-inner ${
-                  activeTab == 2 ? "active" : ""
-                } `}
-              >
-                <table className="tab-sizeguide-table">
-                  <thead>
+                <div
+                    className={`widget-content-inner ${
+                        activeTab == 2 ? "active" : ""
+                    } `}
+                >
+                  <table className="tab-sizeguide-table">
+                    <thead>
                     <tr>
-                      <th>Size</th>
+                      <th>Mărime</th>
                       <th>US</th>
                       <th>Bust</th>
-                      <th>Waist</th>
-                      <th>Low Hip</th>
+                      <th>Talie</th>
+                      <th>Șold inferior</th>
                     </tr>
-                  </thead>
-                  <tbody>
+                    </thead>
+                    <tbody>
                     <tr>
                       <td>XS</td>
                       <td>2</td>
@@ -170,7 +169,7 @@ export default function SizeGuide() {
                       <td>4</td>
                       <td>26 - 27</td>
                       <td>34 - 35</td>
-                      <td>35 - 26</td>
+                      <td>35 - 36</td>
                     </tr>
                     <tr>
                       <td>M</td>
@@ -183,7 +182,7 @@ export default function SizeGuide() {
                       <td>L</td>
                       <td>8</td>
                       <td>30 - 31</td>
-                      <td>38 - 29</td>
+                      <td>38 - 39</td>
                       <td>42 - 44</td>
                     </tr>
                     <tr>
@@ -200,13 +199,13 @@ export default function SizeGuide() {
                       <td>42 - 43</td>
                       <td>48 - 50</td>
                     </tr>
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }

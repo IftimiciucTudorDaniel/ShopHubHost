@@ -2,18 +2,20 @@ import ProductCard1 from "@/components/productCards/ProductCard1";
 import React, { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {getTodaysTopClickedProducts} from "@/utlis/analytics.js"
+import { getTodaysTopProducts } from "@/utlis/analytics.js";
 
 export default function Products4({ parentClass = "" }) {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
 
-        getTodaysTopClickedProducts()
+        getTodaysTopProducts(4)
             .then((topProducts) => {
+                console.log('Today top products:', topProducts);
 
                 const productDetailsPromises = topProducts.map((topProduct) => {
-
                     return Promise.race([
                         fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${topProduct.productId}`),
                         new Promise((_, reject) =>
@@ -25,7 +27,6 @@ export default function Products4({ parentClass = "" }) {
                             return res.json();
                         })
                         .then((productData) => {
-
                             const mappedProduct = {
                                 id: productData.id,
                                 title: productData.name,
@@ -50,6 +51,7 @@ export default function Products4({ parentClass = "" }) {
                             return mappedProduct;
                         })
                         .catch((error) => {
+                            console.error(`Error fetching product ${topProduct.productId}:`, error);
                             return null;
                         });
                 });
@@ -57,47 +59,70 @@ export default function Products4({ parentClass = "" }) {
                 Promise.all(productDetailsPromises)
                     .then((fullProductDetails) => {
                         const validProducts = fullProductDetails.filter(product => product !== null);
+                        console.log('Valid products for today:', validProducts);
                         setProducts(validProducts);
                     });
             })
             .catch((error) => {
-                console.error("❌ Error fetching top clicked products:", error);
+                console.error("❌ Error fetching today's top clicked products:", error);
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }, []);
 
+    if (loading) {
+        return (
+            <section className={parentClass}>
+                <div className="container">
+                    <div className="heading-section text-center">
+                        <h3 className="heading">Alegerile de top de astăzi</h3>
+                        <p>Se încarcă...</p>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className={parentClass}>
             <div className="container">
                 <div className="heading-section text-center wow fadeInUp">
-                    <h3 className="heading">Alegerile de top de astăzi </h3>
+                    <h3 className="heading">Alegerile de top de astăzi</h3>
                     <p className="subheading text-secondary">
                         Stiluri noi, tocmai au apărut! Îmbunătățește-ți look-ul.
                     </p>
                 </div>
-                <Swiper
-                    className="swiper tf-sw-latest"
-                    dir="ltr"
-                    spaceBetween={15}
-                    breakpoints={{
-                        0: { slidesPerView: 2, spaceBetween: 15 },
-                        768: { slidesPerView: 3, spaceBetween: 30 },
-                        1200: { slidesPerView: 4, spaceBetween: 30 },
-                    }}
-                    modules={[Pagination]}
-                    pagination={{
-                        clickable: true,
-                        el: ".spd5",
-                    }}
-                >
-                    {products.map((product, index) => (
-                        <SwiperSlide key={index} className="swiper-slide">
-                            <ProductCard1 product={product} />
-                        </SwiperSlide>
-                    ))}
 
-                    <div className="sw-pagination-latest spd5 sw-dots type-circle justify-content-center" />
-                </Swiper>
+                {products.length > 0 ? (
+                    <Swiper
+                        className="swiper tf-sw-latest"
+                        dir="ltr"
+                        spaceBetween={15}
+                        breakpoints={{
+                            0: { slidesPerView: 2, spaceBetween: 15 },
+                            768: { slidesPerView: 3, spaceBetween: 30 },
+                            1200: { slidesPerView: 4, spaceBetween: 30 },
+                        }}
+                        modules={[Pagination]}
+                        pagination={{
+                            clickable: true,
+                            el: ".spd5",
+                        }}
+                    >
+                        {products.map((product, index) => (
+                            <SwiperSlide key={index} className="swiper-slide">
+                                <ProductCard1 product={product} />
+                            </SwiperSlide>
+                        ))}
+
+                        <div className="sw-pagination-latest spd5 sw-dots type-circle justify-content-center" />
+                    </Swiper>
+                ) : (
+                    <div className="text-center">
+                        <p>Nu există produse populare pentru astăzi încă.</p>
+                    </div>
+                )}
             </div>
         </section>
     );

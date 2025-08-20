@@ -27,18 +27,17 @@ export default function FilterMeta({ allProps, productLength }) {
         ) : (
           ""
         )}
-        {allProps.color != "All" ? (
-          <span
-            className="filter-tag color-tag"
-            onClick={() => allProps.setColor("All")}
-          >
-            <span className={`color bg-red ${allProps.color.className} `} />
-            {allProps.color.name}
-            <span className="remove-tag icon-close" />
-          </span>
-        ) : (
-          ""
-        )}
+          {allProps.color != "All" ? (
+              <span
+                  className="filter-tag color-tag"
+                  onClick={() => allProps.setColor("All")}
+              >
+                 {allProps.color}
+                  <span className="remove-tag icon-close" />
+              </span>
+          ) : (
+              ""
+          )}
           {allProps.material.length ? (
               <>
                   {allProps.material.map((mat, i) => (

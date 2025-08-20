@@ -198,7 +198,7 @@ export const collections4 = [
     imgSrc: "/images/collections/cls8.jpg",
     imgAlt: "banner-cls",
     wowDelay: "0.1s",
-    title: "Best Seller",
+    title: "Cel mai vândut",
     count: "12 items",
   },
 ];

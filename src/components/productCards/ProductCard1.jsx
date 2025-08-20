@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CountdownTimer from "../common/Countdown";
 import { useContextElement } from "@/context/Context";
 import { handleProductClick, handleGlobalProductClick } from "@/utlis/analytics.js";
-import {slugify} from "@/utlis/slugify.js";
+import { slugify } from "@/utlis/slugify.js";
+
 export default function ProductCard1({ product, gridClass = "" }) {
     const {
         wishlist,
@@ -12,11 +13,73 @@ export default function ProductCard1({ product, gridClass = "" }) {
         isAddedtoWishlist,
     } = useContextElement();
 
+    const [validImages, setValidImages] = useState({
+        imageUrl1: null,
+        imageUrl2: null,
+        isLoading: true
+    });
+
+    // Helper function to check image size
+    const checkImageSize = (url) => {
+        return new Promise((resolve) => {
+            if (!url) {
+                resolve(false);
+                return;
+            }
+
+            const img = new Image();
+            img.onload = () => {
+                // Consider images larger than 1x1 and with reasonable minimum size as valid
+                resolve(img.width > 1 && img.height > 1 && img.width >= 50 && img.height >= 50);
+            };
+            img.onerror = () => resolve(false);
+            img.src = url;
+        });
+    };
+
+    // Validate images when component mounts or product changes
+    useEffect(() => {
+        const validateImages = async () => {
+            const imageUrls = [product.imageUrl1, product.imageUrl2].filter(Boolean);
+            const validatedImages = {
+                imageUrl1: null,
+                imageUrl2: null,
+                isLoading: false
+            };
+
+            // Check each image
+            for (const url of imageUrls) {
+                const isValid = await checkImageSize(url);
+                if (isValid) {
+                    if (!validatedImages.imageUrl1) {
+                        validatedImages.imageUrl1 = url;
+                    } else if (!validatedImages.imageUrl2) {
+                        validatedImages.imageUrl2 = url;
+                    }
+                }
+            }
+
+            // Fallback: if no valid images found but original images exist, use the first one
+            if (!validatedImages.imageUrl1 && imageUrls.length > 0) {
+                validatedImages.imageUrl1 = imageUrls[0];
+            }
+
+            setValidImages(validatedImages);
+        };
+
+        if (product.imageUrl1 || product.imageUrl2) {
+            validateImages();
+        } else {
+            setValidImages({ imageUrl1: null, imageUrl2: null, isLoading: false });
+        }
+    }, [product.imageUrl1, product.imageUrl2]);
+
     return (
         <div
             className={`card-product wow fadeInUp ${gridClass} ${
                 product.isOnSale ? "on-sale" : ""
-            } ${product.sizes ? "card-product-size" : ""}`}>
+            } ${product.sizes ? "card-product-size" : ""}`}
+        >
             <div className="card-product-wrapper">
                 <Link
                     to={`/detalii-produs/${slugify(product.title)}`}
@@ -26,78 +89,48 @@ export default function ProductCard1({ product, gridClass = "" }) {
                         handleGlobalProductClick(product.id, product.title);
                     }}
                 >
-                    <img
-                        className="lazyload img-product"
-                        src={product.imageUrl1}
-                        alt={product.alt || product.title || "Product"}
-                        width={600}
-                        height={800}
-                    />
-                    {product.imageUrl2 && (
-                        <img
-                            className="lazyload img-hover"
-                            src={product.imageUrl2}
-                            alt={product.alt || product.title || "Product"}
-                            width={600}
-                            height={800}
-                        />
+                    {validImages.isLoading ? (
+                        // Loading placeholder
+                        <div
+                            className="d-flex justify-content-center align-items-center bg-light"
+                            style={{ width: '100%', height: '400px' }}
+                        >
+                            <div className="spinner-border spinner-border-sm" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    ) : validImages.imageUrl1 ? (
+                        <>
+                            <img
+                                className="lazyload img-product"
+                                src={validImages.imageUrl1}
+                                alt={product.alt || product.title || "Product"}
+                                width={600}
+                                height={800}
+                            />
+                            {validImages.imageUrl2 && validImages.imageUrl2 !== validImages.imageUrl1 && (
+                                <img
+                                    className="lazyload img-hover"
+                                    src={validImages.imageUrl2}
+                                    alt={product.alt || product.title || "Product"}
+                                    width={600}
+                                    height={800}
+                                />
+                            )}
+                        </>
+                    ) : (
+                        // No valid images placeholder
+                        <div
+                            className="d-flex justify-content-center align-items-center bg-light"
+                            style={{ width: '100%', height: '400px' }}
+                        >
+                            <div className="text-center text-muted">
+                                <i className="icon-image" style={{ fontSize: '48px' }}></i>
+                                <p className="mt-2">No image</p>
+                            </div>
+                        </div>
                     )}
                 </Link>
-
-                {/*{product.hotSale && (*/}
-                {/*    <div className="marquee-product bg-main">*/}
-                {/*        {[...Array(2)].map((_, i) => (*/}
-                {/*            <div key={i} className="marquee-wrapper">*/}
-                {/*                <div className="initial-child-container">*/}
-                {/*                    {[...Array(5)].map((_, j) => (*/}
-                {/*                        <React.Fragment key={j}>*/}
-                {/*                            <div className="marquee-child-item">*/}
-                {/*                                <p className="font-2 text-btn-uppercase fw-6 text-white">*/}
-                {/*                                    Hot Sale 25% OFF*/}
-                {/*                                </p>*/}
-                {/*                            </div>*/}
-                {/*                            <div className="marquee-child-item">*/}
-                {/*                                <span className="icon icon-lightning text-critical" />*/}
-                {/*                            </div>*/}
-                {/*                        </React.Fragment>*/}
-                {/*                    ))}*/}
-                {/*                </div>*/}
-                {/*            </div>*/}
-                {/*        ))}*/}
-                {/*    </div>*/}
-                {/*)}*/}
-
-                {/*{product.isOnSale && product.salePercentage && (*/}
-                {/*    <div className="on-sale-wrap">*/}
-                {/*        <span className="on-sale-item">-{product.salePercentage}</span>*/}
-                {/*    </div>*/}
-                {/*)}*/}
-
-                {/*{product.sizes && (*/}
-                {/*    <div className="variant-wrap size-list">*/}
-                {/*        <ul className="variant-box">*/}
-                {/*            {product.sizes.map((size) => (*/}
-                {/*                <li key={size} className="size-item">*/}
-                {/*                    {size}*/}
-                {/*                </li>*/}
-                {/*            ))}*/}
-                {/*        </ul>*/}
-                {/*    </div>*/}
-                {/*)}*/}
-
-                {/*{product.countdown && (*/}
-                {/*    <div className="variant-wrap countdown-wrap">*/}
-                {/*        <div className="variant-box">*/}
-                {/*            <div*/}
-                {/*                className="js-countdown"*/}
-                {/*                data-timer={product.countdown}*/}
-                {/*                data-labels="D :,H :,M :,S"*/}
-                {/*            >*/}
-                {/*                <CountdownTimer />*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*)}*/}
 
                 <div className="list-product-btn">
                     <button
@@ -106,8 +139,8 @@ export default function ProductCard1({ product, gridClass = "" }) {
                     >
                         <span className="icon icon-heart" />
                         <span className="tooltip">
-                        {isAddedtoWishlist(product) ? "Already Wishlisted" : "Wishlist"}
-                      </span>
+                            {isAddedtoWishlist(product) ? "Already Wishlisted" : "Wishlist"}
+                        </span>
                     </button>
 
                     <a
@@ -131,20 +164,19 @@ export default function ProductCard1({ product, gridClass = "" }) {
                     </Link>
                 </div>
             </div>
-                <div className="card-product-info">
-                    <Link
-                        to={`/detalii-produs/${slugify(product.title)}`}
-                        className="title link"
-                        onClick={() => {
-                            handleProductClick(product.id);
-                            handleGlobalProductClick(product.id, product.title);
-                        }}
-                    >
-                        {product.title}
-                    </Link>
-                    <span className="price">{product.price} Ron</span>
-
-                </div>
+            <div className="card-product-info">
+                <Link
+                    to={`/detalii-produs/${slugify(product.title)}`}
+                    className="title link"
+                    onClick={() => {
+                        handleProductClick(product.id);
+                        handleGlobalProductClick(product.id, product.title);
+                    }}
+                >
+                    {product.title}
+                </Link>
+                <span className="price">{product.price} Ron</span>
+            </div>
         </div>
     );
 }

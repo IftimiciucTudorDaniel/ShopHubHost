@@ -76,13 +76,13 @@ export default function FilterSidebar({
                     <div className="box-price-product mt-3">
                         <div className="box-price-item">
                             <span className="title-price">Min price</span>
-                            <div className="price-val" data-currency="$">
+                            <div className="price-val" data-currency="Ron">
                                 {allProps.price[0]}
                             </div>
                         </div>
                         <div className="box-price-item">
                             <span className="title-price">Max price</span>
-                            <div className="price-val" data-currency="$">
+                            <div className="price-val" data-currency="Ron">
                                 {allProps.price[1]}
                             </div>
                         </div>
@@ -150,7 +150,6 @@ export default function FilterSidebar({
                                     allProps.color === c ? "active" : ""
                                 }`}
                             >
-                                <span className={`color ${c.toLowerCase().replace(/\s+/g, '-')}`} />
                                 {formatColorName(c)}
                             </div>
                         ))}
@@ -160,11 +159,11 @@ export default function FilterSidebar({
                                 allProps.color === "All" ? "active" : ""
                             }`}
                         >
-                            <span className="color all-colors" />
                             All Colors
                         </div>
                     </div>
                 </div>
+
 
 
                 {/*<div className="tf-widget-filter">*/}

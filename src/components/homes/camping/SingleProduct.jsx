@@ -93,7 +93,7 @@ export default function SingleProduct() {
                     </div>
                     <div className="tf-product-info-sold">
                       <div className="tf-product-pre-order text-btn-uppercase">
-                        Best seller
+                        Cel mai vândut
                       </div>
                       <div className="d-flex gap-4 align-items-center">
                         <i className="icon icon-lightning" />

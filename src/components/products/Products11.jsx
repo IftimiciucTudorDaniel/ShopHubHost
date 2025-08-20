@@ -236,7 +236,7 @@ export default function Products11({ selectedCategory, gen }) {
               <div className="tf-control-filter">
                 <button className="filterShop tf-btn-filter hidden-mx-1200">
                   <span className="icon icon-filter" />
-                  <span className="text">Filters</span>
+                  <span className="text">Filtru</span>
                 </button>
                 <a
                     href="#filterShop"

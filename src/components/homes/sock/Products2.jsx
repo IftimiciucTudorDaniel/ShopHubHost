@@ -10,7 +10,7 @@ export default function Products2({ parentClass = "flat-spacing" }) {
       <div className="container">
         <div className="heading-section text-center">
           <p className="wow fadeInUp">Cushioned Running Socks</p>
-          <h3 className="heading wow fadeInUp">Today's Top Picks</h3>
+          <h3 className="heading wow fadeInUp">Alegerile de top de astăzi</h3>
           <p className="subheading text-secondary wow fadeInUp">
             Browse our Top Trending: the hottest picks loved by all.
           </p>
