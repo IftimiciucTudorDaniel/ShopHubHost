@@ -118,9 +118,9 @@ export default function ShopCart() {
                     <thead>
                       <tr>
                         <th>Products</th>
-                        <th>Price</th>
+                        <th>Preț</th>
                         <th>Quantity</th>
-                        <th>Total Price</th>
+                        <th>Total Preț</th>
                         <th />
                       </tr>
                     </thead>

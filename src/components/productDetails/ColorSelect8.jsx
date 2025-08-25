@@ -39,7 +39,7 @@ export default function ColorSelect8({ activeColor = "", setActiveColor }) {
   return (
     <div className="variant-picker-item">
       <div className="variant-picker-label mb_12">
-        Colors:
+        Culori:
         <span
           className="text-title variant-picker-label-value value-currentColor"
           style={{ textTransform: "capitalize" }}

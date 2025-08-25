@@ -125,20 +125,6 @@ export default function SizeGuide() {
                           </div>
                       ))}
                     </div>
-                    <div>
-                      <h6 className="suggests-title">Modave sugerează pentru tine:</h6>
-                      <div className="suggests-list">
-                        <a href="#" className="suggests-item link text-button">
-                          L - Tricou
-                        </a>
-                        <a href="#" className="suggests-item link text-button">
-                          XL - Pantaloni
-                        </a>
-                        <a href="#" className="suggests-item link text-button">
-                          31 - Blugi
-                        </a>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 <div

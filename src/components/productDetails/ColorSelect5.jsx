@@ -40,7 +40,7 @@ export default function ColorSelect5({ activeColor = "", setActiveColor }) {
   return (
     <div className="variant-picker-item">
       <div className="variant-picker-label mb_12">
-        Colors:
+        Culori:
         <span className="text-title variant-picker-label-value value-currentColor">
           {activeColor || activeColorDefault}
         </span>

@@ -86,7 +86,7 @@ export default function ProductCompare() {
             </div>
             <div className="tf-compare-row">
               <div className="tf-compare-col tf-compare-field d-md-block d-none">
-                <h6>Price</h6>
+                <h6>Preț</h6>
               </div>
 
               {items.map((elm, i) => (

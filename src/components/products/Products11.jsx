@@ -195,16 +195,16 @@ export default function Products11({ selectedCategory, gen }) {
   useEffect(() => {
     let sortedItems = [...filtered];
     switch (sortingOption) {
-      case "Price Ascending":
+      case "Preț Crescător":
         sortedItems.sort((a, b) => a.price - b.price);
         break;
-      case "Price Descending":
+      case "Preț Descrescător":
         sortedItems.sort((a, b) => b.price - a.price);
         break;
-      case "Title Ascending":
+      case "Titlu Crescător":
         sortedItems.sort((a, b) => a.title.localeCompare(b.title));
         break;
-      case "Title Descending":
+      case "Titlu Descendent":
         sortedItems.sort((a, b) => b.title.localeCompare(a.title));
         break;
     }
@@ -234,10 +234,6 @@ export default function Products11({ selectedCategory, gen }) {
           <div className="container">
             <div className="tf-shop-control">
               <div className="tf-control-filter">
-                <button className="filterShop tf-btn-filter hidden-mx-1200">
-                  <span className="icon icon-filter" />
-                  <span className="text">Filtru</span>
-                </button>
                 <a
                     href="#filterShop"
                     data-bs-toggle="offcanvas"
@@ -252,7 +248,7 @@ export default function Products11({ selectedCategory, gen }) {
                 <LayoutHandler setActiveLayout={setActiveLayout} activeLayout={activeLayout} hasSidebar />
               </ul>
               <div className="tf-control-sorting">
-                <p className="d-none d-lg-block text-caption-1">Sort by:</p>
+                <p className="d-none d-lg-block text-caption-1">Sortează dupa:</p>
                 <Sorting allProps={allProps} />
               </div>
             </div>

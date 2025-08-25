@@ -16,7 +16,7 @@ const metadata = {
   title: "InDulap.ro",
 };
 
-export default function HomePage() {
+export default function Acasă() {
   return (
     <>
       <MetaComponent meta={metadata} />

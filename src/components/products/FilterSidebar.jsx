@@ -2,14 +2,13 @@ import React from "react";
 import RangeSlider from "react-range-slider-input";
 import { useLocation, Link } from "react-router-dom";
 
-
 export default function FilterSidebar({
                                           allProps,
                                           selectedCategory,
                                           availableColors,
                                           availableBrands,
                                           availableCategories,
-                                            availableMaterials
+                                          availableMaterials
                                       }) {
     const {
         price,
@@ -27,12 +26,33 @@ export default function FilterSidebar({
     const formatColorName = (c) => c?.charAt(0).toUpperCase() + c?.slice(1);
     const location = useLocation();
     const mainCategory = location.pathname.split("/")[1];
+
+    // Verifică dacă există filtre active
+    const hasActiveFilters = () => {
+        // Verifică dacă prețul nu este la valorile implicite (0-1500)
+        const isPriceFiltered = price[0] !== 0 || price[1] !== 1500;
+
+        // Verifică dacă sunt selectate branduri
+        const hasBrandFilter = brands && brands.length > 0;
+
+        // Verifică dacă sunt selectate materiale
+        const hasMaterialFilter = allProps.material && allProps.material.length > 0;
+
+        // Verifică dacă este selectată o culoare specifică (nu "All")
+        const hasColorFilter = color && color !== "All";
+
+        // Verifică dacă este selectată o categorie
+        const hasCategoryFilter = category && category !== "";
+
+        return isPriceFiltered || hasBrandFilter || hasMaterialFilter || hasColorFilter || hasCategoryFilter;
+    };
+
     return (
         <aside className="tf-sidebar">
             <div className="tf-sidebar-wrapper">
 
                 <div className="widget-facet facet-categories">
-                    <h6 className="facet-title">Product Categories</h6>
+                    <h6 className="facet-title">Categorii de produse</h6>
                     <ul className="facet-content scrollable-list">
                         {availableCategories.map((cat) => {
                             const knownGenders = ["femei", "barbati", "fetita", "baieti"];
@@ -62,9 +82,8 @@ export default function FilterSidebar({
                     </ul>
                 </div>
 
-
                 <div className="widget-facet facet-price">
-                    <h6 className="facet-title">Price</h6>
+                    <h6 className="facet-title">Preț</h6>
 
                     <RangeSlider
                         min={0}
@@ -75,13 +94,13 @@ export default function FilterSidebar({
 
                     <div className="box-price-product mt-3">
                         <div className="box-price-item">
-                            <span className="title-price">Min price</span>
+                            <span className="title-price">Preț minim</span>
                             <div className="price-val" data-currency="Ron">
                                 {allProps.price[0]}
                             </div>
                         </div>
                         <div className="box-price-item">
-                            <span className="title-price">Max price</span>
+                            <span className="title-price">Preț maxim</span>
                             <div className="price-val" data-currency="Ron">
                                 {allProps.price[1]}
                             </div>
@@ -90,7 +109,7 @@ export default function FilterSidebar({
                 </div>
 
                 <div className="widget-facet facet-fieldset">
-                    <h6 className="facet-title">Brands</h6>
+                    <h6 className="facet-title">Branduri</h6>
                     <div className="box-fieldset-item scrollable-list">
                         {availableBrands.map((brand) => (
                             <fieldset
@@ -137,10 +156,8 @@ export default function FilterSidebar({
                     </div>
                 </div>
 
-
-
                 <div className="widget-facet facet-color ">
-                    <h6 className="facet-title">Colors</h6>
+                    <h6 className="facet-title">Culori</h6>
                     <div className="facet-color-box scrollable-list">
                         {availableColors.map((c, index) => (
                             <div
@@ -159,48 +176,19 @@ export default function FilterSidebar({
                                 allProps.color === "All" ? "active" : ""
                             }`}
                         >
-                            All Colors
+                            Toate culorile
                         </div>
                     </div>
                 </div>
 
-
-
-                {/*<div className="tf-widget-filter">*/}
-                {/*    <h4 className="title-widget">Categories</h4>*/}
-                {/*    <ul className="list-checkbox">*/}
-                {/*        {availableCategories.map((cat) => (*/}
-                {/*            <li key={cat}>*/}
-                {/*                <label>*/}
-                {/*                    <input*/}
-                {/*                        type="radio"*/}
-                {/*                        name="category"*/}
-                {/*                        checked={category === cat}*/}
-                {/*                        onChange={() => setCategory(cat)}*/}
-                {/*                    />*/}
-                {/*                    <span>{cat}</span>*/}
-                {/*                </label>*/}
-                {/*            </li>*/}
-                {/*        ))}*/}
-                {/*        <li>*/}
-                {/*            <label>*/}
-                {/*                <input*/}
-                {/*                    type="radio"*/}
-                {/*                    name="category"*/}
-                {/*                    checked={!category}*/}
-                {/*                    onChange={() => setCategory("")}*/}
-                {/*                />*/}
-                {/*                <span>All Categories</span>*/}
-                {/*            </label>*/}
-                {/*        </li>*/}
-                {/*    </ul>*/}
-                {/*</div>*/}
-
-                <div className="tf-widget-filter">
-                    <button className="btn btn-outline-primary" onClick={clearFilter}>
-                        Clear Filters
-                    </button>
-                </div>
+                {/* Afișează butonul doar dacă există filtre active */}
+                {hasActiveFilters() && (
+                    <div className="tf-widget-filter">
+                        <button className="btn btn-outline-primary" onClick={clearFilter}>
+                            Ștergeți filtrele
+                        </button>
+                    </div>
+                )}
             </div>
         </aside>
     );

@@ -32,7 +32,7 @@ export default function PageNotFoundPage() {
               </div>
             </div>
             <Link to={`/`} className="tf-btn btn-fill">
-              <span className="text text-button">Back To Homepage</span>
+              <span className="text text-button">Back To Acasă</span>
             </Link>
           </div>
         </div>

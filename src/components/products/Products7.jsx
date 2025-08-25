@@ -119,22 +119,22 @@ export default function Products7() {
   }, [price, availability, color, size, brands, activeFilterOnSale]);
 
   useEffect(() => {
-    if (sortingOption === "Price Ascending") {
+    if (sortingOption === "Preț Crescător") {
       dispatch({
         type: "SET_SORTED",
         payload: [...filtered].sort((a, b) => a.price - b.price),
       });
-    } else if (sortingOption === "Price Descending") {
+    } else if (sortingOption === "Preț Descrescător") {
       dispatch({
         type: "SET_SORTED",
         payload: [...filtered].sort((a, b) => b.price - a.price),
       });
-    } else if (sortingOption === "Title Ascending") {
+    } else if (sortingOption === "Titlu Crescător") {
       dispatch({
         type: "SET_SORTED",
         payload: [...filtered].sort((a, b) => a.title.localeCompare(b.title)),
       });
-    } else if (sortingOption === "Title Descending") {
+    } else if (sortingOption === "Titlu Descendent") {
       dispatch({
         type: "SET_SORTED",
         payload: [...filtered].sort((a, b) => b.title.localeCompare(a.title)),

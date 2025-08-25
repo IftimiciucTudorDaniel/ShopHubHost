@@ -4,7 +4,7 @@ export default function FilterMeta({ allProps, productLength }) {
   return (
     <div className="meta-filter-shop" style={{}}>
       <div id="product-count-grid" className="count-text">
-        <span className="count">{productLength}</span> Products Found
+        <span className="count">{productLength}</span> Produse găsite
       </div>
 
       <div id="applied-filters">

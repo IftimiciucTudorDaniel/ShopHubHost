@@ -7,7 +7,7 @@ function ColorDropdown({ colors, selectedColor, onSelectColor }) {
 
     return (
         <div className="widget-facet facet-color">
-            <h6 className="facet-title">Colors</h6>
+            <h6 className="facet-title">Culori</h6>
             <div className="dropdown">
                 <button className="dropdown-toggle" onClick={toggleDropdown}>
                     {selectedColor || "Select a color"}

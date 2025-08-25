@@ -1,9 +1,9 @@
 const filterOptions = [
-  "Sort by (Default)",
-  "Title Ascending",
-  "Title Descending",
-  "Price Ascending",
-  "Price Descending",
+  "Sortare inițială",
+  "Titlu Crescător",
+  "Titlu Descendent",
+  "Preț Crescător",
+  "Preț Descrescător",
 ];
 export default function Sorting({ allProps }) {
   return (

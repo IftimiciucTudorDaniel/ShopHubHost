@@ -10,7 +10,7 @@ export const initialState = {
   activeFilterOnSale: false,
   brands: [],
   filtered: productMain,
-  sortingOption: "Sort by (Default)",
+  sortingOption: "Sortare după (implicit)",
   sorted: productMain,
   currentPage: 1,
   itemsPerPage: 32,

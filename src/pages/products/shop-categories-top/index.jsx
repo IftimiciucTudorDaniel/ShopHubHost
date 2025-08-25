@@ -27,7 +27,7 @@ export default function ShopCategoriesTopPage1() {
               <ul className="breadcrumbs d-flex align-items-center justify-content-center">
                 <li>
                   <Link className="link" to={`/`}>
-                    Home
+                      Acasă
                   </Link>
                 </li>
                 <li>

@@ -208,12 +208,6 @@ export const barbati = [
 
 export const productStyles = [
   { href: "/product-style-01", name: "Product Style 1" },
-  { href: "/product-style-02", name: "Product Style 2" },
-  { href: "/product-style-03", name: "Product Style 3" },
-  { href: "/product-style-04", name: "Product Style 4" },
-  { href: "/product-style-05", name: "Product Style 5" },
-  { href: "/product-style-06", name: "Product Style 6" },
-  { href: "/product-style-07", name: "Product Style 7" },
 ];
 
 export const otherShopMenus = [

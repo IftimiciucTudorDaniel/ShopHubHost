@@ -21,7 +21,7 @@ export default function DropdownFilter({ allProps, setIsDDActive }) {
       </div>
       <div className="canvas-body">
         <div className="widget-facet facet-categories">
-          <h6 className="facet-title">Product Categories</h6>
+          <h6 className="facet-title">Categorii de produse</h6>
           <ul className="facet-content">
             {categories.map((category, index) => (
               <li key={index}>
@@ -34,7 +34,7 @@ export default function DropdownFilter({ allProps, setIsDDActive }) {
           </ul>
         </div>
         <div className="widget-facet facet-price">
-          <h6 className="facet-title">Price</h6>
+          <h6 className="facet-title">Preț</h6>
 
           <RangeSlider
             min={10}
@@ -44,13 +44,13 @@ export default function DropdownFilter({ allProps, setIsDDActive }) {
           />
           <div className="box-price-product mt-3">
             <div className="box-price-item">
-              <span className="title-price">Min price</span>
+              <span className="title-price">Preț minim</span>
               <div className="price-val" id="price-min-value" data-currency="Ron">
                 {allProps.price[0]}
               </div>
             </div>
             <div className="box-price-item">
-              <span className="title-price">Max price</span>
+              <span className="title-price">Preț maxim</span>
               <div className="price-val" id="price-max-value" data-currency="Ron">
                 {allProps.price[1]}
               </div>
@@ -82,7 +82,7 @@ export default function DropdownFilter({ allProps, setIsDDActive }) {
           </div>
         </div>
         <div className="widget-facet facet-color">
-          <h6 className="facet-title">Colors</h6>
+          <h6 className="facet-title">Culori</h6>
           <div className="facet-color-box">
             {colors.map((color, index) => (
               <div
@@ -130,7 +130,7 @@ export default function DropdownFilter({ allProps, setIsDDActive }) {
           </div>
         </div>
         <div className="widget-facet facet-fieldset">
-          <h6 className="facet-title">Brands</h6>
+          <h6 className="facet-title">Branduri</h6>
           <div className="box-fieldset-item">
             {brands.map((brand, index) => (
               <fieldset

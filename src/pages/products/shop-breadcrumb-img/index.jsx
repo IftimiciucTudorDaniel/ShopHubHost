@@ -27,7 +27,7 @@ export default function ShopBreadcumbImgPage() {
               <ul className="breadcrumbs d-flex align-items-center justify-content-center">
                 <li>
                   <Link className="link" to={`/`}>
-                    Homepage1
+                    Acasă1
                   </Link>
                 </li>
                 <li>

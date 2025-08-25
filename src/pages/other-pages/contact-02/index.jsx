@@ -29,7 +29,7 @@ export default function ContactPage2() {
               <ul className="breadcrumbs d-flex align-items-center justify-content-center">
                 <li>
                   <Link className="link" to={`/`}>
-                    Homepage
+                    Acasă
                   </Link>
                 </li>
                 <li>
