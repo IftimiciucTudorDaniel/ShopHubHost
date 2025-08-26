@@ -15,6 +15,7 @@ import {
     swatchLinks,
 } from "@/data/menu";
 import {getAllTimeTopProducts, getTodaysTopProducts} from "@/utlis/analytics.js";
+import {API_HOST} from "@/config.js";
 
 export default function Nav() {
     const { pathname } = useLocation();
@@ -31,7 +32,7 @@ export default function Nav() {
     // Funcție pentru a verifica dacă o categorie are produse
     const checkCategoryHasProducts = async (categoryName) => {
         try {
-            const response = await fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AproductPage&skip=0&take=1&search=${encodeURIComponent(categoryName)}`);
+            const response = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AproductPage&skip=0&take=1&search=${encodeURIComponent(categoryName)}`);
             const data = await response.json();
             return data.total > 0;
         } catch (error) {
@@ -58,7 +59,7 @@ export default function Nav() {
         getTodaysTopProducts(4)
             .then((topProducts) => {
                 const productDetailsPromises = topProducts.map((topProduct) => {
-                    return fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
+                    return fetch(`${API_HOST}/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
                         .then((res) => res.json())
                         .then((productData) => ({
                             id: productData.id,
@@ -87,7 +88,7 @@ export default function Nav() {
         getAllTimeTopProducts(4)
             .then((productsAll) => {
                 const productDetailsPromises = productsAll.map((productAll) => {
-                    return fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${productAll.productId}`)
+                    return fetch(`${API_HOST}/umbraco/delivery/api/v2/content/item/${productAll.productId}`)
                         .then((res) => res.json())
                         .then((productData) => ({
                             id: productData.id,
@@ -115,7 +116,7 @@ export default function Nav() {
     useEffect(() => {
         const fetchCollections = async () => {
             try {
-                const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage&page=1&pageSize=50");
+                const res = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage&page=1&pageSize=50`);
                 const data = await res.json();
                 const collections = data.items.map((item) => {
                     const image = item.properties?.image?.[0];
@@ -157,7 +158,7 @@ export default function Nav() {
     useEffect(() => {
         const fetchBrands = async () => {
             try {
-                const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/brands?take=40");
+                const res = await fetch(`${API_HOST}/umbraco/delivery/api/brands?take=40`);
                 const data = await res.json();
 
                 const allBrands = [...(data.group1 || []), ...(data.group2 || [])];
@@ -166,7 +167,7 @@ export default function Nav() {
                 const brandsWithProducts = [];
                 for (const brand of allBrands) {
                     try {
-                        const productRes = await fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AproductPage&skip=0&take=1&search=${encodeURIComponent(brand.name)}`);
+                        const productRes = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AproductPage&skip=0&take=1&search=${encodeURIComponent(brand.name)}`);
                         const productData = await productRes.json();
                         if (productData.total > 0) {
                             brandsWithProducts.push(brand);
@@ -194,7 +195,7 @@ export default function Nav() {
     useEffect(() => {
         const fetchCategoriesWithProducts = async () => {
             try {
-                const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=200");
+                const res = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=200`);
                 const data = await res.json();
 
                 // Funcție pentru a verifica și filtra categoriile
@@ -207,7 +208,7 @@ export default function Nav() {
                     for (const category of categoriesRaw) {
                         try {
                             // Verifică dacă categoria are produse
-                            const productRes = await fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AproductPage&skip=0&take=1&search=${encodeURIComponent(category.name)}`);
+                            const productRes = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AproductPage&skip=0&take=1&search=${encodeURIComponent(category.name)}`);
                             const productData = await productRes.json();
 
                             if (productData.total > 0) {

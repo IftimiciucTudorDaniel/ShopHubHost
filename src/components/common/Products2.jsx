@@ -1,5 +1,5 @@
 import ProductCard1 from "@/components/productCards/ProductCard1";
-import { getTodaysTopClickedProducts } from "@/utlis/analytics.js";
+import { getTodaysTopProducts } from "@/utlis/analytics.js";
 import React, { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,12 +9,12 @@ export default function Products2({ title, parentClass }) {
 
     useEffect(() => {
 
-        getTodaysTopClickedProducts()
+        getTodaysTopProducts()
             .then((topProducts) => {
                 const productDetailsPromises = topProducts.map((topProduct) => {
 
                     return Promise.race([
-                        fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${topProduct.productId}`),
+                        fetch(`${API_HOST}/umbraco/delivery/api/v2/content/item/${topProduct.productId}`),
                         new Promise((_, reject) =>
                             setTimeout(() => reject(new Error('Timeout')), 10000)
                         )

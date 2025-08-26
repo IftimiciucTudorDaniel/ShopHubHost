@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {slides} from "@/data/heroSlides.js";
+import {API_HOST} from "@/config.js";
 
 export default function MarqueeSection2({ parentClass = "tf-marquee" }) {
   const [slide, setSlide] = useState([]);
   useEffect(() => {
-    fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=name%3AAbout")
+    fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=name%3AAbout`)
         .then((res) => res.json())
         .then((data) => {
           const props = data?.items?.[0]?.properties;

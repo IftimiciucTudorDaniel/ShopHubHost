@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { getAllTimeTopProducts } from "@/utlis/analytics.js";
+import {API_HOST} from "@/config.js";
 
 export default function Products2({ title, parentClass }) {
     const [products, setProducts] = useState([]);
@@ -13,11 +14,11 @@ export default function Products2({ title, parentClass }) {
 
         getAllTimeTopProducts(4)
             .then((topProducts) => {
-                console.log('All-time top products:', topProducts);
+                logDev('All-time top products:', topProducts);
 
                 const productDetailsPromises = topProducts.map((topProduct) => {
                     return Promise.race([
-                        fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${topProduct.productId}`),
+                        fetch(`${API_HOST}/umbraco/delivery/api/v2/content/item/${topProduct.productId}`),
                         new Promise((_, reject) =>
                             setTimeout(() => reject(new Error('Timeout')), 10000)
                         )
@@ -59,7 +60,7 @@ export default function Products2({ title, parentClass }) {
                 Promise.all(productDetailsPromises)
                     .then((fullProductDetails) => {
                         const validProducts = fullProductDetails.filter(product => product !== null);
-                        console.log('Valid products all-time:', validProducts);
+                        logDev('Valid products all-time:', validProducts);
                         setProducts(validProducts);
                     });
             })

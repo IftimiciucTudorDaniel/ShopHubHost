@@ -3,11 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Navigation, Pagination} from "swiper/modules";
+import {API_HOST} from "@/config.js";
 export default function Categories() {
     const [collections, setCollections] = useState([]);
 
     useEffect(() => {
-        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=2000")
+        fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=2000`)
             .then((res) => res.json())
             .then((data) => {
                 const categories = data.items

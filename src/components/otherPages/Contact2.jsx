@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import {logDev} from "@/utlis/helpers.js";
+
 export default function Contact2() {
   const formRef = useRef();
   const [success, setSuccess] = useState(true);
@@ -30,7 +32,7 @@ export default function Contact2() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        logDev(err);
       });
   };
   return (

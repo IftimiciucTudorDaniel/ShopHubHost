@@ -26,7 +26,7 @@ export default function Hero() {
       >
         {slides6.map((slide, index) => (
             <>
-                {console.log(slide.title)}
+                {logDev(slide.title)}
                 {slide.title && (
 
 

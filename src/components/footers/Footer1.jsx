@@ -6,6 +6,7 @@ import LanguageSelect from "../common/LanguageSelect";
 import ToolbarBottom from "../headers/ToolbarBottom";
 import ScrollTop from "../common/ScrollTop";
 import { footerLinks } from "@/data/footerLinks";
+import {API_HOST} from "@/config.js";
 export default function Footer1({
   border = true,
   dark = false,
@@ -18,7 +19,7 @@ export default function Footer1({
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
+        const res = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage`);
         const data = await res.json();
 
         const collections = data.items.map((item) => {

@@ -9,6 +9,7 @@ import FilterMeta from "./FilterMeta";
 import FilterSidebar from "./FilterSidebar";
 import { useParams } from "react-router-dom";
 import Pagination from "@/components/common/Pagination"
+import {API_HOST} from "@/config.js";
 
 export default function Products11({ selectedCategory, gen }) {
   const [products, setProducts] = useState([]);
@@ -90,7 +91,7 @@ export default function Products11({ selectedCategory, gen }) {
     if (collection) queryParams.append("collection", collection);
 
     setLoading(true);
-    fetch(`https://api.indulap.ro/umbraco/delivery/api/products?${queryParams.toString()}`)
+    fetch(`${API_HOST}/api/productsapi?${queryParams.toString()}`)
         .then(res => res.json())
         .then(data => {
           setProducts(data);

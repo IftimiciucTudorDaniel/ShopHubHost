@@ -14,7 +14,8 @@ import {
   femei,
   swatchLinks,
 } from "@/data/menu";
-import {getTodaysTopClickedProducts} from "@/utlis/analytics.js";
+import {getTodaysTopProducts} from "@/utlis/analytics.js";
+import {API_HOST} from "@/config.js";
 
 export default function MobileMenu() {
   const { pathname } = useLocation();
@@ -33,10 +34,10 @@ export default function MobileMenu() {
     k--;
   }
   useEffect(() => {
-    getTodaysTopClickedProducts()
+    getTodaysTopProducts()
         .then((topProducts) => {
           const productDetailsPromises = topProducts.map((topProduct) => {
-            return fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
+            return fetch(`${API_HOST}/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
                 .then((res) => res.json())
                 .then((productData) => ({
                   id: productData.id,
@@ -60,7 +61,7 @@ export default function MobileMenu() {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
+        const res = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage`);
         const data = await res.json();
 
         const collections = data.items.map((item) => {
@@ -105,7 +106,7 @@ export default function MobileMenu() {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/brands?take=20");
+        const res = await fetch(`${API_HOST}/umbraco/delivery/api/brands?take=20`);
         const data = await res.json();
 
         const allBrands = [...(data.group1 || []), ...(data.group2 || [])];
@@ -131,7 +132,7 @@ export default function MobileMenu() {
   useEffect(() => {
     const fetchFemeiLinks = async () => {
       try {
-        const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=400");
+        const res = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=400`);
         const data = await res.json();
 
         const femeiCategoriesRaw = data.items.filter((item) =>
