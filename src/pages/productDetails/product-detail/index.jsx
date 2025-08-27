@@ -21,7 +21,7 @@ export default function ProductDetailPage() {
 
     const [product, setProduct] = useState(null);
     useEffect(() => {
-        fetch(`${API_HOST}/api/productsapi/slug/${slug}`)
+        fetch(`${API_HOST}/api/productsapi/by-slug/${slug}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch product");

@@ -3,8 +3,9 @@ import {logDev} from "@/utlis/helpers.js";
 
 const API_HOST = import.meta.env.VITE_API_HOST;
 const isDev = import.meta.env.VITE_DEVELOPMENT;
+
 // Incrementează click-ul pentru un produs
-export const handleProductClickLocal = async (productId, title) => {
+export const handleProductClick = async (productId, title) => {
     try {
         if (!productId || !title) {
             console.error('ProductId și Title sunt obligatorii');
@@ -13,7 +14,7 @@ export const handleProductClickLocal = async (productId, title) => {
 
         isDev && (`Incrementing clicks for: ${title} (${productId})`);
 
-        const response = await fetch(`${API_HOST}/api/productclicks`, {
+        const response = await fetch(`${API_HOST}/api/productclicks/increment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -158,7 +159,7 @@ export const testApiConnection = async () => {
 
 // === FUNCȚII LOCALE (localStorage) - păstrate pentru compatibilitate ===
 
-export const handleProductClickLocalLocal = (productId) => {
+export const handleProductClickLocal = (productId) => {
     const stored = JSON.parse(localStorage.getItem("clickedProducts") || "[]");
 
     const existing = stored.find((item) => item.id === productId);
@@ -286,7 +287,7 @@ export const testWithRealProduct = async (productId, productTitle) => {
 
     try {
         // 1. Incrementează click-ul
-        const result = await handleProductClickLocal(productId, productTitle);
+        const result = await handleProductClick(productId, productTitle);
         logDev('✅ Click incremented:', result);
 
         // 2. Verifică dacă apare în today

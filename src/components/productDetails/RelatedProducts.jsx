@@ -11,7 +11,7 @@ export default function RelatedProducts({product}) {
     const [topProducts, setTopProducts] = useState([]);
 
     useEffect(() => {
-        fetch(`${API_HOST}/api/productsapi?category=${product.category}`)
+        fetch(`${API_HOST}/api/productsapi/filtered?category=${product.category}`)
             .then((res) => res.json())
             .then((data) => {
                 const items = data

@@ -91,7 +91,7 @@ export default function Products11({ selectedCategory, gen }) {
     if (collection) queryParams.append("collection", collection);
 
     setLoading(true);
-    fetch(`${API_HOST}/api/productsapi?${queryParams.toString()}`)
+    fetch(`${API_HOST}/api/productsapi/filtered?${queryParams.toString()}`)
         .then(res => res.json())
         .then(data => {
           setProducts(data);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CountdownTimer from "../common/Countdown";
 import { useContextElement } from "@/context/Context";
-import { handleProductClickLocalLocal } from "@/utlis/analytics.js";
+import { handleProductClick, handleProductClickLocal } from "@/utlis/analytics.js";
 import { slugify } from "@/utlis/slugify.js";
 
 export default function ProductCard1({ product, gridClass = "" }) {
@@ -86,7 +86,7 @@ export default function ProductCard1({ product, gridClass = "" }) {
                     className="product-img"
                     onClick={() => {
                         handleProductClickLocal(product.id);
-                        handleProductClickLocal(product.id, product.title);
+                        handleProductClick(product.id, product.title);
                     }}
                 >
                     {validImages.isLoading ? (
@@ -170,7 +170,7 @@ export default function ProductCard1({ product, gridClass = "" }) {
                     className="title link"
                     onClick={() => {
                         handleProductClickLocal(product.id);
-                        handleProductClickLocal(product.id, product.title);
+                        handleProductClick(product.id, product.title);
                     }}
                 >
                     {product.title}
