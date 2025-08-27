@@ -417,7 +417,7 @@ export default function MobileMenu() {
                   aria-expanded="true"
                   aria-controls="dropdown-menu-three"
                 >
-                  <span>Shop</span>
+                  <span>Colectii</span>
                   <span className="btn-open-sub" />
                 </a>
                 <div id="dropdown-menu-three" className="collapse">
@@ -518,78 +518,6 @@ export default function MobileMenu() {
                   </ul>
                 </div>
               </li>
-              <li className="nav-mb-item">
-                <a
-                  href="#dropdown-menu-four"
-                  className={`collapsed mb-menu-link ${
-                    [...blogLinks].some(
-                      (elm) => elm.href.split("/")[1] == pathname.split("/")[1]
-                    )
-                      ? "active"
-                      : ""
-                  } `}
-                  data-bs-toggle="collapse"
-                  aria-expanded="true"
-                  aria-controls="dropdown-menu-four"
-                >
-                  <span>Blog</span>
-                  <span className="btn-open-sub" />
-                </a>
-                <div id="dropdown-menu-four" className="collapse">
-                  <ul className="sub-nav-menu">
-                    {blogLinks.map((link, i) => (
-                      <li key={i}>
-                        <Link
-                          to={link.href}
-                          className={`sub-nav-link ${
-                            pathname.split("/")[1] == link.href.split("/")[1]
-                              ? "active"
-                              : ""
-                          } `}
-                        >
-                          {link.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-mb-item">
-                <a
-                  href="#dropdown-menu-five"
-                  className={`collapsed mb-menu-link ${
-                    [...otherPageLinks].some(
-                      (elm) => elm.href.split("/")[1] == pathname.split("/")[1]
-                    )
-                      ? "active"
-                      : ""
-                  } `}
-                  data-bs-toggle="collapse"
-                  aria-expanded="true"
-                  aria-controls="dropdown-menu-five"
-                >
-                  <span>Pages</span>
-                  <span className="btn-open-sub" />
-                </a>
-                <div id="dropdown-menu-five" className="collapse">
-                  <ul className="sub-nav-menu">
-                    {otherPageLinks.map((link, i) => (
-                      <li key={i}>
-                        <Link
-                          to={link.href}
-                          className={`sub-nav-link ${
-                            pathname.split("/")[1] == link.href.split("/")[1]
-                              ? "active"
-                              : ""
-                          } `}
-                        >
-                          {link.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
             </ul>
           </div>
           <div className="mb-other-content">
@@ -621,7 +549,7 @@ export default function MobileMenu() {
               </li>
               <li>
                 <i className="icon icon-phone" />
-                <p>315-666-6688</p>
+                <p>+40 745 757 086</p>
               </li>
             </ul>
           </div>

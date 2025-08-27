@@ -1,14 +1,28 @@
 import { useEffect, useRef, useState } from "react";
 
 import { images } from "@/data/singleProductSliders";
+import {logDev} from "@/utlis/helpers.js";
 
 export default function Grid5({
   activeColor = "gray",
   setActiveColor = () => {},
-  firstItem,
+  item,
 }) {
-  const finalItems = [...images];
-  images[0].src = firstItem ?? images[0].src;
+  // const finalItems = [...images];
+  // images[0].src = firstItem ?? images[0].src;
+    let finalItems = [];
+
+    if (item.hasOwnProperty("imageUrl1") && item.imageUrl1) {
+        finalItems.push(item.imageUrl1);
+    }
+
+    if (item.hasOwnProperty("imageUrl2") && item.imageUrl2) {
+        finalItems.push(item.imageUrl2);
+    }
+
+    if (item.hasOwnProperty("imageUrl3") && item.imageUrl3) {
+        finalItems.push(item.imageUrl3);
+    }
 
   // itemsFinal2[0].src = products[0].imgSrc;
 
@@ -72,21 +86,35 @@ export default function Grid5({
   return (
     <div className="tf-quick-view-image">
       <div className="wrap-quick-view wrapper-scroll-quickview">
-        {finalItems.map((link, index) => (
-          <a
-            className="quickView-item item-scroll-quickview"
-            data-scroll={link.dataScroll}
-            key={index}
-          >
-            <img
-              className="lazyload"
-              alt={""}
-              src={link.src}
-              width={600}
-              height={800}
-            />
-          </a>
-        ))}
+        {/*{finalItems.map((link, index) => (*/}
+        {/*  <a*/}
+        {/*    className="quickView-item item-scroll-quickview"*/}
+        {/*    data-scroll={link.dataScroll}*/}
+        {/*    key={index}*/}
+        {/*  >*/}
+        {/*    <img*/}
+        {/*      className="lazyload"*/}
+        {/*      alt={""}*/}
+        {/*      src={link.src}*/}
+        {/*      width={600}*/}
+        {/*      height={800}*/}
+        {/*    />*/}
+        {/*  </a>*/}
+        {/*))}*/}
+          {finalItems.length > 0 && finalItems.map((item, index) => (
+              <a
+                  className="quickView-item item-scroll-quickview"
+                  key={index}
+              >
+                  <img
+                      className="lazyload"
+                      alt={""}
+                      src={item}
+                      width={600}
+                      height={800}
+                  />
+              </a>
+          ))}
       </div>
     </div>
   );

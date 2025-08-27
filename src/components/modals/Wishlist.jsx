@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { useContextElement } from "@/context/Context";
 import { allProducts } from "@/data/products";
+import {logDev} from "@/utlis/helpers.js";
 
 export default function Wishlist() {
   const { removeFromWishlist, wishList } = useContextElement();

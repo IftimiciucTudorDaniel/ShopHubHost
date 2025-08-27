@@ -2,6 +2,7 @@ import Features from "@/components/common/Features";
 import ShopGram from "@/components/common/ShopGram";
 import Testimonials from "@/components/common/Testimonials";
 import Footer1 from "@/components/footers/Footer1";
+import Topbar from "@/components/headers/Topbar.jsx";
 import Header1 from "@/components/headers/Header1";
 import Banner from "@/components/homes/eleganceNest/Banner";
 import Categories from "@/components/homes/eleganceNest/Categories";
@@ -22,6 +23,7 @@ export default function HomeFashionElegentNestPage() {
   return (
     <>
       <MetaComponent meta={metadata} />
+      <Topbar />
       <Header1 />
       <Hero />
       <MarqueeSection2 />

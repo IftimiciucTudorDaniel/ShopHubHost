@@ -18,14 +18,6 @@ export default function Topbar() {
                 office@alpacas.ro
               </a>
             </li>
-            <li>
-              <Link
-                className="text-caption-1 text-white text-decoration-underline"
-                to={`/store-list`}
-              >
-                Our Store
-              </Link>
-            </li>
           </ul>
           <div className="topbar-right d-none d-xl-block">
             <div className="tf-cur justify-content-end">
