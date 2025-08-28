@@ -163,6 +163,7 @@ function App() {
 
               <Route path="colectii" element={<ShopLeftSidebarPage />} />
               <Route path="colectii/:slug" element={<ShopLeftSidebarPage />} />
+              <Route path="colectii/:slug/:gender" element={<ShopLeftSidebarPage />} />
               <Route path="colectii/:category" element={<ShopLeftSidebarPage />} />
 
               <Route path="brand" element={<ShopLeftSidebarPage />} />
