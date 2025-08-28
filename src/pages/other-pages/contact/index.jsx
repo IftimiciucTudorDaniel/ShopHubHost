@@ -1,7 +1,7 @@
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar6 from "@/components/headers/Topbar6";
-import Contact2 from "@/components/otherPages/Contact2";
+import Contact from "@/components/otherPages/Contact";
 import React from "react";
 
 import MetaComponent from "@/components/common/MetaComponent";
@@ -25,7 +25,7 @@ export default function ContactPage() {
               loading="lazy"
           />
 
-          <Contact2/>
+          <Contact/>
           <Footer1/>
       </>
   );
