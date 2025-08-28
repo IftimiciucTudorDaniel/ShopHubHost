@@ -4,7 +4,6 @@ import Topbar6 from "@/components/headers/Topbar6";
 import Breadcumb from "@/components/productDetails/Breadcumb";
 import Descriptions1 from "@/components/productDetails/descriptions/Descriptions1";
 
-import DetailsExternal from "@/components/productDetails/details/DetailsExternal";
 import RelatedProducts from "@/components/productDetails/RelatedProducts";
 import { allProducts } from "@/data/products";
 import React from "react";

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { Link } from "react-router-dom";
-import CurrencySelect from "../common/CurrencySelect";
+
 import LanguageSelect from "../common/LanguageSelect";
 import ToolbarBottom from "../headers/ToolbarBottom";
 import ScrollTop from "../common/ScrollTop";
@@ -318,9 +318,6 @@ export default function Footer1({
                         ©{new Date().getFullYear()} Alpacas. All Rights Reserved.
                       </p>
                       <div className="tf-cur justify-content-end">
-                        <div className="tf-currencies">
-                          <CurrencySelect light={dark ? true : false} />
-                        </div>
                         <div className="tf-languages">
                           <LanguageSelect
                             parentClassName={`image-select center style-default type-languages ${

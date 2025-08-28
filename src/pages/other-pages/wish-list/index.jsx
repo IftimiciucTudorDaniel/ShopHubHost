@@ -16,7 +16,7 @@ export default function WishListPage() {
                 style={{ backgroundImage: "url(/images/section/page-title.jpg)" }}
             >
                 <div className="container">
-                    <h3 className="heading text-center">Your Wishlist</h3>
+                    <h3 className="heading text-center">Lista ta de dorințe</h3>
                     <ul className="breadcrumbs d-flex align-items-center justify-content-center">
                         <li>
                             <Link className="link" to={`/`}>
@@ -34,7 +34,7 @@ export default function WishListPage() {
                         <li>
                             <i className="icon-arrRight" />
                         </li>
-                        <li>Wishlist</li>
+                        <li>Lista ta de dorințe</li>
                     </ul>
                 </div>
             </div>

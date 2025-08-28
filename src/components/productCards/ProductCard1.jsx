@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CountdownTimer from "../common/Countdown";
+
 import { useContextElement } from "@/context/Context";
 import { handleProductClick, handleProductClickLocal } from "@/utlis/analytics.js";
 import { slugify } from "@/utlis/slugify.js";

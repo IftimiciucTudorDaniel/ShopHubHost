@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import ColorSelect from "../productDetails/ColorSelect";
 import Grid5 from "../productDetails/grids/Grid5";
 import { useContextElement } from "@/context/Context";
-import QuantitySelect from "../productDetails/QuantitySelect";
 export default function QuickView() {
   const [activeColor, setActiveColor] = useState("gray");
   const [quantity, setQuantity] = useState(1); // Initial quantity is
@@ -113,12 +111,12 @@ export default function QuickView() {
                         </span>
                     </a>
                     <a
-                        onClick={() => addToWishlist(quickViewItem.id)}
+                        onClick={() => addToWishlist(quickViewItem)}
                         className="box-icon hover-tooltip text-caption-2 wishlist btn-icon-action"
                     >
                       <span className="icon icon-heart" />
                       <span className="tooltip text-caption-2">
-                      {isAddedtoWishlist(quickViewItem.id)
+                      {isAddedtoWishlist(quickViewItem)
                           ? "Already Wishlished"
                           : "Wishlist"}
                     </span>

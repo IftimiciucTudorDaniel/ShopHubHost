@@ -3,7 +3,6 @@ import Slider1 from "../sliders/Slider1";
 import ColorSelect from "../ColorSelect";
 import SizeSelect from "../SizeSelect";
 import { useContextElement } from "@/context/Context";
-import ProductStikyBottom from "../ProductStikyBottom";
 
 export default function Details1({ product }) {
   const [activeColor, setActiveColor] = useState("gray");

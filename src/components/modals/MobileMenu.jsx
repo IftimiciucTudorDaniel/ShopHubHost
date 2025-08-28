@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import LanguageSelect from "../common/LanguageSelect";
-import CurrencySelect from "../common/CurrencySelect";
+
 import {
   blogLinks,
   demoItems,
@@ -556,9 +556,6 @@ export default function MobileMenu() {
         </div>
         <div className="mb-bottom">
           <div className="bottom-bar-language">
-            <div className="tf-currencies">
-              <CurrencySelect />
-            </div>
             <div className="tf-languages">
               <LanguageSelect parentClassName="image-select center style-default type-languages" />
             </div>

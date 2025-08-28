@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import Description from "./Description";
-import Reviews from "./Reviews";
-import Shipping from "./Shipping";
-import ReturnPolicies from "./ReturnPolicies";
 
 export default function DescriptionTab() {
   const [activeTab, setActiveTab] = useState(1);

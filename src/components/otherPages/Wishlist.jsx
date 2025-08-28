@@ -10,10 +10,11 @@ export default function Wishlist() {
     if (!wishList || wishList.length === 0) {
         return (
             <div className="p-5">
-                Your wishlist is empty. Start adding your favorite products to save them
-                for later!{" "}
-                <Link className="btn-line" to="/colectii/otter-days">
-                    Explore Products
+                Lista ta de dorințe este goală. Începe să adaugi produsele tale preferate pentru a le salva.
+                pentru mai târziu!{" "}
+                <br></br>
+                <Link className="btn-line" to="/colectii/otterdays">
+                    Explorați produsele
                 </Link>
             </div>
         );
