@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import { Navigation, Pagination } from "swiper/modules";
+import {API_HOST} from "@/config.js";
 
 export default function Collections() {
   const [collections, setCollections] = useState([]);
 
     useEffect(() => {
-        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType:categoryPage")
+        fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType:categoryPage`)
             .then((res) => res.json())
             .then((data) => {
                 const categories = data.items.map((item) => {

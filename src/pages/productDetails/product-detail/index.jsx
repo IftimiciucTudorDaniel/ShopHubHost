@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import MetaComponent from "@/components/common/MetaComponent";
+import {API_HOST} from "@/config.js";
 const metadata = {
   title: "InDulap.ro",
 };
@@ -20,7 +21,7 @@ export default function ProductDetailPage() {
 
     const [product, setProduct] = useState(null);
     useEffect(() => {
-        fetch(`https://api.indulap.ro/umbraco/delivery/api/products/slug/${slug}`)
+        fetch(`${API_HOST}/api/productsapi/by-slug/${slug}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch product");

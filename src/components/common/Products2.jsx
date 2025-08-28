@@ -1,20 +1,22 @@
 import ProductCard1 from "@/components/productCards/ProductCard1";
-import { getTodaysTopClickedProducts } from "@/utlis/analytics.js";
+import {getAllTimeTopProducts, getTodaysTopProducts} from "@/utlis/analytics.js";
 import React, { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {logDev} from "@/utlis/helpers.js";
+import { API_HOST } from "@/config.js";
 
 export default function Products2({ title, parentClass }) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
 
-        getTodaysTopClickedProducts()
+        getAllTimeTopProducts()
             .then((topProducts) => {
                 const productDetailsPromises = topProducts.map((topProduct) => {
 
                     return Promise.race([
-                        fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${topProduct.productId}`),
+                        fetch(`${API_HOST}/umbraco/delivery/api/v2/content/item/${topProduct.productId}`),
                         new Promise((_, reject) =>
                             setTimeout(() => reject(new Error('Timeout')), 10000)
                         )
@@ -56,7 +58,7 @@ export default function Products2({ title, parentClass }) {
                 Promise.all(productDetailsPromises)
                     .then((fullProductDetails) => {
                         const validProducts = fullProductDetails.filter(product => product !== null);
-
+                        logDev("ValidProducts Alltime", validProducts);
                         setProducts(validProducts);
                     });
             })

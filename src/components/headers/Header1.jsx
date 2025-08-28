@@ -2,7 +2,6 @@ import React from "react";
 import Nav from "./Nav";
 
 import { Link } from "react-router-dom";
-import CartLength from "../common/CartLength";
 export default function Header1({ fullWidth = false }) {
   return (
     <header

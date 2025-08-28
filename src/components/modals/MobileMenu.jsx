@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import LanguageSelect from "../common/LanguageSelect";
-import CurrencySelect from "../common/CurrencySelect";
+
 import {
   blogLinks,
   demoItems,
@@ -14,7 +14,8 @@ import {
   femei,
   swatchLinks,
 } from "@/data/menu";
-import {getTodaysTopClickedProducts} from "@/utlis/analytics.js";
+import {getTodaysTopProducts} from "@/utlis/analytics.js";
+import {API_HOST} from "@/config.js";
 
 export default function MobileMenu() {
   const { pathname } = useLocation();
@@ -33,10 +34,10 @@ export default function MobileMenu() {
     k--;
   }
   useEffect(() => {
-    getTodaysTopClickedProducts()
+    getTodaysTopProducts()
         .then((topProducts) => {
           const productDetailsPromises = topProducts.map((topProduct) => {
-            return fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
+            return fetch(`${API_HOST}/umbraco/delivery/api/v2/content/item/${topProduct.productId}`)
                 .then((res) => res.json())
                 .then((productData) => ({
                   id: productData.id,
@@ -60,7 +61,7 @@ export default function MobileMenu() {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage");
+        const res = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage`);
         const data = await res.json();
 
         const collections = data.items.map((item) => {
@@ -105,7 +106,7 @@ export default function MobileMenu() {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/brands?take=20");
+        const res = await fetch(`${API_HOST}/umbraco/delivery/api/brands?take=20`);
         const data = await res.json();
 
         const allBrands = [...(data.group1 || []), ...(data.group2 || [])];
@@ -131,7 +132,7 @@ export default function MobileMenu() {
   useEffect(() => {
     const fetchFemeiLinks = async () => {
       try {
-        const res = await fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=400");
+        const res = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=400`);
         const data = await res.json();
 
         const femeiCategoriesRaw = data.items.filter((item) =>
@@ -416,7 +417,7 @@ export default function MobileMenu() {
                   aria-expanded="true"
                   aria-controls="dropdown-menu-three"
                 >
-                  <span>Shop</span>
+                  <span>Colectii</span>
                   <span className="btn-open-sub" />
                 </a>
                 <div id="dropdown-menu-three" className="collapse">
@@ -517,78 +518,6 @@ export default function MobileMenu() {
                   </ul>
                 </div>
               </li>
-              <li className="nav-mb-item">
-                <a
-                  href="#dropdown-menu-four"
-                  className={`collapsed mb-menu-link ${
-                    [...blogLinks].some(
-                      (elm) => elm.href.split("/")[1] == pathname.split("/")[1]
-                    )
-                      ? "active"
-                      : ""
-                  } `}
-                  data-bs-toggle="collapse"
-                  aria-expanded="true"
-                  aria-controls="dropdown-menu-four"
-                >
-                  <span>Blog</span>
-                  <span className="btn-open-sub" />
-                </a>
-                <div id="dropdown-menu-four" className="collapse">
-                  <ul className="sub-nav-menu">
-                    {blogLinks.map((link, i) => (
-                      <li key={i}>
-                        <Link
-                          to={link.href}
-                          className={`sub-nav-link ${
-                            pathname.split("/")[1] == link.href.split("/")[1]
-                              ? "active"
-                              : ""
-                          } `}
-                        >
-                          {link.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-mb-item">
-                <a
-                  href="#dropdown-menu-five"
-                  className={`collapsed mb-menu-link ${
-                    [...otherPageLinks].some(
-                      (elm) => elm.href.split("/")[1] == pathname.split("/")[1]
-                    )
-                      ? "active"
-                      : ""
-                  } `}
-                  data-bs-toggle="collapse"
-                  aria-expanded="true"
-                  aria-controls="dropdown-menu-five"
-                >
-                  <span>Pages</span>
-                  <span className="btn-open-sub" />
-                </a>
-                <div id="dropdown-menu-five" className="collapse">
-                  <ul className="sub-nav-menu">
-                    {otherPageLinks.map((link, i) => (
-                      <li key={i}>
-                        <Link
-                          to={link.href}
-                          className={`sub-nav-link ${
-                            pathname.split("/")[1] == link.href.split("/")[1]
-                              ? "active"
-                              : ""
-                          } `}
-                        >
-                          {link.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
             </ul>
           </div>
           <div className="mb-other-content">
@@ -620,16 +549,13 @@ export default function MobileMenu() {
               </li>
               <li>
                 <i className="icon icon-phone" />
-                <p>315-666-6688</p>
+                <p>+40 745 757 086</p>
               </li>
             </ul>
           </div>
         </div>
         <div className="mb-bottom">
           <div className="bottom-bar-language">
-            <div className="tf-currencies">
-              <CurrencySelect />
-            </div>
             <div className="tf-languages">
               <LanguageSelect parentClassName="image-select center style-default type-languages" />
             </div>

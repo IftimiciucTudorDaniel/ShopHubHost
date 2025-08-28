@@ -3,13 +3,15 @@ import { getTopClickedProducts } from "@/utlis/analytics.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import ProductCard1 from "../productCards/ProductCard1";
+import {logDev} from "@/utlis/helpers.js";
+import {API_HOST} from "@/config.js";
 
 export default function RelatedProducts({product}) {
     const [products, setProducts] = useState([]);
     const [topProducts, setTopProducts] = useState([]);
 
     useEffect(() => {
-        fetch(`https://api.indulap.ro/umbraco/delivery/api/products?category=${product.category}`)
+        fetch(`${API_HOST}/api/productsapi/filtered?category=${product.category}`)
             .then((res) => res.json())
             .then((data) => {
                 const items = data
@@ -30,7 +32,7 @@ export default function RelatedProducts({product}) {
             })
             .catch((error) => console.error("Error fetching products:", error));
     }, [product]);
-console.log(product.category);
+logDev(product.category);
     useEffect(() => {
         const fetched = getTopClickedProducts(products);
         setTopProducts(fetched);

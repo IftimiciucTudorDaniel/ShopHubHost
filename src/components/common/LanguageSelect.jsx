@@ -69,6 +69,7 @@ export default function LanguageSelect({
             inset: topStart ? "" : "auto auto 0px 0px",
             margin: 0,
             transform: `translate(0px, ${topStart ? 22 : -20}px)`,
+            zIndex: 9999,
           }}
           data-popper-placement={`${!topStart ? "top" : "bottom"}-start`}
         >

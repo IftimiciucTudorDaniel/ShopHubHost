@@ -5,15 +5,16 @@ import { useContextElement } from "@/context/Context";
 
 import { Link } from "react-router-dom";
 import { Pagination } from "swiper/modules";
+import {API_HOST} from "@/config.js";
 export default function Collections() {
     const [collections, setCollections] = useState([]);
     useEffect(() => {
-        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage")
+        fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage`)
             .then((res) => res.json())
             .then((data) => {
                 const collections = data.items.map((item) => {
                     const image = item.properties?.image?.[0];
-                    const imageUrl = image ? `https://api.indulap.ro/${image.url}` : null;
+                    const imageUrl = image ? `${API_HOST}/${image.url}` : null;
                     const link = `/colectii/${item.name
                         .toLowerCase()
                         .normalize("NFD")

@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 import ProductCard1 from "../productCards/ProductCard1";
+import {API_HOST} from "@/config.js";
 
 export default function SearchModal() {
   const [query, setQuery] = useState("");
@@ -25,7 +26,7 @@ export default function SearchModal() {
     setLoading(true);
     try {
       const res = await fetch(
-          `https://api.indulap.ro/umbraco/delivery/api/search?q=${encodeURIComponent(searchTerm)}`
+          `${API_HOST}/umbraco/delivery/api/search?q=${encodeURIComponent(searchTerm)}`
       );
       const data = await res.json();
       setResults(data);

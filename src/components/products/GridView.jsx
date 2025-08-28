@@ -9,9 +9,7 @@ export default function GridView({ products, pagination = true }) {
         {products.map((product, index) => (
             <div key={index} className="product-item">
               {/* Link către pagina de detaliu a produsului */}
-              <Link to={product.affLink}>
                 <ProductCard1 product={product} gridClass="grid" />
-              </Link>
             </div>
         ))}
       </>

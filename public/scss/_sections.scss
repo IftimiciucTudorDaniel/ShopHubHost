@@ -609,7 +609,7 @@ ul.list-text {
   border-bottom: 1px solid var(--line);
   .marquee-wrapper {
     display: flex;
-    animation: infiniteScroll 30s linear infinite;
+    animation: infiniteScroll 150s linear infinite;
     align-items: center;
     transition: animation-duration 300ms;
     &:hover {

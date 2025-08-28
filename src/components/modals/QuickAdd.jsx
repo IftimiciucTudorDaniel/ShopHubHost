@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ColorSelect from "../productDetails/ColorSelect";
 import SizeSelect from "../productDetails/SizeSelect";
-import QuantitySelect from "../productDetails/QuantitySelect";
 export default function QuickAdd() {
   const [quantity, setQuantity] = useState(1);
   const {

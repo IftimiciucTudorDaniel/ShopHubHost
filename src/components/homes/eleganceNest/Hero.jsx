@@ -3,11 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Link } from "react-router-dom";
 import { Pagination } from "swiper/modules";
-import {getTodaysTopClickedProducts} from "@/utlis/analytics.js";
+import {getTodaysTopProducts} from "@/utlis/analytics.js";
+import {API_HOST} from "@/config.js";
 export default function Hero() {
     const [bannerSlides, setBannerSlides] = useState([]);
     useEffect(() => {
-        fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=name%3AAbout`)
+        fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=name%3AAbout`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch slider");

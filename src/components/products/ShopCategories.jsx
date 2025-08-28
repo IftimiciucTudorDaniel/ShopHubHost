@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Listview from "@/components/products/Listview.jsx";
+import {API_HOST} from "@/config.js";
 
 
 export default function ShopCategories() {
@@ -10,7 +8,7 @@ export default function ShopCategories() {
     const productsRef = useRef(null); // dacă folosești `ref` pentru ceva
 
     useEffect(() => {
-        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=200")
+        fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcategoryPage&skip=0&take=200`)
             .then((res) => res.json())
             .then((data) => {
                 const categories = data.items.map((item) => ({

@@ -1,28 +1,69 @@
 import { useState } from "react";
 
 export default function SizeGuide() {
-  const [rangeValue1, setRangeValue1] = useState(50);
-  const [rangeValue2, setRangeValue2] = useState(50);
+  const [height, setHeight] = useState(170);
+  const [weight, setWeight] = useState(70);
   const [activeTab, setActiveTab] = useState(1);
-  const handleRangeInput1 = (event) => {
-    setRangeValue1(parseInt(event.target.value, 10));
+  const [bodyType, setBodyType] = useState(1); // 0=subțire, 1=normal, 2=plinuț
+
+  // Calculează BMI
+  const calculateBMI = () => {
+    const heightInM = height / 100;
+    return weight / (heightInM * heightInM);
   };
 
-  const handleRangeInput2 = (event) => {
-    setRangeValue2(parseInt(event.target.value, 10));
+  // Calculează mărimea recomandată bazată pe date românești
+  const getRecommendedSize = () => {
+    const bmi = calculateBMI();
+    let baseSize = 'M';
+
+    // Logica pentru înălțime (adaptată pentru România)
+    if (height < 155) {
+      baseSize = 'XS';
+    } else if (height < 162) {
+      baseSize = 'S';
+    } else if (height < 170) {
+      baseSize = 'M';
+    } else if (height < 178) {
+      baseSize = 'L';
+    } else {
+      baseSize = 'XL';
+    }
+
+    // Ajustare în funcție de BMI
+    if (bmi < 18.5) {
+      // Subponderal - mărime mai mică
+      const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+      const currentIndex = sizes.indexOf(baseSize);
+      if (currentIndex > 0) baseSize = sizes[currentIndex - 1];
+    } else if (bmi > 25) {
+      // Supraponderal - mărime mai mare
+      const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+      const currentIndex = sizes.indexOf(baseSize);
+      if (currentIndex < sizes.length - 1) baseSize = sizes[currentIndex + 1];
+    }
+
+    // Ajustare finală pentru tipul corpului
+    if (bodyType === 0) {
+      // Tipul subțire - o mărime mai mică
+      const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+      const currentIndex = sizes.indexOf(baseSize);
+      if (currentIndex > 0) baseSize = sizes[currentIndex - 1];
+    } else if (bodyType === 2) {
+      // Tipul plinuț - o mărime mai mare
+      const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+      const currentIndex = sizes.indexOf(baseSize);
+      if (currentIndex < sizes.length - 1) baseSize = sizes[currentIndex + 1];
+    }
+
+    return baseSize;
   };
 
-  const maxRange = 100;
-
-  const percentMax1 = (rangeValue1 / maxRange) * 100;
-  const percentMax2 = (rangeValue2 / maxRange) * 100;
-
-  const [activeIndex, setActiveIndex] = useState(1);
-  const options = [{ label: "subțire" }, { label: "Normal" }, { label: "plinuț" }];
-
-  const handleClick = (index) => {
-    setActiveIndex(index);
-  };
+  const bodyTypes = [
+    { label: "Subțire", description: "Corp zvelt, umeri îngust" },
+    { label: "Normal", description: "Proporții echilibrate" },
+    { label: "Plinuț", description: "Corp mai robust" }
+  ];
 
   return (
       <div className="modal fade modal-size-guide" id="size-guide">
@@ -56,77 +97,120 @@ export default function SizeGuide() {
                     } `}
                 >
                   <div className="tab-size">
-                    <div>
-                      <div className="widget-size mb_16">
-                        <div className="box-title-size">
-                          <div className="title-size">Înălțime</div>
-                          <div className="number-size">
-                            <span className="max-size">{rangeValue1 * 2}</span>
-                            <span className="text-caption-1 text-secondary">
-                            Cm
-                          </span>
-                          </div>
-                        </div>
-                        <div className="range-input">
-                          <div className="tow-bar-block">
-                            <div
-                                className="progress-size"
-                                style={{ width: `${percentMax1}%` }}
-                            />
-                          </div>
-                          <input
-                              type="range"
-                              min="0"
-                              max={maxRange}
-                              value={rangeValue1}
-                              onInput={handleRangeInput1}
-                              className="range-max"
-                          />
+                    <div className="text-center mb-3">
+                      <h5 className="mb-1">🇷🇴 Calculator mărime România</h5>
+                      <p className="text-muted small mb-0">Introduceți datele pentru a afla mărimea potrivită</p>
+                    </div>
+
+                    {/* Height Slider */}
+                    <div className="widget-size mb-3">
+                      <div className="box-title-size">
+                        <div className="title-size">Înălțime</div>
+                        <div className="number-size">
+                          <span className="max-size">{height}</span>
+                          <span className="text-caption-1 text-secondary">cm</span>
                         </div>
                       </div>
-                      <div className="widget-size">
-                        <div className="box-title-size">
-                          <div className="title-size">Greutate</div>
-                          <div className="number-size">
-                            <span className="max-size">{rangeValue2}</span>
-                            <span className="text-caption-1 text-secondary">
-                            Kg
-                          </span>
-                          </div>
-                        </div>
-                        <div className="range-input">
-                          <div className="tow-bar-block">
-                            <div
-                                className="progress-size"
-                                style={{ width: `${percentMax2}%` }}
-                            />
-                          </div>
-                          <input
-                              type="range"
-                              min="0"
-                              max={maxRange}
-                              value={rangeValue2}
-                              onInput={handleRangeInput2}
-                              className="range-max"
+                      <div className="range-input">
+                        <div className="tow-bar-block">
+                          <div
+                              className="progress-size"
+                              style={{ width: `${((height - 140) / (200 - 140)) * 100}%` }}
                           />
                         </div>
+                        <input
+                            type="range"
+                            min="140"
+                            max="200"
+                            value={height}
+                            onInput={(e) => setHeight(parseInt(e.target.value))}
+                            className="range-max"
+                        />
                       </div>
                     </div>
-                    <div className="size-button-wrap choose-option-list">
-                      {options.map((option, index) => (
+
+                    {/* Weight Slider */}
+                    <div className="widget-size mb-3">
+                      <div className="box-title-size">
+                        <div className="title-size">Greutate</div>
+                        <div className="number-size">
+                          <span className="max-size">{weight}</span>
+                          <span className="text-caption-1 text-secondary">kg</span>
+                        </div>
+                      </div>
+                      <div className="range-input">
+                        <div className="tow-bar-block">
                           <div
-                              key={index}
-                              className={`size-button-item choose-option-item ${
-                                  index === activeIndex ? "select-option" : ""
-                              }`}
-                              onClick={() => handleClick(index)}
-                          >
-                            <h5>{option.label}</h5>
-                          </div>
-                      ))}
+                              className="progress-size"
+                              style={{ width: `${((weight - 40) / (120 - 40)) * 100}%` }}
+                          />
+                        </div>
+                        <input
+                            type="range"
+                            min="40"
+                            max="120"
+                            value={weight}
+                            onInput={(e) => setWeight(parseInt(e.target.value))}
+                            className="range-max"
+                        />
+                      </div>
+                    </div>
+
+                    {/* BMI Info */}
+                    <div className="text-center mb-3 p-2" style={{backgroundColor: '#f8f9fa', borderRadius: '6px'}}>
+                      <small className="text-muted">
+                        <strong>BMI:</strong> {calculateBMI().toFixed(1)}
+                        {calculateBMI() < 18.5 && " (Subponderal)"}
+                        {calculateBMI() >= 18.5 && calculateBMI() <= 24.9 && " (Normal)"}
+                        {calculateBMI() >= 25 && calculateBMI() <= 29.9 && " (Supraponderal)"}
+                        {calculateBMI() >= 30 && " (Obez)"}
+                      </small>
+                    </div>
+
+                    {/* Body Type Selection */}
+                    <div className="mb-3">
+                      <h6 className="mb-2">Tipul corpului</h6>
+                      <div className="size-button-wrap choose-option-list">
+                        {bodyTypes.map((type, index) => (
+                            <div
+                                key={index}
+                                className={`size-button-item choose-option-item ${
+                                    index === bodyType ? "select-option" : ""
+                                }`}
+                                onClick={() => setBodyType(index)}
+                                style={{padding: '8px 12px'}}
+                            >
+                              <h6 className="mb-1">{type.label}</h6>
+                              <small className="text-muted">{type.description}</small>
+                            </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Recommended Size - Main Result */}
+                    <div className="text-center p-3" style={{backgroundColor: '#fff3cd', border: '2px solid #ffc107', borderRadius: '8px'}}>
+                      <p className="text-muted mb-1">🎯 Mărimea dumneavoastră recomandată</p>
+                      <h2 className="mb-1" style={{fontSize: '2.5rem', fontWeight: 'bold', color: '#856404'}}>
+                        {getRecommendedSize()}
+                      </h2>
+                      <small className="text-muted d-block mb-2">
+                        Bazat pe: înălțime {height}cm, greutate {weight}kg, tip corp {bodyTypes[bodyType].label.toLowerCase()}
+                      </small>
+                      <button className="btn btn-warning btn-sm">
+                        ✓ Selectează mărimea {getRecommendedSize()}
+                      </button>
+                    </div>
+
+                    {/* Tips */}
+                    <div className="mt-2">
+                      <small className="text-muted">
+                        <strong>💡 Sfaturi:</strong> Măsurați-vă dimineața pentru rezultate precise.
+                        În caz de îndoială, alegeți mărimea mai mare.
+                      </small>
                     </div>
                   </div>
                 </div>
+
                 <div
                     className={`widget-content-inner ${
                         activeTab == 2 ? "active" : ""

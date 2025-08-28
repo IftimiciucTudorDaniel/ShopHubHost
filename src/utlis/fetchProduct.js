@@ -1,8 +1,9 @@
 import {productAdapter} from "@/utlis/productAdapter.js";
+import {API_HOST} from "@/config.js";
 
 export async function fetchProduct(productId) {
     try{
-    const res = await fetch(`https://api.indulap.ro/umbraco/delivery/api/v2/content/item/${productId}`);
+    const res = await fetch(`${API_HOST}/umbraco/delivery/api/v2/content/item/${productId}`);
 
     if (!res.ok) {
         throw new Error("Failed to fetch product");

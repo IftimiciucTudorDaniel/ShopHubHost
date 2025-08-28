@@ -1,11 +1,11 @@
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar6 from "@/components/headers/Topbar6";
-import Products1 from "@/components/products/Products1";
 import { Link } from "react-router-dom";
 import React, {useEffect, useRef, useState} from "react";
 import MetaComponent from "@/components/common/MetaComponent";
 import {SwiperSlide} from "swiper/react";
+import {API_HOST} from "@/config.js";
 const metadata = {
   title:
     "InDulap.ro",
@@ -13,12 +13,12 @@ const metadata = {
 export default function ShopFilterCanvasPage() {
     const [collections, setCollections] = useState([]);
     useEffect(() => {
-        fetch("https://api.indulap.ro/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage")
+        fetch(`${API_HOST}/umbraco/delivery/api/v2/content?filter=contentType%3AcollectionPage`)
             .then((res) => res.json())
             .then((data) => {
                 const collections = data.items.map((item) => {
                     const image = item.properties?.image?.[0];
-                    const imageUrl = image ? `https://api.indulap.ro/${image.url}` : null;
+                    const imageUrl = image ? `${API_HOST}/${image.url}` : null;
                     const link = `/colectii/${item.name
                         .toLowerCase()
                         .normalize("NFD")
